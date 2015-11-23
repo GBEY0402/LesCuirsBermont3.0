@@ -17,11 +17,10 @@ Route::get('/', function () {
 
 Route::group(['middleware'=>'auth'], function() {
 	
-	Route::resource('chat','HomeController@index');
+	Route::resource('/home','HomeController@index');
 	
 });
 
-Route::get('/home', 'HomeController@reject');
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');

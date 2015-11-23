@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Auth;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -17,14 +17,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (Auth::attempt(array('email' => $email, 'password' => $password)))
-        {
-            return Redirect::intended('welcome2');
-        }
-        else
-        {
-            return Redirect::intended('welcome');
-        }
+        #if (Auth::attempt(array('email' => $email, 'password' => $password)))
+        #{
+        #    return Redirect::intended('welcome2');
+        #}
+        #else
+        #{
+        #    return Redirect::intended('welcome');
+        #}
+        return view('welcome');
     }
 
     /**
