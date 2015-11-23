@@ -29,9 +29,10 @@ class UserTableSeeder extends Seeder
         DB::table('users')->delete();
         DB::table('password_resets')->delete();
         $user = new User();
-        $user->name = 'admin';
+        $user->name = 'Bob';
         $user->email = 'admin@admin.com';
         $user->password = Hash::make('admin');
+        $user->role = 'Administrateur';
         $user->save();
     }
 }
