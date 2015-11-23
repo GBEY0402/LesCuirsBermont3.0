@@ -16,27 +16,8 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware'=>'auth'], function() {
-
-	$user = Auth::user();
-        if ($user->role == 'Administrateur')
-        {
-        	Route::resource('/admin', 'HomeController@admin');
-        	Route::resource('/production', 'HomeController@production');
-			Route::resource('/employe', 'HomeController@employe');
-        }
-        elseif ($user->role == 'Directeur') 
-        {
-        	Route::resource('/production', 'HomeController@production');
-			Route::resource('/employe', 'HomeController@employe');
-        }
-        else
-        {
-        	Route::resource('/employe', 'HomeController@employe');
-        }
-	
 	Route::resource('/home','HomeController@index');
-	
-});
+	});
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');

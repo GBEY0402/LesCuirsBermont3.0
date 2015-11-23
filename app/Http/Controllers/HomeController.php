@@ -17,22 +17,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('welcome');
-    }
-
-    public function admin()
-    {
-        return view('admin');
-    }
-
-    public function production()
-    {
-        return view('production');
-    }
-
-    public function employe()
-    {
-        return view('employe');
+        $user = Auth::user();
+        return view('admin', ['role' => $user->role]);
     }
 
     /**

@@ -38,7 +38,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Administration!</div>
+                <div class="title">Administration! {!! $role !!}</div>
             </div>
         </div>
     </body>
