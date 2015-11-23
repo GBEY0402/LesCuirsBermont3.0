@@ -17,15 +17,22 @@ class HomeController extends Controller
      */
     public function index()
     {
-        #if (Auth::attempt(array('email' => $email, 'password' => $password)))
-        #{
-        #    return Redirect::intended('welcome2');
-        #}
-        #else
-        #{
-        #    return Redirect::intended('welcome');
-        #}
         return view('welcome');
+    }
+
+    public function admin()
+    {
+        return view('admin');
+    }
+
+    public function production()
+    {
+        return view('production');
+    }
+
+    public function employe()
+    {
+        return view('employe');
     }
 
     /**
