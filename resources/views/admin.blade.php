@@ -15,7 +15,7 @@
                 padding: 0;
                 width: 100%;
                 display: table;
-                font-weight: 100;
+                font-weight: 35;
                 font-family: 'Lato';
             }
 
@@ -31,14 +31,14 @@
             }
 
             .title {
-                font-size: 96px;
+                font-size: 36px;
             }
         </style>
     </head>
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Administration! {!! $role !!}</div>
+                <div class="title">Vue Administration! Vous etes un {!! $role !!}</div>
             </div>
         </div>
     </body>
