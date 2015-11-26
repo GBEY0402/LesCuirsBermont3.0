@@ -20,8 +20,14 @@ Route::get('/logintest', function () {
 });
 
 Route::group(['middleware'=>'auth'], function() {
+	
 	Route::resource('/home','HomeController@index');
-	});
+	Route::resource('/admin', 'HomeController@admin');
+	Route::resource('/production', 'HomeController@production');
+	Route::resource('/employe', 'HomeController@employe');
+	
+});
+Route::resource('/home','HomeController@index');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
