@@ -15,16 +15,10 @@ Route::get('/', function () {
     return view('/auth/login');
 });
 
-Route::get('/logintest', function () {
-    return view('/auth/login2');
-});
 
 Route::group(['middleware'=>'auth'], function() {
 	
 	Route::resource('/home','HomeController@index');
-	Route::resource('/admin', 'HomeController@admin');
-	Route::resource('/production', 'HomeController@production');
-	Route::resource('/employe', 'HomeController@employe');
 	
 });
 Route::resource('/home','HomeController@index');

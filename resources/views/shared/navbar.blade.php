@@ -27,10 +27,10 @@
                     </li>
                 @endif
             </ul>
-            
-            @if ($role == 'Administrateur')
+
             <ul class="nav navbar-nav navbar-right">
                 <!--<li><a>Gestion employé</a></li>-->
+                @if ($role == 'Administrateur')
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Gestion employé <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
@@ -40,9 +40,11 @@
                         <!--<li class="divider"></li>
                         <li><a href="#">Separated link</a></li>-->
                     </ul>
+                @endif
                 </li>
+                <li><a href="/auth/logout">Logout</a></li>
             </ul>
-            @endif
+            
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
