@@ -10,6 +10,8 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
 {
+
+    protected $username = 'username';
     /*
     |--------------------------------------------------------------------------
     | Registration & Login Controller
@@ -58,7 +60,7 @@ class AuthController extends Controller
     {
         return User::create([
             'name' => $data['name'],
-            'username' => $data['¸username'],
+            'username' => $data['username'],
             'password' => bcrypt($data['password']),
         ]);
     }
