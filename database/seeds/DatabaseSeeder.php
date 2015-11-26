@@ -34,5 +34,20 @@ class UserTableSeeder extends Seeder
         $user->password = Hash::make('admin');
         $user->role = 'Administrateur';
         $user->save();
+
+        $user2 = new User();
+        $user2->name = 'Steve';
+        $user2->username = 'steve';
+        $user2->password = Hash::make('steve');
+        $user2->role = 'Production';
+        $user2->save();
+
+        $user3 = new User();
+        $user3->name = 'Eric';
+        $user3->username = 'eric';
+        $user3->password = Hash::make('eric');
+        $user3->role = 'Employer';
+        $user3->save();
+
     }
 }

@@ -33,6 +33,6 @@ class CreateMatieresPremieresTable extends Migration
      */
     public function down()
     {
-        Schema::drop('matierePremiere');
+        Schema::drop('matieresPremieres');
     }
 }
