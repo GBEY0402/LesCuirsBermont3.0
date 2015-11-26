@@ -23,6 +23,7 @@ Route::group(['middleware'=>'auth'], function() {
 	Route::resource('/employe', 'HomeController@employe');
 	
 });
+Route::resource('/home','HomeController@index');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
