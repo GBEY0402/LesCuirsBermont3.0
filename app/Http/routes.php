@@ -19,8 +19,10 @@ Route::get('/', function () {
 Route::group(['middleware'=>'auth'], function() {
 	
 	Route::resource('/home','HomeController@index');
-	
+	Route::resource('/inventaire','HomeController@inventaire');
+	Route::get('/prod', 'HomeController@prod');
 });
+	
 Route::resource('/home','HomeController@index');
 
 // Authentication routes...

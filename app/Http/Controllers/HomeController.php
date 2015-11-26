@@ -17,9 +17,40 @@ class HomeController extends Controller
      */
     public function index()
     {
+        /**
+        *
+        * La vue inventaire est appelé lors de l'authtentication est accepté.
+        * On envoie avec la vue le paramètre role. 
+        *
+        */
         $user = Auth::user();
         return view('inventaire', ['role' => $user->role]);
     }
+
+    public function prod()
+    {
+        /**
+        *
+        * 
+        * 
+        *
+        */
+        $user = Auth::user();
+        return view('production', ['role' => $user->role]);
+    }
+
+        public function inventaire()
+    {
+        /**
+        *
+        * 
+        * 
+        *
+        */
+        $user = Auth::user();
+        return view('inventaire', ['role' => $user->role]);
+    }
+
 
     /**
      * Show the form for creating a new resource.

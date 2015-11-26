@@ -8,14 +8,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Les Cuirs Bermont</a>
+            <a class="navbar-brand" href="/home">Les Cuirs Bermont</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Inventaire <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Production</a></li>
+                <li><a href="/inventaire">Inventaire</a></li>
+                <li><a href="/prod">Production</a></li>
                 @if ($role == 'Administrateur')
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Clients et fournisseurs<span class="caret"></span></a>

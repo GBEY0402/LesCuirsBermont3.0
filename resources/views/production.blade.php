@@ -1,44 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Laravel</title>
+        <title>Les Cuirs Bermont</title>
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-
-        <style>
-            html, body {
-                height: 100%;
-            }
-
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
-
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 96px;
-            }
-        </style>
-    </head>
-    <body>
+        
+        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="{!! asset('css/bootstrap.min.css') !!}" >
+        <link rel="stylesheet" href="{!! asset('css/bootstrap-theme.min.css') !!}">
+        <script src="{!! asset('js/jquery-2.1.4.js') !!}"></script>
+        <script src="{!! asset('js/bootstrap.min.js') !!}"></script>
+      
+        </head>
+        <body>
+        @include('shared.navbar')
+        @yield('content')
         <div class="container">
             <div class="content">
-                <div class="title">DP</div>
+                <div class="title">Vue production Vous etes un {!! $role !!}</div>
             </div>
         </div>
     </body>
