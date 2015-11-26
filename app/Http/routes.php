@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('/auth/login');
 });
 
+Route::get('/logintest', function () {
+    return view('/auth/login2');
+});
+
 Route::group(['middleware'=>'auth'], function() {
 	Route::resource('/home','HomeController@index');
 	});

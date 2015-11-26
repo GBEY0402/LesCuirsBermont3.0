@@ -18,7 +18,7 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('admin', ['role' => $user->role]);
+        return view('inventaire', ['role' => $user->role]);
     }
 
     /**
