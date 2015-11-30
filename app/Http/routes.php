@@ -21,6 +21,7 @@ Route::group(['middleware'=>'auth'], function() {
 	Route::resource('/home','HomeController@index');
 	Route::resource('/inventaire','HomeController@inventaire');
 	Route::get('/prod', 'HomeController@prod');
+	Route::get('/usager', 'HomeController@usager');
 });
 	
 Route::resource('/home','HomeController@index');

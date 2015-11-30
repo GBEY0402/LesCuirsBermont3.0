@@ -39,6 +39,18 @@ class HomeController extends Controller
         return view('production', ['role' => $user->role]);
     }
 
+    public function usager()
+    {
+        /**
+        *
+        * 
+        * 
+        *
+        */
+        $user = Auth::user();
+        return view('gestionemploye', ['role' => $user->role]);
+    }
+
         public function inventaire()
     {
         /**
