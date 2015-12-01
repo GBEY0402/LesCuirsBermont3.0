@@ -15,8 +15,8 @@ class CreateRecettesTable extends Migration
         Schema::create('recettes', function (Blueprint $table) {
             $table->integer('produitsFinisId')->unsigned();
             $table->foreign('produitsFinisId')->references('id')->on('produitsFinis');
-            $table->integer('matierePremieresId')->unsigned();
-            $table->foreign('matierePremieresId')->references('id')->on('matieresPremieres');
+            $table->integer('matieresPremieresId')->unsigned();
+            $table->foreign('matieresPremieresId')->references('id')->on('matieresPremieres');
             $table->integer('quantite');
             $table->timestamps('create_at');
         });
