@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Models\CommandeProduit;
+use App\Models\Commande;
+use App\Models\ProduitFini;
+use View;
+use Redirect;
+use Input;
+
 class CommandesProduitsController extends Controller
 {
     /**
@@ -16,7 +23,7 @@ class CommandesProduitsController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**

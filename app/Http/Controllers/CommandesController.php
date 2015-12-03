@@ -36,7 +36,7 @@ class CommandesController extends Controller
         {
             App::abort(404);
         }
-        return View::make('commandes.index', compact('commandes'))
+        return View::make('commandes.index', compact('commandes'));
     }
 
     /**

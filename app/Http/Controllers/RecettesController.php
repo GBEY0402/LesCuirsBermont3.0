@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Models\ProduitFini;
+use App\Models\MatierePremiere;
+use App\Models\Recette;
+use View;
+use Redirect;
+use Input;
+
 class RecettesController extends Controller
 {
     /**
