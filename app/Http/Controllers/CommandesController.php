@@ -6,11 +6,14 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\CommandesProduitsController;
 
 use App\Models\Commande;
+use App\Models\ProduitFini;
 use View;
 use Redirect;
 use Input;
+use DB;
 
 class CommandesController extends Controller
 {
@@ -24,6 +27,7 @@ class CommandesController extends Controller
         try
         {
             $commandes = Commande::all()->sortby('id');
+            $produits = ProduitFini::all()->sortby('id');
             foreach ($commandes as $commande) 
             {
                 if ($commande->commentaire == "")
@@ -36,7 +40,7 @@ class CommandesController extends Controller
         {
             App::abort(404);
         }
-        return View::make('commandes.index', compact('commandes'));
+        return View::make('commandes.index', compact('commandes', 'produits'));
     }
 
     /**
@@ -67,6 +71,8 @@ class CommandesController extends Controller
             $commande->dateFin =    $input['dateFin'];
             $commande->etat =       $input['etat'];
             $commande->commentaire= $input['commentaire'];
+
+
         } 
         catch(ModelNotFoundException $e) 
         {
@@ -94,6 +100,9 @@ class CommandesController extends Controller
         try 
         {
             $commande = Commande::findOrFail($id);
+            $produits = DB::select('select produitsId 
+                                    from commandesproduits 
+                                    where commandesId = ?', $id);
             if ($commande->commentaire == "") 
             {
                 $commande->commentaire = "Aucune commentaire disponible";
@@ -103,7 +112,7 @@ class CommandesController extends Controller
         {
             App::abort(404);
         }
-        return View::make('commandes.show', compact('commande'));
+        return View::make('commandes.show', compact('commande', 'produits'));
     }
 
     /**
@@ -117,12 +126,15 @@ class CommandesController extends Controller
         try 
         {
             $commande = Commande::findOrFail($id);
+            $produits = DB::select('select produitsId 
+                                    from commandesproduits 
+                                    where commandesId = ?', $id);
         } 
         catch(ModelNotFoundException $e) 
         {
             App::abort(404);
         }
-        return View::make('commandes.edit', compact('commande'));
+        return View::make('commandes.edit', compact('commande', 'produits'));
     }
 
     /**
@@ -168,17 +180,34 @@ class CommandesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function desactivateCommande($id)
     {
         try 
         {
             $commande = Commande::findOrFail($id);
-            $commande->delete();
+            destroyItems($id);
+            DB::table('commandes')
+                    ->where('Id', $id)
+                    ->update(['actif' => 0]);
         } 
         catch(ModelNotFoundException $e) 
         {
             App::abort(404);
         }
         return Redirect::action('CommandesController@index');
+    }
+
+    public function desactivateItems($id)
+    {
+        try
+        {
+            DB::table('commandesproduits')
+                    ->where('produitsId', $id)
+                    ->update(['actif' => 0]);
+        }
+        catch
+        {
+            App::abort(404);
+        }
     }
 }

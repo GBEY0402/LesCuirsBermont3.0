@@ -18,6 +18,7 @@ class CreateRecettesTable extends Migration
             $table->integer('matieresPremieresId')->unsigned();
             $table->foreign('matieresPremieresId')->references('id')->on('matieresPremieres');
             $table->integer('quantite');
+            $table->boolean('actif');
             $table->timestamps('create_at');
         });
     }

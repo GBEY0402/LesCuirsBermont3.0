@@ -22,6 +22,7 @@ class CreateMatieresPremieresTable extends Migration
             $table->integer('quantiteMinimum');
             $table->integer('quantiteLimite');
             $table->integer('quantiteReserve');
+            $table->boolean('actif');
             $table->timestamps('create_at');
         });
     }

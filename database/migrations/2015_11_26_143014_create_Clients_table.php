@@ -20,6 +20,7 @@ class CreateClientsTable extends Migration
             $table->string('ville');
             $table->string('noTel');
             $table->string('courriel')->nullable();
+            $table->boolean('actif');
             $table->timestamps('create_at');
         });
     }
