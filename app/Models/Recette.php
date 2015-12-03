@@ -11,4 +11,22 @@ class Recette extends Model
      */
 
     protected $table = 'Recettes';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['produitsFinisId', 'matieresPremieresId', 'quantite'];
+
+    public $validationMessages;
+
+	public function validationRules() {
+		return 
+			[
+			'produitsFinisId' 		=> 'required',
+			'matieresPremieresId' 	=> 'required',
+			'quantite' 				=> 'required',
+			];
+	}
 }
