@@ -37,7 +37,7 @@ class ClientsController extends Controller
         {
             App::abort(404);
         }
-        return View::make('clients.index', compact('clients'))
+        return View::make('clients.index', compact('clients'));
     }
 
     /**

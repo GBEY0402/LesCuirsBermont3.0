@@ -36,7 +36,7 @@ class MatieresPremieresController extends Controller
         {
             App::abort(404);
         }
-        return View::make('matieresPremieres.index', compact('materiaux'))
+        return View::make('matieresPremieres.index', compact('materiaux'));
     }
 
     /**

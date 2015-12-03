@@ -36,7 +36,7 @@ class ProduitsFinisController extends Controller
         {
             App::abort(404);
         }
-        return View::make('produitsFinis.index', compact('produits'))
+        return View::make('produitsFinis.index', compact('produits'));
     }
 
     /**
