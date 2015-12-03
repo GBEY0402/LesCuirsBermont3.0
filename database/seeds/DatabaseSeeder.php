@@ -31,24 +31,24 @@ class UserTableSeeder extends Seeder
         $user = new User();
         $user->prenom = 'Bob';
         $user->nom = 'Durocher';
-        $user->nomUsager = 'bob';
-        $user->motsDePasse = Hash::make('admin');
+        $user->username = 'bob';
+        $user->password = Hash::make('admin');
         $user->role = 'Administrateur';
         $user->save();
 
         $user2 = new User();
         $user2->prenom = 'Steve';
         $user2->nom = 'Caya';
-        $user2->nomUsager = 'steve';
-        $user2->motsDePasse = Hash::make('steve');
+        $user2->username = 'steve';
+        $user2->password = Hash::make('steve');
         $user2->role = 'Production';
         $user2->save();
 
         $user3 = new User();
         $user3->prenom = 'Eric';
         $user3->nom = 'Brochu';
-        $user3->nomUsager = 'eric';
-        $user3->motsDePasse = Hash::make('eric');
+        $user3->username = 'eric';
+        $user3->password = Hash::make('eric');
         $user3->role = 'Employer';
         $user3->save();
 
