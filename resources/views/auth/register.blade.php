@@ -1,29 +1,42 @@
-<!-- resources/views/auth/register.blade.php -->
 
-<form method="POST" action="/auth/register">
-    {!! csrf_field() !!}
+        <form method="POST" action="auth/register/">
+            {!! csrf_field() !!}
 
-    <div>
-        Name
-        <input type="text" name="name" value="{{ old('name') }}">
-    </div>
+            <div>
+                Prénom : 
+                <input type="text" name="prenom" value="">
+            </div>
 
-    <div>
-        Email
-        <input type="email" name="email" value="{{ old('email') }}">
-    </div>
+            <div>
+                Nom : 
+                <input type="text" name="nom" value="">
+            </div>
 
-    <div>
-        Password
-        <input type="password" name="password">
-    </div>
+            <div> 
+                Username :
+                <input type="text" name="username" value="">
+            </div>
 
-    <div>
-        Confirm Password
-        <input type="password" name="password_confirmation">
-    </div>
+            <div>
+                Password :
+                <input type="password" name="password">
+            </div>
 
-    <div>
-        <button type="submit">Register</button>
-    </div>
-</form>
+            <div>
+                Confirm Password :
+                <input type="password" name="password_confirmation">
+            </div>
+            
+            <div> 
+                Role de l'usager :
+                <select name="role">
+                    <option value="employe">Employé</option>
+                    <option value="dirProd">Directeur de production</option>
+                    <option value="administrateur">Administrateur</option>
+                </select>
+            </div>
+
+            <div>
+                <button type="submit">Création de l'usager</button>
+            </div>
+        </form>

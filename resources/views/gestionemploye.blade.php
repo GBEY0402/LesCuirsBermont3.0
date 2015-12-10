@@ -17,7 +17,7 @@
         @yield('content')
         <div class="container">
             <div class="content">
-                <div class="title">gestion d'Employé : Vous etes un {!! $role !!}</div>
+                <div class="title">gestion d'Employé :   Vous etes un {!! $role !!}</div>
             </div>
         </div>
     </body>

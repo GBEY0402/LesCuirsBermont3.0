@@ -1,24 +1,16 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Les Cuirs Bermont</title>
+@extends('shared.masterlayout')
+@section('content')
+<div class="container">
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" type="text/css" href="{!! asset('css/bootstrap.min.css') !!}" >
-        <link rel="stylesheet" href="{!! asset('css/bootstrap-theme.min.css') !!}">
-        <script src="{!! asset('js/jquery-2.1.4.js') !!}"></script>
-        <script src="{!! asset('js/bootstrap.min.js') !!}"></script>
-        <link rel="stylesheet" href="{!! asset('css/sousmenu.css') !!}">
-      
-    </head>
-    <body>
-        @include('shared.navbar')
-        @yield('content')
-        @include('shared.sous-menu')
-        <div class="container">
-            <div class="content">
-                <div class="title">Vue INVENTAIRE! Vous etes un {!! $role !!}</div>
-            </div>
-        </div>
-    </body>
-</html>
+    <div class="content">
+        <div class="title">Vue INVENTAIRE! Vous etes un {!! $role !!}</div>
+    </div>
+</div>
+@stop
+@section('content-admin')
+    
+@stop
+
+@section('content-prod')
+    
+@stop

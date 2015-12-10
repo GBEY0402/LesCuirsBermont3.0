@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Auth;
+use User;
 
-class HomeController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,57 +17,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        /**
-        *
-        * La vue inventaire est appelé lors de l'authtentication est accepté.
-        * On envoie avec la vue le paramètre role. 
-        *
-        */
-        $user = Auth::user();
-        return view('inventaire', ['role' => $user->role]);
+      	$users = User::all();
+		
+		return View::make('users.index', compact('users'));
+	
     }
-
-    public function ici()
-    {
-        return view('test.createUser');
-    }
-
-    public function prod()
-    {
-        /**
-        *
-        * 
-        * 
-        *
-        */
-        $user = Auth::user();
-        return view('production', ['role' => $user->role]);
-    }
-
-    public function usager()
-    {
-        /**
-        *
-        * 
-        * 
-        *
-        */
-        $user = Auth::user();
-        return view('gestionemploye', ['role' => $user->role]);
-    }
-
-        public function inventaire()
-    {
-        /**
-        *
-        * 
-        * 
-        *
-        */
-        $user = Auth::user();
-        return view('inventaire', ['role' => $user->role]);
-    }
-
 
     /**
      * Show the form for creating a new resource.
@@ -76,7 +30,7 @@ class HomeController extends Controller
      */
     public function create()
     {
-        //
+    	return View::make('users.create'));   	
     }
 
     /**
@@ -87,7 +41,20 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+		$users = new User;
+		$users->nom = $input['nom'];
+		$users->prenom = $input['prenom'];
+		$users->role = $input['role'];
+		$users->password = $input['password'];
+		
+		if($users->save()) {
+			if (is_array(Input::get('sport'))) {
+				$users->sports()->attach(array_keys(Input::get('sport')));
+			}
+			return Redirect::action('UserController@index');
+		} else {
+			return Redirect::back()->withInput()->withErrors($users->validationMessages);
+		}	
     }
 
     /**
