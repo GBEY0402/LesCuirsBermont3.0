@@ -150,12 +150,24 @@ class CommandesController extends Controller
         {
             $input = Input::all();
             $commande = Commande::findOrFail($id);
+            $produits = DB::select('select produitsId, quantite 
+                                    from commandesproduits 
+                                    where commandesId = ?', $id);
             
             $commande->clientsId =  $input['clientsId'];
             $commande->dateDebut =  $input['dateDebut'];
             $commande->dateFin =    $input['dateFin'];
             $commande->etat =       $input['etat'];
             $commande->commentaire= $input['commentaire'];
+
+            // $i = 1;
+
+            // foreach ($produits as $produit)
+            // {
+            //     $produit->quantite = $input['']
+            // }
+
+
 
         } 
         catch(ModelNotFoundException $e) 

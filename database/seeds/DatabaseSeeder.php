@@ -16,6 +16,13 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
         $this->call('UserTableSeeder');
+        $this->call('ClientsTableSeeder');
+        $this->call('CommandesTableSeeder');
+        $this->call('ProduitsFinisTableSeeder');
+        $this->call('MatieresPremieresTableSeeder');
+        /*$this->call('RecettesTableSeeder');
+        $this->call('CommandesProduitsTableSeeder');*/
+        
 
         Model::reguard();
     }

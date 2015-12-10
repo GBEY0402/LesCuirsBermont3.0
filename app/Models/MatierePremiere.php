@@ -2,8 +2,7 @@
 
 namespace App\Models;
 
-#use Illuminate\Database\Eloquent\Model;
-use Item;
+use Illuminate\Database\Eloquent\Model;
 
 class MatierePremiere extends Model
 {
