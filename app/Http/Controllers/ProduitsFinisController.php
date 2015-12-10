@@ -11,6 +11,7 @@ use App\Models\ProduitFini;
 use View;
 use Redirect;
 use Input;
+use Auth;
 
 class ProduitsFinisController extends Controller
 {
@@ -23,12 +24,14 @@ class ProduitsFinisController extends Controller
     {
         try
         {
+            $user = Auth::user();
+            $role = $user->role;
             $produits = ProduitFini::all()->sortby('code');
             foreach ($produits as $produit) 
             {
                 if ($produit->description == "")
                 {
-                    $produit->description = "Aucune description disponible"
+                    $produit->description = "Aucune description disponible";
                 }
             }
         }
@@ -36,7 +39,7 @@ class ProduitsFinisController extends Controller
         {
             App::abort(404);
         }
-        return View::make('produitsFinis.index', compact('produits'));
+        return View::make('produitsFinis.index', compact('produits', 'role'));
     }
 
     /**
@@ -46,7 +49,9 @@ class ProduitsFinisController extends Controller
      */
     public function create()
     {
-        return View::make('produitsFinis.create');
+        $user = Auth::user();
+        $role = $user->role;
+        return View::make('produitsFinis.create', compact('role'));
     }
 
     /**
@@ -55,7 +60,7 @@ class ProduitsFinisController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
         try 
         {
@@ -67,13 +72,14 @@ class ProduitsFinisController extends Controller
             $produit->quantite =    $input['quantite'];
             $produit->prix =        $input['prix'];
             $produit->description = $input['description'];
+            $produit->actif =       $input['actif'];
         } 
         catch(ModelNotFoundException $e) 
         {
             App::abort(404);
         }
         
-        if($commande->save()) 
+        if($produit->save()) 
         {
             return Redirect::action('ProduitsFinisController@index');
         } 
@@ -93,6 +99,8 @@ class ProduitsFinisController extends Controller
     {
         try 
         {
+            $user = Auth::user();
+            $role = $user->role;
             $produit = ProduitFini::findOrFail($id);
             if ($produit->description == "") 
             {
@@ -103,7 +111,7 @@ class ProduitsFinisController extends Controller
         {
             App::abort(404);
         }
-        return View::make('produitsFinis.show', compact('produit'));
+        return View::make('produitsFinis.show', compact('produit', 'role'));
     }
 
     /**
@@ -116,13 +124,15 @@ class ProduitsFinisController extends Controller
     {
         try 
         {
+            $user = Auth::user();
+            $role = $user->role;
             $produit = ProduitFini::findOrFail($id);
         } 
         catch(ModelNotFoundException $e) 
         {
             App::abort(404);
         }
-        return View::make('produitsFinis.edit', compact('produit'));
+        return View::make('produitsFinis.edit', compact('produit', 'role'));
     }
 
     /**
@@ -132,7 +142,7 @@ class ProduitsFinisController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
         try 
         {
@@ -144,6 +154,7 @@ class ProduitsFinisController extends Controller
             $produit->quantite =    $input['quantite'];
             $produit->prix =        $input['prix'];
             $produit->description = $input['description'];
+            $produit->actif =       $input['actif'];
 
         } 
         catch(ModelNotFoundException $e) 

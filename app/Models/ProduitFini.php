@@ -4,31 +4,29 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProduitFini extends Model
+class ProduitFini extends EloquentValidating
 {
 
-    /*
-     *L'objet ProduitFini utilise la table ProduitsFinis
-     */
+    protected $table = 'produitsFinis';
 
-    protected $table = 'ProduitsFinis';
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ['code', 'nom', 'description', 'quantite', 'prix'];
+ /**
+  * Validation
+  *
+  * un produit fini doit avoir:
+  * - code: obligatoire et unique dans toute la table.
+  * - Les autres champs sont obligatoires, sauf description.
+  */
 
     public $validationMessages;
 
 	public function validationRules() {
 		return 
 			[
-			'code' 			=> 'required',
+			'code' 			=> 'required|unique:produitsFinis,code'.($this->id ? ",$this->id" : ''),
 			'nom' 			=> 'required',
 			'quantite' 		=> 'required',
 			'prix' 			=> 'required',
+            'actif'         => 'required',
 			];
 	}
     

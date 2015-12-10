@@ -18,10 +18,8 @@ Route::get('/', function () {
 
 Route::group(['middleware'=>'auth'], function() {
 	
-	Route::get('/home','HomeController@index');
-	Route::get('/inventaire','HomeController@inventaire');
-	Route::get('/prod', 'HomeController@prod');
-	Route::get('/usager', 'HomeController@usager');
+	Route::resource('/home','HomeController');
+	Route::resource('inventaire','ProduitsFinisController');
 
 });
 
