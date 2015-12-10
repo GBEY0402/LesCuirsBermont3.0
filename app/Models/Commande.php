@@ -12,5 +12,24 @@ class Commande extends Model
      */
 
     protected $table = 'Commandes';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['clientsId', 'dateDebut', 'dateFin', 'etat', 'commentaire'];
+
+    public $validationMessages;
+
+	public function validationRules() {
+		return 
+			[
+			'clientsId' 	=> 'required',
+			'dateDebut' 	=> 'required',
+			'dateFin' 		=> 'required',
+			'etat' 			=> 'required',
+			];
+	}
     
 }
