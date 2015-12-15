@@ -11,6 +11,7 @@ use App\Models\Client;
 use View;
 use Redirect;
 use Input;
+use Auth;
 
 
 class ClientsController extends Controller
@@ -24,12 +25,14 @@ class ClientsController extends Controller
     {
         try
         {
+            $user = Auth::user();
+            $role = $user->role;
             $clients = Client::all()->sortby('nom');
             foreach ($clients as $client) 
             {
                 if ($client->courriel == "")
                 {
-                    $client->courriel = "Aucun courriel disponible"
+                    $client->courriel = "Aucun courriel disponible";
                 }
             }
         }
@@ -37,7 +40,7 @@ class ClientsController extends Controller
         {
             App::abort(404);
         }
-        return View::make('clients.index', compact('clients'));
+        return View::make('clients.index', compact('clients', 'role'));
     }
 
     /**

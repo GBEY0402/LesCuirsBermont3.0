@@ -20,9 +20,8 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Clients et fournisseurs<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#"> Liste des clients/fournisseurs</a></li>
-                            <li><a href="#"> Ajouter un client/fournisseur</a></li>
-                            <li><a href="#"> Modifier un clients/fournisseurs</a></li>
+                            <li><a href="{{ action('ClientsController@index') }}"> Liste des clients/fournisseurs</a></li>
+                            <li><a href="{{ action('ClientsController@create') }}"> Ajouter un client/fournisseur</a></li>
                         </ul>
                     </li>
                 @endif

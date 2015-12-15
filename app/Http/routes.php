@@ -20,6 +20,7 @@ Route::group(['middleware'=>'auth'], function() {
 	
 	Route::resource('/home','HomeController');
 	Route::resource('inventaire','ProduitsFinisController');
+	Route::resource('client', 'ClientsController');
 
 });
 
