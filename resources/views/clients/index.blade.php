@@ -13,7 +13,6 @@
 		<thead>
 			<tr>
 				<!--  Les différents champs d'un code -->
-				<th>Identifiant</th>
 				<th class="hidden-xs">Prenom</th>
 				<th class="hidden-xs">Nom</th>
 				<th class="hidden-xs">Adresse</th>
@@ -28,8 +27,7 @@
 		<tbody>
 <!--    -->
 @foreach($clients as $client)
-			<tr>
-				<td><a href="{{ action('ClientsController@show', $client->id) }}">{{ $client->id }}</a></td>
+			<tr style="cursor:pointer" onclick="window.location.href='{{ action('ClientsController@show', $client->id) }}'">
 				<td class="hidden-xs"><?php echo $client->prenom ?></td>
 				<td class="hidden-xs"><?php echo $client->nom ?></td>
 				<td class="hidden-xs"><?php echo $client->adresse ?></td>
