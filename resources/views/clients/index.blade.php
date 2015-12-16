@@ -13,14 +13,14 @@
 		<thead>
 			<tr>
 				<!--  Les différents champs d'un code -->
-				<th>Client</th>
-				<th class="hidden-xs">Identifiant</th>
+				<th>Identifiant</th>
 				<th class="hidden-xs">Prenom</th>
 				<th class="hidden-xs">Nom</th>
 				<th class="hidden-xs">Adresse</th>
 				<th class="hidden-xs">Ville</th>
 				<th class="hidden-xs">Numéro de téléphone</th>
 				<th class="hidden-xs">Courriel</th>
+				<th class="hidden-xs">Relation</th>
 				<th class="hidden-xs">Actif</th>
 				<th></th>
 			</tr>
@@ -36,16 +36,13 @@
 				<td class="hidden-xs"><?php echo $client->ville ?></td>
 				<td class="hidden-xs"><?php echo $client->noTel ?></td>
 				<td class="hidden-xs"><?php echo $client->courriel ?></td>
+				<td class="hidden-xs"><?php echo $client->relation ?></td>
 				@if ($client->actif == 1)
 					<td class="hidden-xs">Actif</td>
 				@else
 					<td class="hidden-xs">Inactif</td>
 				@endif
 				<td><a href="{{ action('ClientsController@edit',$client->id) }}" class="btn btn-info">Modifier</a></td>
-				<td>{!! Form::open(array('action' => array('ClientsController@destroy',$client->id), 'method' => 'delete', 'data-confirm' => 'Êtes-vous certain?')) !!}
-					<button type="submit" href="{{ URL::route('client.destroy', $client->id) }}" class="btn btn-danger btn-mini">Effacer</button>
-					{!! Form::close() !!}   
-				</td>
 			</tr>
 @endforeach
 		</tbody>

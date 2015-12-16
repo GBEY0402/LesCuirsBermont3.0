@@ -50,7 +50,9 @@ class ClientsController extends Controller
      */
     public function create()
     {
-        return View::make('clients.create');
+        $user = Auth::user();
+        $role = $user->role;
+        return View::make('clients.create', compact('role'));
     }
 
     /**
@@ -72,6 +74,8 @@ class ClientsController extends Controller
             $client->ville =    $input['ville'];
             $client->noTel =    $input['noTel'];
             $client->courriel = $input['courriel'];
+            $client->relation = $input['relation'];
+            $client->actif = 1;
         } 
         catch(ModelNotFoundException $e) 
         {
@@ -98,6 +102,8 @@ class ClientsController extends Controller
     {
         try 
         {
+            $user = Auth::user();
+            $role = $user->role;
             $client = Client::findOrFail($id);
             if ($client->courriel == "") 
             {
@@ -108,7 +114,7 @@ class ClientsController extends Controller
         {
             App::abort(404);
         }
-        return View::make('clients.show', compact('client'));
+        return View::make('clients.show', compact('client', 'role'));
     }
 
     /**
@@ -121,13 +127,15 @@ class ClientsController extends Controller
     {
         try 
         {
+            $user = Auth::user();
+            $role = $user->role;
             $client = Client::findOrFail($id);
         } 
         catch(ModelNotFoundException $e) 
         {
             App::abort(404);
         }
-        return View::make('clients.edit', compact('client'));
+        return View::make('clients.edit', compact('client', 'role'));
     }
 
     /**
@@ -137,7 +145,7 @@ class ClientsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
         try 
         {
@@ -150,6 +158,8 @@ class ClientsController extends Controller
             $client->ville =    $input['ville'];
             $client->noTel =    $input['noTel'];
             $client->courriel = $input['courriel'];
+            $client->relation = $input['relation'];
+            $client->actif =    $input['actif'];
 
         } 
         catch(ModelNotFoundException $e) 
@@ -174,12 +184,13 @@ class ClientsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function desactivate($id)
     {
         try 
         {
             $client = Client::findOrFail($id);
-            $client->delete();
+            $client->actif == 0;
+            $client-save();            
         } 
         catch(ModelNotFoundException $e) 
         {

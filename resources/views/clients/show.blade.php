@@ -3,14 +3,15 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<!--    -->
-		<h2 class="panel-title">{{ $produit->code }}</h2>
+		<h2 class="panel-title">{{ $client->prenom }} {{ $client->nom }}</h2>
 	</div>
 	<div class="panel-body">
-		<p>Nom: <?php echo $produit->nom ?></p>
-		<p>Description: <?php echo $produit->description ?></p>
-		<p>Quantité: <?php echo $produit->quantite ?></p>
-		<p>Prix: <?php echo $produit->prix ?></p>
-		@if ($produit->actif == 1)
+		<p>Adresse: 			<?php echo $client->adresse ?></p>
+		<p>Ville: 				<?php echo $client->ville ?></p>
+		<p>Numéro de téléphone: <?php echo $client->noTel ?></p>
+		<p>Courriel: 			<?php echo $client->courriel ?></p>
+		<p>Relation:			<?php echo $client->relation ?></p>
+		@if ($client->actif == 1)
 			<p>Actif: Oui</p>
 		@else
 			<p>Actif: Non</p>

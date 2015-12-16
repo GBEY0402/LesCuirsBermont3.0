@@ -3,18 +3,18 @@
 
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h2>Création d'un produit</h2>
+		<h2>Création d'un client/fournisseur</h2>
 	</div>
 	<div class="panel-body">
-		{!! Form::open(['action'=> 'ProduitsFinisController@index', 'class' => 'form']) !!}
+		{!! Form::open(['action'=> 'ClientsController@index', 'class' => 'form']) !!}
 		<!--    -->
         @foreach ($errors->all() as $error)
             <p class="alert alert-danger">{{ $error }}</p>
         @endforeach
 		<div class="form-group">
-			{!! Form::label('code', 'Code:') !!}
-			{!! Form::text('code',null, ['class' => 'form-control']) !!}
-			{{ $errors->first('code') }}
+			{!! Form::label('prenom', 'Prénom:') !!}
+			{!! Form::text('prenom',null, ['class' => 'form-control']) !!}
+			{{ $errors->first('prenom') }}
 		</div>
 		<div class="form-group">
 			{!! Form::label('nom', 'Nom:') !!}
@@ -22,28 +22,33 @@
 			{{ $errors->first('nom') }}
 		</div>
 		<div class="form-group">
-			{!! Form::label('description', 'Description:') !!}
-			{!! Form::text('description',null, ['class' => 'form-control']) !!}
-			{{ $errors->first('description') }}
+			{!! Form::label('adresse', 'Adresse:') !!}
+			{!! Form::text('adresse',null, ['class' => 'form-control']) !!}
+			{{ $errors->first('adresse') }}
 		</div>
 		<div class="form-group">
-			{!! Form::label('quantite', 'Quantite:') !!}
-			{!! Form::text('quantite',null, ['class' => 'form-control']) !!}
-			{{ $errors->first('quantite') }}
+			{!! Form::label('ville', 'Ville:') !!}
+			{!! Form::text('ville',null, ['class' => 'form-control']) !!}
+			{{ $errors->first('ville') }}
 		</div>
 		<div class="form-group">
-			{!! Form::label('prix', 'Prix:') !!}
-			{!! Form::text('prix',null, ['class' => 'form-control']) !!}
-			{{ $errors->first('prix') }}
+			{!! Form::label('noTel', 'Numéro de téléphone:') !!}
+			{!! Form::text('noTel',null, ['class' => 'form-control']) !!}
+			{{ $errors->first('noTel') }}
 		</div>
 		<div class="form-group">
-			{!! Form::label('actif', 'Disponible:') !!}
-			{!! Form::select('actif', array('1' => 'Oui', '0' => 'Non') , '1' ) !!}
-			{{ $errors->first('actif') }}
+			{!! Form::label('courriel', 'Courriel:') !!}
+			{!! Form::text('courriel',null, ['class' => 'form-control']) !!}
+			{{ $errors->first('courriel') }}
+		</div>
+		<div class="form-group">
+			{!! Form::label('relation', 'Relation:') !!} 
+			{!! Form::select('relation', array('Client' => 'Client', 'Fournisseur' => 'Fournisseur') , '1' ) !!}
+			{{ $errors->first('relation') }}
 		</div>
 		<div class="form-group">
 			{!! Form::button('Créer', ['type' => 'submit', 'class' => 'btn btn-primary']) !!}
-			<a href="{{ action('ProduitsFinisController@index') }}" class="btn btn-danger">Annuler</a>
+			<a href="{{ action('ClientsController@index') }}" class="btn btn-danger">Annuler</a>
 		</div>
 		{!! Form::close() !!}
 	</div>
