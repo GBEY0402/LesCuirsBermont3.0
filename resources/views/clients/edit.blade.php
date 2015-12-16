@@ -2,37 +2,47 @@
 @section('content')
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h2>Modification d'un produit</h2>
+		<h2>Modification d'un client/fournisseur</h2>
 	</div>
 	<div class="panel-body">
-		{!! Form::open(['action'=> array('ProduitsFinisController@update', $produit->id), 'method' => 'PUT', 'class' => 'form']) !!}
+		{!! Form::open(['action'=> array('ClientsController@update', $client->id), 'method' => 'PUT', 'class' => 'form']) !!}
 		<div class="form-group">
-			{!! Form::label('code', 'Code:') !!} 
-			{!! Form::text('code',$produit->code, ['class' => 'form-control']) !!}
-			{{ $errors->first('code') }}
+			{!! Form::label('prenom', 'Prénom:') !!} 
+			{!! Form::text('prenom',$client->prenom, ['class' => 'form-control']) !!}
+			{{ $errors->first('prenom') }}
 		</div>
 		<div class="form-group">
 			{!! Form::label('nom', 'Nom:') !!} 
-			{!! Form::text('nom',$produit->nom, ['class' => 'form-control']) !!}
+			{!! Form::text('nom',$client->nom, ['class' => 'form-control']) !!}
 			{{ $errors->first('nom') }}
 		</div>
 		<div class="form-group">
-			{!! Form::label('description', 'Description:') !!} 
-			{!! Form::text('description',$produit->description, ['class' => 'form-control']) !!}
-			{{ $errors->first('description') }}
+			{!! Form::label('adresse', 'Adresse:') !!} 
+			{!! Form::text('adresse',$client->adresse, ['class' => 'form-control']) !!}
+			{{ $errors->first('adresse') }}
 		</div>
 		<div class="form-group">
-			{!! Form::label('quantite', 'Quantité:') !!} 
-			{!! Form::text('quantite',$produit->quantite, ['class' => 'form-control']) !!}
-			{{ $errors->first('quantite') }}
+			{!! Form::label('ville', 'Ville:') !!} 
+			{!! Form::text('ville',$client->ville, ['class' => 'form-control']) !!}
+			{{ $errors->first('ville') }}
 		</div>
 		<div class="form-group">
-			{!! Form::label('prix', 'Prix:') !!} 
-			{!! Form::text('prix',$produit->prix, ['class' => 'form-control']) !!}
-			{{ $errors->first('prix') }}
+			{!! Form::label('noTel', 'Numéro de téléphone:') !!} 
+			{!! Form::text('noTel',$client->noTel, ['class' => 'form-control']) !!}
+			{{ $errors->first('noTel') }}
 		</div>
 		<div class="form-group">
-			{!! Form::label('actif', 'Disponible:') !!} 
+			{!! Form::label('courriel', 'Courriel:') !!} 
+			{!! Form::text('courriel',$client->courriel, ['class' => 'form-control']) !!}
+			{{ $errors->first('courriel') }}
+		</div>
+		<div class="form-group">
+			{!! Form::label('relation', 'Relation:') !!} 
+			{!! Form::select('relation', array('Client' => 'Client', 'Fournisseur' => 'Fournisseur') , '1' ) !!}
+			{{ $errors->first('relation') }}
+		</div>
+		<div class="form-group">
+			{!! Form::label('actif', 'Actif:') !!} 
 			{!! Form::select('actif', array('1' => 'Oui', '0' => 'Non') , '1' ) !!}
 			{{ $errors->first('actif') }}
 		</div>
