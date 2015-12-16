@@ -21,12 +21,12 @@ Route::group(['middleware'=>'auth'], function() {
 	Route::resource('/home','HomeController');
 	Route::resource('inventaire','ProduitsFinisController');
 	Route::resource('client', 'ClientsController');
+	Route::resource('usager', 'UserController');
 
 });
 
 
-Route::get('/ici', 'HomeController@ici');
-Route::POST('/users', 'UserController@index');
+
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
