@@ -6,7 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use User;
+use App\Models\User;
+use View;
+use Redirect;
+use Input;
+use Auth;
 
 class UserController extends Controller
 {
@@ -45,7 +49,7 @@ class UserController extends Controller
      */
     public function create()
     {
-    	return View::make('users.create'));   	
+    	return View::make('users.create');   	
     }
 
     /**
@@ -80,7 +84,17 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        try 
+        {
+            $user = Auth::user();
+            $role = $user->role;
+            $usager = User::findOrFail($id);
+        } 
+        catch(ModelNotFoundException $e) 
+        {
+            App::abort(404);
+        }
+        return View::make('users.show', compact('usager', 'role'));
     }
 
     /**
