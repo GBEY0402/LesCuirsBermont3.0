@@ -17,9 +17,24 @@ class UserController extends Controller
      */
     public function index()
     {
-      	$users = User::all();
-		
-		return View::make('users.index', compact('users'));
+      	 try
+        {
+            $user = Auth::user();
+            $role = $user->role;
+            $usagers = User::all()->sortby('nom');
+            foreach ($usagers as $usager) 
+            {
+                if ($usager->id == "")
+                {
+                    $usager->id = "Aucun usager disponible";
+                }
+            }
+        }
+        catch(ModelNotFoundException $e)
+        {
+            App::abort(404);
+        }
+        return View::make('users.index', compact('usagers', 'role'));
 	
     }
 

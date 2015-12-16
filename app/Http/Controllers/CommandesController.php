@@ -18,7 +18,7 @@ use DB;
 class CommandesController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Liste des commandes dans la vue index.
      *
      * @return \Illuminate\Http\Response
      */
@@ -44,7 +44,7 @@ class CommandesController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Affiche le formulaire pour créer une nouvelle commande.
      *
      * @return \Illuminate\Http\Response
      */
@@ -54,7 +54,7 @@ class CommandesController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Ajout à la base de donnée d'une nouvelle commande.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -90,7 +90,7 @@ class CommandesController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Affiche la commande selectionnée.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -116,7 +116,7 @@ class CommandesController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Affiche le formulaire pour modifier une commande.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -138,7 +138,7 @@ class CommandesController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Mise à jour de la commande dans la base de donnée.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -187,7 +187,7 @@ class CommandesController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Supprimer une commande de la base de donnée.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

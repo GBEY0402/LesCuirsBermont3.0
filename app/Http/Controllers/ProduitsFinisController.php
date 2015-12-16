@@ -16,7 +16,7 @@ use Auth;
 class ProduitsFinisController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Envoie la liste de produit fini à la vue index.
      *
      * @return \Illuminate\Http\Response
      */
@@ -43,7 +43,7 @@ class ProduitsFinisController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Affiche le formulaire pour créer un produit fini.
      *
      * @return \Illuminate\Http\Response
      */
@@ -55,7 +55,7 @@ class ProduitsFinisController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Enregistre le produit fini dans la base de donnée.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -90,7 +90,7 @@ class ProduitsFinisController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Affiche un produit fini.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -115,7 +115,7 @@ class ProduitsFinisController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Affiche le formulaire pour modifier un produit fini.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -136,7 +136,7 @@ class ProduitsFinisController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Mise à jour du produit fini dans la base de donnée.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -174,7 +174,7 @@ class ProduitsFinisController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Suppression du produit fini de la base de donnée.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

@@ -15,7 +15,7 @@ use Input;
 class MatieresPremieresController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Envoie la liste des matières premières à la vue index.
      *
      * @return \Illuminate\Http\Response
      */
@@ -40,7 +40,7 @@ class MatieresPremieresController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Affiche le formulaire pour créer une nouvelle matière première.
      *
      * @return \Illuminate\Http\Response
      */
@@ -50,7 +50,7 @@ class MatieresPremieresController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Enregistre dans la base de donnée la nouvelle matière première créer.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -87,7 +87,7 @@ class MatieresPremieresController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Affiche une matière première.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -110,7 +110,7 @@ class MatieresPremieresController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Affiche le formulaire pour modifier la matière première.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -129,7 +129,7 @@ class MatieresPremieresController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Mise à jour de la matière première.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -169,7 +169,7 @@ class MatieresPremieresController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Suppression de la matière première dans la base de donnée.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

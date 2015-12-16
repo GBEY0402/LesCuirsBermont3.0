@@ -17,7 +17,7 @@ use Auth;
 class ClientsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Le controleur du clients.
      *
      * @return \Illuminate\Http\Response
      */
@@ -44,7 +44,7 @@ class ClientsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Affiche la vue pour créer un client.
      *
      * @return \Illuminate\Http\Response
      */
@@ -54,7 +54,7 @@ class ClientsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Enregister à la base de donnée le nouveau client enregistré.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -89,7 +89,7 @@ class ClientsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Afficher le client.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -112,7 +112,7 @@ class ClientsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Affiche le formulaire pour éditer le client.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -131,7 +131,7 @@ class ClientsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Mise à jour dans la base de donnée.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -169,7 +169,7 @@ class ClientsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Supprimer un client de la base de donnée.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
