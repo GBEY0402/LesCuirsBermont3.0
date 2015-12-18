@@ -34,7 +34,7 @@
                     <a href="/usager" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Gestion employé <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="{{ action('UserController@index') }}"> Liste des usagés</a></li>
-                        <li><a class="inline" href="#ajouterUsager"> Ajouter un usagé</a></li>
+                        <li><a href="{{ action('UserController@create') }}"> Ajouter un usagé</a></li>
                         <li><a href="#"> Modifier un usagé</a></li>
                         <!--<li class="divider"></li>
                         <li><a href="#">Separated link</a></li>-->

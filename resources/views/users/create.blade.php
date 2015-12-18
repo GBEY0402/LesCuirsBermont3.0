@@ -1,6 +1,3 @@
-@extends('shared.masterlayout')
-@section('content')
-
 <div class="panel panel-default">
     <div class="panel-heading">
         <h2>Création d'un usager</h2>
@@ -9,7 +6,7 @@
         {!! Form::open(['action'=> 'UserController@index', 'class' => 'form']) !!}   
             {!! csrf_field() !!}
             <div class="form-group">
-                {!! Form::label('prennom', 'Prenom:') !!} 
+                {!! Form::label('prenom', 'Prenom:') !!} 
                 {!! Form::text('prenom',null, ['class' => 'form-control']) !!}
             </div>
 
@@ -43,5 +40,3 @@
         {!! Form::close() !!}
         </div>
 </div>
-
-@stop

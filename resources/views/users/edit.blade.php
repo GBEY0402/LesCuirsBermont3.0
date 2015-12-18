@@ -1,23 +1,25 @@
+@extends('shared.masterlayout')
+@section('content')
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h2>Création d'un usager</h2>
+        <h2>Modification d'un usager</h2>
     </div>
     <div class="panel-body">
-        {!! Form::open(['action'=> 'UserController@index', 'class' => 'form']) !!}   
+        {!! Form::open(['action'=> array('UserController@update', $user->id), 'method' => 'PUT', 'class' => 'form']) !!}
             {!! csrf_field() !!}
             <div class="form-group">
-                {!! Form::label('prennom', 'Prenom:') !!} 
-                {!! Form::text('prenom',null, ['class' => 'form-control']) !!}
+                {!! Form::label('prenom', 'Prenom:') !!} 
+                {!! Form::text('prenom', $user->prenom, ['class' => 'form-control']) !!}
             </div>
 
             <div class="form-group">
                 {!! Form::label('nom', 'Nom:') !!}
-                {!! Form::text('nom',null, ['class' => 'form-control']) !!}
+                {!! Form::text('nom', $user->nom, ['class' => 'form-control']) !!}
             </div>
 
             <div class="form-group">
                 {!! Form::label('username', 'Username:') !!}
-                {!! Form::text('username',null, ['class' => 'form-control']) !!}
+                {!! Form::text('username', $user->username, ['class' => 'form-control']) !!}
             </div>
 
             <div class="form-group">
@@ -28,15 +30,18 @@
             <div class="form-group">
                 {!! Form::label('password', 'Confirm password:') !!}
                 {!! Form::password('password', null, ['class' => 'form-control']) !!}
-            </div>
+            </div> 
+            
             
             <div class="form-group">
-                {!! Form::select('role', array('Administrateur' => 'Administrateur', 'Directeur de production' => 'DirProd', 'Employé' => 'employe') , '1' ) !!}
+                {!! Form::select('role', array('Administrateur' => 'Administrateur', 'Directeur de production' => 'DirProd', 'Employé' => 'employe') , '1') !!}
             </div>
 
             <div class="form-group">
-                {!! Form::button("Créer l'usager", ['type' => 'submit', 'class' => 'btn btn-primary']) !!}
+                {!! Form::button('Sauvegarder', ['type' => 'submit', 'class' => 'btn btn-primary']) !!}
+                <a href="{{ URL::previous() }}" class="btn btn-danger">Annuler</a>
             </div>
         {!! Form::close() !!}
         </div>
 </div>
+@stop
