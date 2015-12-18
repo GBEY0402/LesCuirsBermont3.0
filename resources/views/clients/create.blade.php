@@ -7,8 +7,7 @@
 	</div>
 	<div class="panel-body">
 		{!! Form::open(['action'=> 'ClientsController@index', 'class' => 'form']) !!}
-		<!--    -->
-        @foreach ($errors->all() as $error)
+		@foreach ($errors->all() as $error)
             <p class="alert alert-danger">{{ $error }}</p>
         @endforeach
 		<div class="form-group">

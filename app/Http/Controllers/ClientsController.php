@@ -17,7 +17,8 @@ use Auth;
 class ClientsController extends Controller
 {
     /**
-     * Le controleur du clients.
+     * Affichage de la liste des clients/fournisseurs.
+     * Trié par relation, ensuite par statut et par nom.
      *
      * @return \Illuminate\Http\Response
      */
@@ -27,7 +28,9 @@ class ClientsController extends Controller
         {
             $user = Auth::user();
             $role = $user->role;
-            $clients = Client::orderBy('relation')->orderBy('actif', 'desc')->orderBy('nom')
+            $clients = Client::orderBy('relation')
+                                ->orderBy('actif', 'desc')
+                                ->orderBy('nom')
                                 ->get();
             foreach ($clients as $client) 
             {
@@ -59,10 +62,9 @@ class ClientsController extends Controller
     /**
      * Enregister à la base de donnée le nouveau client enregistré.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     *  @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
         try 
         {
