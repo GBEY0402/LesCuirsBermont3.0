@@ -27,7 +27,8 @@ class ClientsController extends Controller
         {
             $user = Auth::user();
             $role = $user->role;
-            $clients = Client::all()->sortby('nom');
+            $clients = Client::orderBy('relation')->orderBy('actif', 'desc')->orderBy('nom')
+                                ->get();
             foreach ($clients as $client) 
             {
                 if ($client->courriel == "")
@@ -118,7 +119,7 @@ class ClientsController extends Controller
     }
 
     /**
-     * Affiche le formulaire pour éditer le client.
+     * Affiche le formulaire pour éditer le client en recevant l'id de la personne.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -139,9 +140,8 @@ class ClientsController extends Controller
     }
 
     /**
-     * Mise à jour dans la base de donnée.
+     * Mise à jour dans la base de donnée en utilisant l'Id de la personne.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -176,26 +176,5 @@ class ClientsController extends Controller
         {
             return Redirect::back()->withInput()->withErrors($client->validationMessages());
         }
-    }
-
-    /**
-     * Supprimer un client de la base de donnée.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function desactivate($id)
-    {
-        try 
-        {
-            $client = Client::findOrFail($id);
-            $client->actif == 0;
-            $client-save();            
-        } 
-        catch(ModelNotFoundException $e) 
-        {
-            App::abort(404);
-        }
-        return Redirect::action('ClientsController@index');
     }
 }
