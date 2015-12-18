@@ -12,24 +12,24 @@
 	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
-				<!--  Les différents champs d'un code -->
 				<th class="hidden-xs">Prenom</th>
 				<th class="hidden-xs">Nom</th>
 				<th class="hidden-xs">Usager</th>
 				<th class="hidden-xs">Role</th>
-				<th></th>
+				<th>1</th>
+				<th>2</th>
 			</tr>
 		</thead>
 		<tbody>
 <!--    -->
 @foreach($usagers as $usager)
-			<tr>
-				<tr style="cursor:pointer" onclick="window.location.href='{{ action('UserController@show', $usager->id) }}'">
+			<tr style="cursor:pointer" onclick="window.location.href='{{ action('UserController@show', $usager->id) }}'">
 				<td class="hidden-xs"><?php echo $usager->prenom ?></td>
 				<td class="hidden-xs"><?php echo $usager->nom ?></td>
 				<td class="hidden-xs"><?php echo $usager->username ?></td>
 				<td class="hidden-xs"><?php echo $usager->role ?></td>
 				<td><a href="{{ action('UserController@edit',$usager->id) }}" class="btn btn-info">Modifier</a></td>
+				<td><a href="{{ action('UserController@destroy',$usager->id) }}" class="btn btn-danger">Supprimer</a></td>
 			</tr>
 @endforeach
 		</tbody>

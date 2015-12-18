@@ -60,20 +60,31 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-		$users = new User;
-		$users->nom = $input['nom'];
-		$users->prenom = $input['prenom'];
-		$users->role = $input['role'];
-		$users->password = $input['password'];
+		try 
+        {
+            $input = Input::all();
+
+            $users = new User;
+    		$users->nom = $input['nom'];
+    		$users->prenom = $input['prenom'];
+            $users->username = $input['username'];
+    		$users->role = $input['role'];
+    		$users->password = $input['password'];
+        }
 		
-		if($users->save()) {
-			if (is_array(Input::get('sport'))) {
-				$users->sports()->attach(array_keys(Input::get('sport')));
-			}
-			return Redirect::action('UserController@index');
-		} else {
-			return Redirect::back()->withInput()->withErrors($users->validationMessages);
-		}	
+		catch(ModelNotFoundException $e) 
+        {
+            App::abort(404);
+        }
+        
+        if($users->save()) 
+        {
+            return Redirect::action('UserController@index');
+        } 
+        else 
+        {
+            return Redirect::back()->withInput()->withErrors($users->validationMessages());
+        }
     }
 
     /**
@@ -105,7 +116,17 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        try 
+        {
+            $user = Auth::user();
+            $role = $user->role;
+            $user = User::findOrFail($id);
+        } 
+        catch(ModelNotFoundException $e) 
+        {
+            App::abort(404);
+        }
+        return View::make('users.edit', compact('user', 'role'));
     }
 
     /**
@@ -117,7 +138,32 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try 
+        {
+            $input = Input::all();
+            $users = User::findOrFail($id);
+
+            $users = new User;
+            $users->nom = $input['nom'];
+            $users->prenom = $input['prenom'];
+            $users->username = $input['username'];
+            $users->role = $input['role'];
+            $users->password = $input['password'];
+        }
+        
+        catch(ModelNotFoundException $e) 
+        {
+            App::abort(404);
+        }
+        
+        if($users->save()) 
+        {
+            return Redirect::action('UserController@index');
+        } 
+        else 
+        {
+            return Redirect::back()->withInput()->withErrors($users->validationMessages());
+        }
     }
 
     /**
@@ -128,6 +174,15 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try 
+        {
+            $user = User::findOrFail($id);
+            $user->delete();
+        } 
+        catch(ModelNotFoundException $e) 
+        {
+            App::abort(404);
+        }
+        return Redirect::action('UserController@index');
     }
 }
