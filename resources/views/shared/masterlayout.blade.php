@@ -9,6 +9,7 @@
         <script src="{!! asset('js/jquery-2.1.4.js') !!}"></script>
         <script src="{!! asset('js/bootstrap.min.js') !!}"></script>
         <script src="{!! asset('js/jquery.colorbox.js') !!}"></script>
+        <script src="{{ asset('js/script.js') }}"></script>
         <link rel="stylesheet" href="{!! asset('css/sousmenu.css') !!}">
         <link rel="stylesheet" href="{!! asset('css/colorbox.css') !!}">
         <script>

@@ -11,6 +11,7 @@ use View;
 use Redirect;
 use Input;
 use Auth;
+use Hash;
 
 class UserController extends Controller
 {
@@ -49,7 +50,9 @@ class UserController extends Controller
      */
     public function create()
     {
-    	return View::make('users.create');   	
+        $user = Auth::user();
+        $role = $user->role;
+    	return View::make('users.create', compact('role'));   	
     }
 
     /**
@@ -69,7 +72,7 @@ class UserController extends Controller
     		$users->prenom = $input['prenom'];
             $users->username = $input['username'];
     		$users->role = $input['role'];
-    		$users->password = $input['password'];
+    		$users->password = Hash::make($input['password']);
         }
 		
 		catch(ModelNotFoundException $e) 

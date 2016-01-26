@@ -23,13 +23,16 @@
 		<tbody>
 <!--    -->
 @foreach($usagers as $usager)
-			<tr style="cursor:pointer" onclick="window.location.href='{{ action('UserController@show', $usager->id) }}'">
+			<!-- <tr style="cursor:pointer" onclick="window.location.href='{{ action('UserController@show', $usager->id) }}'"> -->
+			<tr>
 				<td class="hidden-xs"><?php echo $usager->prenom ?></td>
 				<td class="hidden-xs"><?php echo $usager->nom ?></td>
 				<td class="hidden-xs"><?php echo $usager->username ?></td>
 				<td class="hidden-xs"><?php echo $usager->role ?></td>
 				<td><a href="{{ action('UserController@edit',$usager->id) }}" class="btn btn-info">Modifier</a></td>
-				<td><a href="{{ action('UserController@destroy',$usager->id) }}" class="btn btn-danger">Supprimer</a></td>
+				<td>{!! Form::open(array('action' => array('UserController@destroy',$usager->id), 'method' => 'delete', 'data-confirm' => 'Êtes-vous certain?')) !!}
+					<button type="submit" href="{{ URL::route('usager.destroy', $usager->id) }}" class="btn btn-danger btn-mini">Effacer</button>
+					{!! Form::close() !!}   </td>
 			</tr>
 @endforeach
 		</tbody>
