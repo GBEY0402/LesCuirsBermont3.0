@@ -18,7 +18,7 @@ class MatierePremiere extends Model
      *
      * @var array
      */
-    protected $fillable = ['code', 'nom', 'description', 'prix', 'quantiteTotale',
+    protected $fillable = ['type', 'nom', 'description', 'prix', 'quantiteTotale',
     						 'quantiteMinimum', 'quantiteLimite', 'quantiteReserve'];
 
     public $validationMessages;
@@ -26,7 +26,7 @@ class MatierePremiere extends Model
 	public function validationRules() {
 		return 
 			[
-			'code' 				=> 'required',
+			'type' 				=> 'required',
 			'nom' 				=> 'required',
 			'prix' 				=> 'required',
 			'quantiteTotale' 	=> 'required',

@@ -11,6 +11,7 @@ use App\Models\MatierePremiere;
 use View;
 use Redirect;
 use Input;
+use Auth;
 
 class MatieresPremieresController extends Controller
 {
@@ -23,12 +24,14 @@ class MatieresPremieresController extends Controller
     {
         try
         {
-            $materiaux = MatierePremiere::all()->sortby('code');
+            $user = Auth::user();
+            $role = $user->role;
+            $materiaux = MatierePremiere::all()->sortby('type');
             foreach ($materiaux as $materiel) 
             {
                 if ($materiel->description == "")
                 {
-                    $materiel->description = "Aucun description disponible"
+                    $materiel->description = "Aucun description disponible";
                 }
             }
         }
@@ -55,17 +58,17 @@ class MatieresPremieresController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
         try 
         {
             $input = Input::all();
             
             $materiel = new MatierePremiere;
-            $materiel->code =               $input['code'];
-            $materiel->nom =                $input['dateDebut'];
-            $materiel->description =        $input['dateFin'];
-            $materiel->prix =               $input['etat'];
+            $materiel->type =               $input['type'];
+            $materiel->nom =                $input['nom'];
+            $materiel->description =        $input['description'];
+            $materiel->prix =               $input['prix'];
             $materiel->quantiteTotale =     $input['quantiteTotale'];
             $materiel->quantiteMinimum =    $input['quantiteMinimum'];
             $materiel->quantiteLimite =     $input['quantiteLimite'];
@@ -142,9 +145,9 @@ class MatieresPremieresController extends Controller
             $input = Input::all();
             $materiel = MatierePremiere::findOrFail($id);
             
-            $materiel->code =               $input['code'];
-            $materiel->nom =                $input['dateDebut'];
-            $materiel->description =        $input['dateFin'];
+            $materiel->type =               $input['type'];
+            $materiel->nom =                $input['nom'];
+            $materiel->description =        $input['description'];
             $materiel->prix =               $input['etat'];
             $materiel->quantiteTotale =     $input['quantiteTotale'];
             $materiel->quantiteMinimum =    $input['quantiteMinimum'];

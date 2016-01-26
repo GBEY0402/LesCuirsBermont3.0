@@ -2,8 +2,13 @@
 @section('content')
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h2>Liste des produits</h2>
-		<a href="{{ action('ProduitsFinisController@create') }}" class="btn btn-info">Ajouter un produit</a>
+		<h2>Inventaire Entrepôt</h2>
+		<a href="{{ action('ProduitsFinisController@create') }}" class="btn btn-primary">Ajouter un produit</a>
+		<a href="{{ action('ProduitsFinisController@index')}}" class="btn btn-info">Remorque #1</a>
+		<a href="{{ action('ProduitsFinisController@index')}}" class="btn btn-info">Remorque #2</a>
+		<a href="{{ action('ProduitsFinisController@index')}}" class="btn btn-info">Remorque #3</a>
+		<a href="{{ action('MatieresPremieresController@index')}}" class="btn btn-info">Matières premières</a>
+
 	</div>
 @if ($produits->isEmpty())
 	<div class="panel-body">
@@ -26,8 +31,8 @@
 		<tbody>
 <!--    -->
 @foreach($produits as $produit)
-			<tr>
-				<td><a href="{{ action('ProduitsFinisController@show', $produit->id) }}">{{ $produit->code }}</a></td>
+			<tr style="cursor:pointer" onclick="window.location.href='{{ action('ProduitsFinisController@show', $produit->id) }}'">
+				<td class="hidden-xs"><?php echo $produit->code ?></td>
 				<td class="hidden-xs"><?php echo $produit->nom ?></td>
 				<td class="hidden-xs"><?php echo $produit->description ?></td>
 				<td class="hidden-xs"><?php echo $produit->quantite ?></td>

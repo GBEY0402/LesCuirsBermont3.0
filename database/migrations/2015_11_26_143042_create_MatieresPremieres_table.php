@@ -14,7 +14,7 @@ class CreateMatieresPremieresTable extends Migration
     {
         Schema::create('matieresPremieres', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('code');
+            $table->string('type');
             $table->string('nom');
             $table->string('description')->nullable();
             $table->decimal('prix', 10, 2);
