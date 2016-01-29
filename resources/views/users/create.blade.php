@@ -1,3 +1,5 @@
+
+
 @extends('shared.masterlayout')
 @section('content')
 <div class="panel panel-default">
