@@ -146,7 +146,6 @@ class UserController extends Controller
             $input = Input::all();
             $users = User::findOrFail($id);
 
-            $users = new User;
             $users->nom = $input['nom'];
             $users->prenom = $input['prenom'];
             $users->username = $input['username'];
