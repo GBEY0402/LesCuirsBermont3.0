@@ -146,7 +146,7 @@ class TypesController extends Controller
             $type = Type::findOrFail($id);
             
             $type->nom =         $input['nom'];
-            $type->description = $input['description'];
+            $type->commentaire = $input['commentaire'];
         } 
         catch(ModelNotFoundException $e) 
         {

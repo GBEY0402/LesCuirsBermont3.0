@@ -13,7 +13,7 @@
         @endforeach
 		<div class="form-group">
 			{!! Form::label('type', 'Type:') !!}
-			{!! Form::text('type',null, ['class' => 'form-control']) !!}
+			{!! Form::select('type', $types, ['class' => 'form-control']) !!}
 			{{ $errors->first('type') }}
 		</div>
 		<div class="form-group">
@@ -58,7 +58,7 @@
 		</div>
 		<div class="form-group">
 			{!! Form::button('Créer', ['type' => 'submit', 'class' => 'btn btn-primary']) !!}
-			<a href="{{ action('ProduitsFinisController@index') }}" class="btn btn-danger">Annuler</a>
+			<a href="{{ action('MatieresPremieresController@index') }}" class="btn btn-danger">Annuler</a>
 		</div>
 		{!! Form::close() !!}
 	</div>

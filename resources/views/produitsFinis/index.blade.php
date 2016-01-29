@@ -31,16 +31,16 @@
 		<tbody>
 <!--    -->
 @foreach($produits as $produit)
-			<tr style="cursor:pointer" onclick="window.location.href='{{ action('ProduitsFinisController@show', $produit->id) }}'">
-				<td class="hidden-xs"><?php echo $produit->code ?></td>
-				<td class="hidden-xs"><?php echo $produit->nom ?></td>
-				<td class="hidden-xs"><?php echo $produit->description ?></td>
-				<td class="hidden-xs"><?php echo $produit->quantite ?></td>
-				<td class="hidden-xs"><?php echo $produit->prix ?></td>
+			<tr style="cursor:pointer">
+				<td class="hidden-xs"  onclick="window.location.href='{{ action('ProduitsFinisController@show', $produit->id) }}'"><?php echo $produit->code ?></td>
+				<td class="hidden-xs"  onclick="window.location.href='{{ action('ProduitsFinisController@show', $produit->id) }}'"><?php echo $produit->nom ?></td>
+				<td class="hidden-xs"  onclick="window.location.href='{{ action('ProduitsFinisController@show', $produit->id) }}'"><?php echo $produit->description ?></td>
+				<td class="hidden-xs"  onclick="window.location.href='{{ action('ProduitsFinisController@show', $produit->id) }}'"><?php echo $produit->quantite ?></td>
+				<td class="hidden-xs"  onclick="window.location.href='{{ action('ProduitsFinisController@show', $produit->id) }}'"><?php echo $produit->prix ?></td>
 				@if ($produit->actif == 1)
-					<td class="hidden-xs">Actif</td>
+					<td class="hidden-xs"  onclick="window.location.href='{{ action('ProduitsFinisController@show', $produit->id) }}'">Actif</td>
 				@else
-					<td class="hidden-xs">Inactif</td>
+					<td class="hidden-xs"  onclick="window.location.href='{{ action('ProduitsFinisController@show', $produit->id) }}'">Inactif</td>
 				@endif
 				<td><a href="{{ action('ProduitsFinisController@edit',$produit->id) }}" class="btn btn-info">Modifier</a></td>
 				<td>{!! Form::open(array('action' => array('ProduitsFinisController@destroy',$produit->id), 'method' => 'delete', 'data-confirm' => 'Êtes-vous certain?')) !!}

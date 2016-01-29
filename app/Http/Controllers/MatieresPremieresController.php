@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Models\MatierePremiere;
+use App\Models\Type;
 use View;
 use Redirect;
 use Input;
@@ -51,7 +52,8 @@ class MatieresPremieresController extends Controller
     {
         $user = Auth::user();
         $role = $user->role;
-        return View::make('matieresPremieres.create', compact('role'));
+        $types = Type::lists('nom');
+        return View::make('matieresPremieres.create', compact('role', 'types'));
     }
 
      /**
@@ -77,9 +79,10 @@ class MatieresPremieresController extends Controller
         try 
         {
             $input = Input::all();
+            $types = Type::lists('nom');
             
             $materiel = new MatierePremiere;
-            $materiel->type =               $input['type'];
+            $materiel->type =               $types[$input['type']];
             $materiel->nom =                $input['nom'];
             $materiel->description =        $input['description'];
             $materiel->prix =               $input['prix'];
@@ -93,7 +96,7 @@ class MatieresPremieresController extends Controller
             App::abort(404);
         }
         
-        if($commande->save()) 
+        if($materiel->save()) 
         {
             return Redirect::action('MatieresPremieresController@index');
         } 
@@ -140,13 +143,14 @@ class MatieresPremieresController extends Controller
         {
             $user = Auth::user();
             $role = $user->role;
+            $types = Type::all()->sortby('nom');
             $materiel = MatierePremiere::findOrFail($id);
         } 
         catch(ModelNotFoundException $e) 
         {
             App::abort(404);
         }
-        return View::make('matieresPremieres.edit', compact('materiel','role'));
+        return View::make('matieresPremieres.edit', compact('materiel','role', 'types'));
     }
 
     /**
