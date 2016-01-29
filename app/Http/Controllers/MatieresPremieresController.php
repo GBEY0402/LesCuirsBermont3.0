@@ -39,7 +39,7 @@ class MatieresPremieresController extends Controller
         {
             App::abort(404);
         }
-        return View::make('matieresPremieres.index', compact('materiaux'));
+        return View::make('matieresPremieres.index', compact('materiaux', 'role'));
     }
 
     /**
@@ -49,7 +49,21 @@ class MatieresPremieresController extends Controller
      */
     public function create()
     {
-        return View::make('matieresPremieres.create');
+        $user = Auth::user();
+        $role = $user->role;
+        return View::make('matieresPremieres.create', compact('role'));
+    }
+
+     /**
+     * Affiche le formulaire pour créer une nouvelle matière première.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createType()
+    {
+        $user = Auth::user();
+        $role = $user->role;
+        return View::make('matieresPremieres.createType', compact('role'));
     }
 
     /**
@@ -72,7 +86,7 @@ class MatieresPremieresController extends Controller
             $materiel->quantiteTotale =     $input['quantiteTotale'];
             $materiel->quantiteMinimum =    $input['quantiteMinimum'];
             $materiel->quantiteLimite =     $input['quantiteLimite'];
-            $materiel->quantiteReserver =   $input['quantiteReserver'];
+            $materiel->quantiteReserve =    $input['quantiteReserve'];
         } 
         catch(ModelNotFoundException $e) 
         {
@@ -99,6 +113,8 @@ class MatieresPremieresController extends Controller
     {
         try 
         {
+            $user = Auth::user();
+            $role = $user->role;
             $materiel = MatierePremiere::findOrFail($id);
             if ($materiel->description == "") 
             {
@@ -109,7 +125,7 @@ class MatieresPremieresController extends Controller
         {
             App::abort(404);
         }
-        return View::make('matieresPremieres.show', compact('materiel'));
+        return View::make('matieresPremieres.show', compact('materiel','role'));
     }
 
     /**
@@ -122,13 +138,15 @@ class MatieresPremieresController extends Controller
     {
         try 
         {
+            $user = Auth::user();
+            $role = $user->role;
             $materiel = MatierePremiere::findOrFail($id);
         } 
         catch(ModelNotFoundException $e) 
         {
             App::abort(404);
         }
-        return View::make('matieresPremieres.edit', compact('materiel'));
+        return View::make('matieresPremieres.edit', compact('materiel','role'));
     }
 
     /**
@@ -148,11 +166,11 @@ class MatieresPremieresController extends Controller
             $materiel->type =               $input['type'];
             $materiel->nom =                $input['nom'];
             $materiel->description =        $input['description'];
-            $materiel->prix =               $input['etat'];
+            $materiel->prix =               $input['prix'];
             $materiel->quantiteTotale =     $input['quantiteTotale'];
             $materiel->quantiteMinimum =    $input['quantiteMinimum'];
             $materiel->quantiteLimite =     $input['quantiteLimite'];
-            $materiel->quantiteReserver =   $input['quantiteReserver'];
+            $materiel->quantiteReserve =    $input['quantiteReserve'];
 
         } 
         catch(ModelNotFoundException $e) 

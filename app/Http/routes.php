@@ -22,7 +22,8 @@ Route::group(['middleware'=>'auth'], function() {
 	Route::resource('inventaire','ProduitsFinisController');
 	Route::resource('client', 'ClientsController');
 	Route::resource('usager', 'UserController');
-	Route::resource('materiel', 'MatieresPremieresController');
+	Route::resource('materiaux', 'MatieresPremieresController');
+	Route::resource('type', 'TypesController');
 
 });
 

@@ -3,18 +3,18 @@
 
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h2>Création d'un produit</h2>
+		<h2>Création d'un matériel</h2>
 	</div>
 	<div class="panel-body">
-		{!! Form::open(['action'=> 'ProduitsFinisController@index', 'class' => 'form']) !!}
+		{!! Form::open(['action'=> 'MatieresPremieresController@index', 'class' => 'form']) !!}
 		<!--    -->
         @foreach ($errors->all() as $error)
             <p class="alert alert-danger">{{ $error }}</p>
         @endforeach
 		<div class="form-group">
-			{!! Form::label('code', 'Code:') !!}
-			{!! Form::text('code',null, ['class' => 'form-control']) !!}
-			{{ $errors->first('code') }}
+			{!! Form::label('type', 'Type:') !!}
+			{!! Form::text('type',null, ['class' => 'form-control']) !!}
+			{{ $errors->first('type') }}
 		</div>
 		<div class="form-group">
 			{!! Form::label('nom', 'Nom:') !!}
@@ -27,14 +27,29 @@
 			{{ $errors->first('description') }}
 		</div>
 		<div class="form-group">
-			{!! Form::label('quantite', 'Quantite:') !!}
-			{!! Form::text('quantite',null, ['class' => 'form-control']) !!}
-			{{ $errors->first('quantite') }}
-		</div>
-		<div class="form-group">
 			{!! Form::label('prix', 'Prix:') !!}
 			{!! Form::text('prix',null, ['class' => 'form-control']) !!}
 			{{ $errors->first('prix') }}
+		</div>
+		<div class="form-group">
+			{!! Form::label('quantiteTotale', 'Quantité totale:') !!}
+			{!! Form::text('quantiteTotale',null, ['class' => 'form-control']) !!}
+			{{ $errors->first('quantiteTotale') }}
+		</div>
+		<div class="form-group">
+			{!! Form::label('quantiteMinimum', 'Quantité Minimum:') !!}
+			{!! Form::text('quantiteMinimum',null, ['class' => 'form-control']) !!}
+			{{ $errors->first('quantiteMinimum') }}
+		</div>
+		<div class="form-group">
+			{!! Form::label('quantiteLimite', 'Quantité Limite:') !!}
+			{!! Form::text('quantiteLimite',null, ['class' => 'form-control']) !!}
+			{{ $errors->first('quantiteLimite') }}
+		</div>
+		<div class="form-group">
+			{!! Form::label('quantiteReserve', 'Quantité en réserve:') !!}
+			{!! Form::text('quantiteReserve',null, ['class' => 'form-control']) !!}
+			{{ $errors->first('quantiteReserve') }}
 		</div>
 		<div class="form-group">
 			{!! Form::label('actif', 'Disponible:') !!}

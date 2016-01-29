@@ -4,7 +4,8 @@
 	<div class="panel-heading">
 		<h2>Inventaire Matières premières</h2>
 		<a href="{{ action('MatieresPremieresController@create') }}" class="btn btn-primary">Ajouter un matériel</a>
-		<a href="{{ action('MatieresPremieresController@index')}}" class="btn btn-info">Entrepôt</a>
+		<a href="{{ action('TypesController@index') }}" class="btn btn-primary">Types de matériaux</a>
+		<a href="{{ action('ProduitsFinisController@index')}}" class="btn btn-info">Entrepôt</a>
 		<a href="{{ action('MatieresPremieresController@index')}}" class="btn btn-info">Remorque #1</a>
 		<a href="{{ action('MatieresPremieresController@index')}}" class="btn btn-info">Remorque #2</a>
 		<a href="{{ action('MatieresPremieresController@index')}}" class="btn btn-info">Remorque #3</a>
@@ -49,7 +50,7 @@
 				@endif
 				<td><a href="{{ action('MatieresPremieresController@edit',$materiel->id) }}" class="btn btn-info">Modifier</a></td>
 				<td>{!! Form::open(array('action' => array('MatieresPremieresController@destroy',$materiel->id), 'method' => 'delete', 'data-confirm' => 'Êtes-vous certain?')) !!}
-					<button type="submit" href="{{ URL::route('materiel.destroy', $materiel->id) }}" class="btn btn-danger btn-mini">Effacer</button>
+					<button type="submit" href="{{ URL::route('materiaux.destroy', $materiel->id) }}" class="btn btn-danger btn-mini">Effacer</button>
 					{!! Form::close() !!}   
 				</td>
 			</tr>
