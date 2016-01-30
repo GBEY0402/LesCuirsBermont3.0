@@ -34,19 +34,19 @@
 		<tbody>
 <!--    -->
 @foreach($materiaux as $materiel)
-			<tr style="cursor:pointer" onclick="window.location.href='{{ action('MatieresPremieresController@show', $materiel->id) }}'">
-				<td class="hidden-xs"><?php echo $materiel->type ?></td>
-				<td class="hidden-xs"><?php echo $materiel->nom ?></td>
-				<td class="hidden-xs"><?php echo $materiel->description ?></td>
-				<td class="hidden-xs"><?php echo $materiel->prix ?></td>
-				<td class="hidden-xs"><?php echo $materiel->quantiteTotale ?></td>
-				<td class="hidden-xs"><?php echo $materiel->quantiteMinimum ?></td>
-				<td class="hidden-xs"><?php echo $materiel->quantiteLimite ?></td>
-				<td class="hidden-xs"><?php echo $materiel->quantiteReserve ?></td>
+			<tr style="cursor:pointer">
+				<td class="hidden-xs" onclick="window.location.href='{{ action('MatieresPremieresController@show', $materiel->id) }}'"><?php echo $materiel->type ?></td>
+				<td class="hidden-xs" onclick="window.location.href='{{ action('MatieresPremieresController@show', $materiel->id) }}'"><?php echo $materiel->nom ?></td>
+				<td class="hidden-xs" onclick="window.location.href='{{ action('MatieresPremieresController@show', $materiel->id) }}'"><?php echo $materiel->description ?></td>
+				<td class="hidden-xs" onclick="window.location.href='{{ action('MatieresPremieresController@show', $materiel->id) }}'"><?php echo $materiel->prix ?></td>
+				<td class="hidden-xs" onclick="window.location.href='{{ action('MatieresPremieresController@show', $materiel->id) }}'"><?php echo $materiel->quantiteTotale ?></td>
+				<td class="hidden-xs" onclick="window.location.href='{{ action('MatieresPremieresController@show', $materiel->id) }}'"><?php echo $materiel->quantiteMinimum ?></td>
+				<td class="hidden-xs" onclick="window.location.href='{{ action('MatieresPremieresController@show', $materiel->id) }}'"><?php echo $materiel->quantiteLimite ?></td>
+				<td class="hidden-xs" onclick="window.location.href='{{ action('MatieresPremieresController@show', $materiel->id) }}'"><?php echo $materiel->quantiteReserve ?></td>
 				@if ($materiel->actif == 1)
-					<td class="hidden-xs">Actif</td>
+					<td class="hidden-xs" onclick="window.location.href='{{ action('MatieresPremieresController@show', $materiel->id) }}'">Actif</td>
 				@else
-					<td class="hidden-xs">Inactif</td>
+					<td class="hidden-xs" onclick="window.location.href='{{ action('MatieresPremieresController@show', $materiel->id) }}'">Inactif</td>
 				@endif
 				<td><a href="{{ action('MatieresPremieresController@edit',$materiel->id) }}" class="btn btn-info">Modifier</a></td>
 				<td>{!! Form::open(array('action' => array('MatieresPremieresController@destroy',$materiel->id), 'method' => 'delete', 'data-confirm' => 'Êtes-vous certain?')) !!}

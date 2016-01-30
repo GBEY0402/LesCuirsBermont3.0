@@ -28,9 +28,9 @@
 		<tbody>
 <!--    -->
 @foreach($types as $type)
-			<tr style="cursor:pointer" onclick="window.location.href='{{ action('TypesController@show', $type->id) }}'">
-				<td class="hidden-xs"><?php echo $type->nom ?></td>
-				<td class="hidden-xs"><?php echo $type->commentaire ?></td>
+			<tr style="cursor:pointer">
+				<td class="hidden-xs" onclick="window.location.href='{{ action('TypesController@show', $type->id) }}'"><?php echo $type->nom ?></td>
+				<td class="hidden-xs" onclick="window.location.href='{{ action('TypesController@show', $type->id) }}'"><?php echo $type->commentaire ?></td>
 				
 				<td><a href="{{ action('TypesController@edit',$type->id) }}" class="btn btn-info">Modifier</a></td>
 				<td>{!! Form::open(array('action' => array('TypesController@destroy',$type->id), 'method' => 'delete', 'data-confirm' => 'Êtes-vous certain?')) !!}
