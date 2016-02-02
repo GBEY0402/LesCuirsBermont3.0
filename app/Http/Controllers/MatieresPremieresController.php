@@ -56,18 +56,6 @@ class MatieresPremieresController extends Controller
         return View::make('matieresPremieres.create', compact('role', 'types'));
     }
 
-     /**
-     * Affiche le formulaire pour créer une nouvelle matière première.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function createType()
-    {
-        $user = Auth::user();
-        $role = $user->role;
-        return View::make('matieresPremieres.createType', compact('role'));
-    }
-
     /**
      * Enregistre dans la base de donnée la nouvelle matière première créer.
      *
@@ -89,7 +77,8 @@ class MatieresPremieresController extends Controller
             $materiel->quantiteTotale =     $input['quantiteTotale'];
             $materiel->quantiteMinimum =    $input['quantiteMinimum'];
             $materiel->quantiteLimite =     $input['quantiteLimite'];
-            $materiel->quantiteReserve =    $input['quantiteReserve'];
+            $materiel->quantiteReserve =    0;
+            $materiel->actif =              $input['actif'];
         } 
         catch(ModelNotFoundException $e) 
         {
@@ -143,7 +132,7 @@ class MatieresPremieresController extends Controller
         {
             $user = Auth::user();
             $role = $user->role;
-            $types = Type::all()->sortby('nom');
+            $types = Type::lists('nom')->sortby('nom');
             $materiel = MatierePremiere::findOrFail($id);
         } 
         catch(ModelNotFoundException $e) 
@@ -166,15 +155,16 @@ class MatieresPremieresController extends Controller
         {
             $input = Input::all();
             $materiel = MatierePremiere::findOrFail($id);
+            $types = Type::lists('nom');
             
-            $materiel->type =               $input['type'];
+            $materiel->type =               $types[$input['type']];
             $materiel->nom =                $input['nom'];
             $materiel->description =        $input['description'];
             $materiel->prix =               $input['prix'];
             $materiel->quantiteTotale =     $input['quantiteTotale'];
             $materiel->quantiteMinimum =    $input['quantiteMinimum'];
             $materiel->quantiteLimite =     $input['quantiteLimite'];
-            $materiel->quantiteReserve =    $input['quantiteReserve'];
+            $materiel->actif =              $input['actif'];
 
         } 
         catch(ModelNotFoundException $e) 

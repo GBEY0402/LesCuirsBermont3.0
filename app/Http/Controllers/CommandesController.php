@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\CommandesProduitsController;
 
 use App\Models\Commande;
 use App\Models\ProduitFini;
@@ -14,6 +13,7 @@ use View;
 use Redirect;
 use Input;
 use DB;
+use Auth;
 
 class CommandesController extends Controller
 {
@@ -26,13 +26,15 @@ class CommandesController extends Controller
     {
         try
         {
+            $user = Auth::user();
+            $role = $user->role;
             $commandes = Commande::all()->sortby('id');
-            $produits = ProduitFini::all()->sortby('id');
+            $produits = ProduitFini::all();
             foreach ($commandes as $commande) 
             {
                 if ($commande->commentaire == "")
                 {
-                    $commande->commentaire = "Aucun commentaire disponible"
+                    $commande->commentaire = "Aucun commentaire disponible";
                 }
             }
         }
@@ -40,7 +42,7 @@ class CommandesController extends Controller
         {
             App::abort(404);
         }
-        return View::make('commandes.index', compact('commandes', 'produits'));
+        return View::make('commandes.index', compact('commandes', 'produits', 'role'));
     }
 
     /**
@@ -50,7 +52,9 @@ class CommandesController extends Controller
      */
     public function create()
     {
-        return View::make('commandes.create');
+        $user = Auth::user();
+        $role = $user->role;
+        return View::make('commandes.create', compact('role'));
     }
 
     /**
@@ -99,6 +103,8 @@ class CommandesController extends Controller
     {
         try 
         {
+            $user = Auth::user();
+            $role = $user->role;
             $commande = Commande::findOrFail($id);
             $produits = DB::select('select produitsId 
                                     from commandesproduits 
@@ -112,7 +118,7 @@ class CommandesController extends Controller
         {
             App::abort(404);
         }
-        return View::make('commandes.show', compact('commande', 'produits'));
+        return View::make('commandes.show', compact('commande', 'produits', 'role'));
     }
 
     /**
@@ -125,6 +131,8 @@ class CommandesController extends Controller
     {
         try 
         {
+            $user = Auth::user();
+            $role = $user->role;
             $commande = Commande::findOrFail($id);
             $produits = DB::select('select produitsId 
                                     from commandesproduits 
@@ -134,7 +142,7 @@ class CommandesController extends Controller
         {
             App::abort(404);
         }
-        return View::make('commandes.edit', compact('commande', 'produits'));
+        return View::make('production.edit', compact('commande', 'produits', 'role'));
     }
 
     /**
@@ -186,40 +194,23 @@ class CommandesController extends Controller
         }
     }
 
+
     /**
-     * Supprimer une commande de la base de donnée.
+     * Suppression 
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function desactivateCommande($id)
+    public function destroy($id)
     {
         try 
         {
-            $commande = Commande::findOrFail($id);
-            destroyItems($id);
-            DB::table('commandes')
-                    ->where('Id', $id)
-                    ->update(['actif' => 0]);
+            
         } 
         catch(ModelNotFoundException $e) 
         {
             App::abort(404);
         }
         return Redirect::action('CommandesController@index');
-    }
-
-    public function desactivateItems($id)
-    {
-        try
-        {
-            DB::table('commandesproduits')
-                    ->where('produitsId', $id)
-                    ->update(['actif' => 0]);
-        }
-        catch
-        {
-            App::abort(404);
-        }
     }
 }
