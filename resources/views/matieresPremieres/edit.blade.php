@@ -7,13 +7,8 @@
 	<div class="panel-body">
 		{!! Form::open(['action'=> array('MatieresPremieresController@update', $materiel->id), 'method' => 'PUT', 'class' => 'form']) !!}
 		<div class="form-group">
-			{!! Form::label('type', 'Type:') !!} 
-			{!! Form::text('type',$materiel->type, ['class' => 'form-control']) !!}
-			{{ $errors->first('type') }}
-		</div>
-		<div class="form-group">
-			{!! Form::label('type', 'Type:') !!} 
-			{!! Form::text('type',$materiel->type, ['class' => 'form-control']) !!}
+			{!! Form::label('type', 'Type:') !!}
+			{!! Form::select('type', $types, ['class' => 'form-control']) !!}
 			{{ $errors->first('type') }}
 		</div>
 		<div class="form-group">
