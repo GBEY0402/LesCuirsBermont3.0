@@ -13,6 +13,7 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
                                     CanResetPasswordContract
+
 {
     use Authenticatable, Authorizable, CanResetPassword;
 
@@ -35,6 +36,20 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = [ 'remember_token'];
+
+    public $validationMessages;
+
+    public function validationRules() {
+        return 
+            [
+            'prenom'          => 'required',
+            'nom'           => 'required',
+            'username'      => 'required|unique:users,username'.($this->id ? ",$this->id" : ''),
+            'password'          => 'required|min:6',
+            'password2'          => 'required|same:password',
+            'role'         => 'required',
+            ];
+    }
 
 }

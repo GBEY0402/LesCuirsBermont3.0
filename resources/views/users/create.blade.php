@@ -9,29 +9,37 @@
     <div class="panel-body">
         {!! Form::open(['action'=> 'UserController@index', 'class' => 'form']) !!}   
             {!! csrf_field() !!}
+            @foreach ($errors->all() as $error)
+                <p class="alert alert-danger">{{ $error }}</p>
+            @endforeach
             <div class="form-group">
                 {!! Form::label('prenom', 'Prenom:') !!} 
                 {!! Form::text('prenom',null, ['class' => 'form-control']) !!}
+                {{ $errors->first('prenom') }}
             </div>
 
             <div class="form-group">
                 {!! Form::label('nom', 'Nom:') !!}
                 {!! Form::text('nom',null, ['class' => 'form-control']) !!}
+                {{ $errors->first('nom') }}
             </div>
 
             <div class="form-group">
                 {!! Form::label('username', 'Username:') !!}
                 {!! Form::text('username',null, ['class' => 'form-control']) !!}
+                {{ $errors->first('username') }}
             </div>
 
             <div class="form-group">
                 {!! Form::label('password', 'Password:') !!}
                 {!! Form::password('password', null, ['class' => 'form-control']) !!}
+                {{ $errors->first('password') }}
             </div>
 
             <div class="form-group">
-                {!! Form::label('password', 'Confirm password:') !!}
-                {!! Form::password('password', null, ['class' => 'form-control']) !!}
+                {!! Form::label('password2', 'Confirm password:') !!}
+                {!! Form::password('password2', null, ['class' => 'form-control']) !!}
+                {{ $errors->first('password2') }}
             </div>
             
             <div class="form-group">

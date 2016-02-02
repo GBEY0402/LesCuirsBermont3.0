@@ -63,31 +63,28 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-		try 
+		$users = new User;
+        $this->validate($request, $users->validationRules());
+    
+        try 
         {
             $input = Input::all();
-
-            $users = new User;
-    		$users->nom = $input['nom'];
-    		$users->prenom = $input['prenom'];
+           
+            $users->nom = $input['nom'];
+            $users->prenom = $input['prenom'];
             $users->username = $input['username'];
-    		$users->role = $input['role'];
-    		$users->password = Hash::make($input['password']);
-        }
-		
-		catch(ModelNotFoundException $e) 
-        {
-            App::abort(404);
+            $users->role = $input['role'];
+            $users->password = Hash::make($input['password']);
         }
         
-        if($users->save()) 
+        catch(ModelNotFoundException $e) 
         {
-            return Redirect::action('UserController@index');
+            App::abort(404);
         } 
-        else 
-        {
-            return Redirect::back()->withInput()->withErrors($users->validationMessages());
-        }
+        $users->save();
+        return Redirect::action('UserController@index');
+        
+      
     }
 
     /**
