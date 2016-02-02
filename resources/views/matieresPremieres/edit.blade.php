@@ -47,11 +47,6 @@
 			{{ $errors->first('quantiteLimite') }}
 		</div>
 		<div class="form-group">
-			{!! Form::label('quantiteReserve', 'Quantité en reserve:') !!} 
-			{!! Form::text('quantiteReserve',$materiel->quantiteReserve, ['class' => 'form-control']) !!}
-			{{ $errors->first('quantiteReserve') }}
-		</div>
-		<div class="form-group">
 			{!! Form::label('actif', 'Actif:') !!} 
 			{!! Form::select('actif', array('1' => 'Oui', '0' => 'Non') , '1' ) !!}
 			{{ $errors->first('actif') }}
