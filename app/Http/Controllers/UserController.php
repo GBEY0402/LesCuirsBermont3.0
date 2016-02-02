@@ -150,7 +150,7 @@ class UserController extends Controller
             $users->prenom = $input['prenom'];
             $users->username = $input['username'];
             $users->role = $input['role'];
-            $users->password = $input['password'];
+            $users->password = Hash::make($input['password']);
         }
         
         catch(ModelNotFoundException $e) 
