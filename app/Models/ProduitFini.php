@@ -24,7 +24,6 @@ class ProduitFini extends EloquentValidating
 			[
 			'code' 			=> 'required|unique:produitsFinis,code'.($this->id ? ",$this->id" : ''),
 			'nom' 			=> 'required',
-			'quantite' 		=> 'required',
 			'prix' 			=> 'required',
             'actif'         => 'required',
 			];
