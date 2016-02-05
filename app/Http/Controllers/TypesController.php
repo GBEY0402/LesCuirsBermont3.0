@@ -22,7 +22,7 @@ class TypesController extends Controller
      */
     public function index()
     {
-         try
+        try
         {
             $user = Auth::user();
             $role = $user->role;

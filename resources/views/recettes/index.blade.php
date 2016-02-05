@@ -4,6 +4,11 @@
 	<div class="panel-heading">
 		<h2>Inventaire Entrepôt</h2>
 		<a href="{{ action('ProduitsFinisController@create') }}" class="btn btn-primary">Ajouter un produit</a>
+		<a href="{{ action('ProduitsFinisController@index')}}" class="btn btn-info">Remorque #1</a>
+		<a href="{{ action('ProduitsFinisController@index')}}" class="btn btn-info">Remorque #2</a>
+		<a href="{{ action('ProduitsFinisController@index')}}" class="btn btn-info">Remorque #3</a>
+		<a href="{{ action('MatieresPremieresController@index')}}" class="btn btn-info">Matières premières</a>
+
 	</div>
 @if ($produits->isEmpty())
 	<div class="panel-body">
@@ -17,6 +22,7 @@
 				<th>Code</th>
 				<th class="hidden-xs">Nom</th>
 				<th class="hidden-xs">Description</th>
+				<th class="hidden-xs">Quantité</th>
 				<th class="hidden-xs">Prix</th>
 				<th class="hidden-xs">Disponible</th>
 				<th></th>
@@ -29,6 +35,7 @@
 				<td class="hidden-xs"  onclick="window.location.href='{{ action('ProduitsFinisController@show', $produit->id) }}'"><?php echo $produit->code ?></td>
 				<td class="hidden-xs"  onclick="window.location.href='{{ action('ProduitsFinisController@show', $produit->id) }}'"><?php echo $produit->nom ?></td>
 				<td class="hidden-xs"  onclick="window.location.href='{{ action('ProduitsFinisController@show', $produit->id) }}'"><?php echo $produit->description ?></td>
+				<td class="hidden-xs"  onclick="window.location.href='{{ action('ProduitsFinisController@show', $produit->id) }}'"><?php echo $produit->quantite ?></td>
 				<td class="hidden-xs"  onclick="window.location.href='{{ action('ProduitsFinisController@show', $produit->id) }}'"><?php echo $produit->prix ?></td>
 				@if ($produit->actif == 1)
 					<td class="hidden-xs"  onclick="window.location.href='{{ action('ProduitsFinisController@show', $produit->id) }}'">Actif</td>

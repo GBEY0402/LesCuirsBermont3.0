@@ -14,8 +14,23 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="/inventaire">Inventaire</a></li>
-                <li><a href="{{ action('CommandesController@index') }}">Production</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Inventaire<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="/inventaire">Entrepôt</a></li>
+                        <li><a href="/materiaux">Matières premières</a></li>
+                        <li><a href="/inventaire">Remorque 1</a></li>
+                        <li><a href="/inventaire">Remorque 2</a></li>
+                        <li><a href="/inventaire">Remorque 3</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Production<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="{{ action('CommandesController@index') }}">Commandes</a></li>
+                        <li><a href="{{ action('RecettesController@index') }}">Recettes</a></li>
+                    </ul>
+                </li>
                 @if ($role == 'Administrateur')
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Clients et fournisseurs<span class="caret"></span></a>

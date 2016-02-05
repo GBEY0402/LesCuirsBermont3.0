@@ -8,6 +8,7 @@
 	<div class="panel-body">
 		<p>Nom: <?php echo $produit->nom ?></p>
 		<p>Description: <?php echo $produit->description ?></p>
+		<p>Quantité: <?php echo $produit->quantite ?></p>
 		<p>Prix: <?php echo $produit->prix ?></p>
 		@if ($produit->actif == 1)
 			<p>Actif: Oui</p>

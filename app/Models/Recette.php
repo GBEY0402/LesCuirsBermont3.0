@@ -24,7 +24,7 @@ class Recette extends Model
 	public function validationRules() {
 		return 
 			[
-			'produitsFinisId' 		=> 'required',
+			'code' 		            => 'required',
 			'matieresPremieresId' 	=> 'required',
 			'quantite' 				=> 'required',
 			];

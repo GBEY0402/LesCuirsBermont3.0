@@ -12,10 +12,9 @@ class MatieresPremieresTableSeeder extends Seeder {
 	{
         //code, nom, description, prix, quantiteTotale, quantiteMinimum, quantiteLimite, quantiteReserve, actif
         $infos = [
-		["Cuire",	"rouge", 		"",	 "2.99",	"100",	"25",	"10",	"15",	"1"],
-		["Cuire",	"bleu", 		"",	 "2.99",	"100",	"30",	"20",	"5",	"1"],
+		["Cuir",	"rouge", 		"",	 "2.99",	"100",	"25",	"10",	"15",	"1"],
+		["Cuir",	"bleu", 		"",	 "2.99",	"100",	"30",	"20",	"5",	"1"],
 		["Suede",	"blanc",	 	"",	 "1.99",	"200",	"50",	"30",	"45",	"1"],
-		["Feutre",	"gris", 		"",	 "1.99",	"200",	"50",	"30",	"45",	"1"],
 		["Fil",		"blanc 100M", 	"",	 "0.99",	"50",	"25",	"15",	"0",	"1"],
 		["Fil",		"noir 100M", 	"",	 "0.99",	"50",	"25",	"15",	"0",	"1"]
 

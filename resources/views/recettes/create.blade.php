@@ -27,6 +27,11 @@
 			{{ $errors->first('description') }}
 		</div>
 		<div class="form-group">
+			{!! Form::label('quantite', 'Quantite:') !!}
+			{!! Form::text('quantite',null, ['class' => 'form-control']) !!}
+			{{ $errors->first('quantite') }}
+		</div>
+		<div class="form-group">
 			{!! Form::label('prix', 'Prix:') !!}
 			{!! Form::text('prix',null, ['class' => 'form-control']) !!}
 			{{ $errors->first('prix') }}

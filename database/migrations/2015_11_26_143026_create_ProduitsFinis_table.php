@@ -17,7 +17,6 @@ class CreateProduitsFinisTable extends Migration
             $table->string('code');
             $table->string('nom');
             $table->string('description')->nullable();
-            $table->integer('quantite');
             $table->decimal('prix', 10, 2);
             $table->boolean('actif');
             $table->timestamps('create_at');

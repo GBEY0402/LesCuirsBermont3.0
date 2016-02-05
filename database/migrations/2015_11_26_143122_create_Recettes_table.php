@@ -13,8 +13,7 @@ class CreateRecettesTable extends Migration
     public function up()
     {
         Schema::create('recettes', function (Blueprint $table) {
-            $table->integer('produitsFinisId')->unsigned();
-            $table->foreign('produitsFinisId')->references('id')->on('produitsFinis');
+            $table->string('codeModele');
             $table->integer('matieresPremieresId')->unsigned();
             $table->foreign('matieresPremieresId')->references('id')->on('matieresPremieres');
             $table->integer('quantite');
