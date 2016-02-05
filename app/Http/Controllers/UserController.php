@@ -138,31 +138,30 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
+        $input = Input::all();
+        $users = User::findOrFail($id);
+
+        $this->validate($request, $users->validationRules());
         try 
         {
             $input = Input::all();
-            $users = User::findOrFail($id);
-
+           
             $users->nom = $input['nom'];
             $users->prenom = $input['prenom'];
             $users->username = $input['username'];
             $users->role = $input['role'];
             $users->password = Hash::make($input['password']);
         }
-        
+
         catch(ModelNotFoundException $e) 
         {
+
             App::abort(404);
-        }
-        
-        if($users->save()) 
-        {
-            return Redirect::action('UserController@index');
         } 
-        else 
-        {
-            return Redirect::back()->withInput()->withErrors($users->validationMessages());
-        }
+        
+        $users->save();
+        return Redirect::action('UserController@index');
     }
 
     /**
