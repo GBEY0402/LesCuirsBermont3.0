@@ -132,7 +132,7 @@ class CodesProduitsController extends Controller
             $input = Input::all();
             $code = CodeProduit::findOrFail($id);
             
-            $code->code =         $input['code'];
+            $code->code = $input['code'];
         } 
         catch(ModelNotFoundException $e) 
         {
