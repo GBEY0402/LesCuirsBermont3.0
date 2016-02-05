@@ -40,6 +40,7 @@
                     </ul>
                 @endif
                 </li>
+                <li><a href="/entrepot">Gestion entrepot</a></li>
                 <li><a href="/auth/logout">Logout</a></li>
             </ul>
             

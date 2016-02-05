@@ -45,7 +45,7 @@ class User extends Model implements AuthenticatableContract,
             [
             'prenom'          => 'required',
             'nom'           => 'required',
-            'username'      => 'required|unique:users,username'.($this->id ? ",$this->id" : ''),
+            'username'      => 'required|alpha_num|unique:users,username'.($this->id ? ",$this->id" : ''),
             'password'          => 'required|min:6',
             'password2'          => 'required|same:password',
             'role'         => 'required',
