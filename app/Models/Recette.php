@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Recette extends Model
+class Recette extends EloquentValidating
 {
     /*
      *L'objet Recette utilise la table Recettes

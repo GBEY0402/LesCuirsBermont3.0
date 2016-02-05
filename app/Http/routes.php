@@ -26,6 +26,7 @@ Route::group(['middleware'=>'auth'], function() {
 	Route::resource('type', 'TypesController');
 	Route::resource('commande', 'CommandesController');
 	Route::resource('recette', 'RecettesController');
+	Route::resource('code', 'CodesProduitsController');
 
 });
 

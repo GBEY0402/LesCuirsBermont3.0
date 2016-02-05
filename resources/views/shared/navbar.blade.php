@@ -27,6 +27,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Production<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
+                        <li><a href="{{ action('CodesProduitsController@index') }}">Codes de produits</a></li>
                         <li><a href="{{ action('CommandesController@index') }}">Commandes</a></li>
                         <li><a href="{{ action('RecettesController@index') }}">Recettes</a></li>
                     </ul>
