@@ -24,8 +24,14 @@ Route::group(['middleware'=>'auth'], function() {
 	Route::resource('usager', 'UserController');
 	Route::resource('materiaux', 'MatieresPremieresController');
 	Route::resource('type', 'TypesController');
+<<<<<<< HEAD
 	Route::resource('production', 'CommandesController');
 	Route::resource('entrepot', 'entrepotController');
+=======
+	Route::resource('commande', 'CommandesController');
+	Route::resource('recette', 'RecettesController');
+	Route::resource('code', 'CodesProduitsController');
+>>>>>>> 6dfa6ff06ee1101bba03b622ad6ccd57fcb6262d
 
 });
 

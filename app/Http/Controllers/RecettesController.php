@@ -13,6 +13,7 @@ use App\Models\Recette;
 use View;
 use Redirect;
 use Input;
+use Auth;
 
 class RecettesController extends Controller
 {
@@ -23,7 +24,17 @@ class RecettesController extends Controller
      */
     public function index()
     {
-        //
+        try
+        {
+            $user = Auth::user();
+            $role = $user->role;
+            $recettes = Recette::all()->sortby('codeModele');
+        }
+        catch(ModelNotFoundException $e)
+        {
+            App::abort(404);
+        }
+        return View::make('recettes.index', compact('recettes', 'role'));
     }
 
     /**
@@ -42,7 +53,7 @@ class RecettesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
         //
     }
@@ -76,7 +87,7 @@ class RecettesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
         //
     }

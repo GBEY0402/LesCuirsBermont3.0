@@ -7,13 +7,13 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Models\Type;
+use App\Models\CodeProduit;
 use View;
 use Redirect;
 use Input;
 use Auth;
 
-class TypesController extends Controller
+class CodesProduitsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,20 +26,13 @@ class TypesController extends Controller
         {
             $user = Auth::user();
             $role = $user->role;
-            $types = Type::all()->sortby('nom');
-            foreach ($types as $type) 
-            {
-                if ($type->commentaire == "")
-                {
-                    $type->commentaire = "Aucun commentaire disponible";
-                }
-            }
+            $codes = CodeProduit::all()->sortby('code');
         }
         catch(ModelNotFoundException $e)
         {
             App::abort(404);
         }
-        return View::make('types.index', compact('types', 'role'));
+        return View::make('codesProduits.index', compact('codes', 'role'));
     }
 
     /**
@@ -51,7 +44,7 @@ class TypesController extends Controller
     {
         $user = Auth::user();
         $role = $user->role;
-        return View::make('types.create', compact('role'));
+        return View::make('codesProduits.create', compact('role'));
     }
 
     /**
@@ -65,23 +58,21 @@ class TypesController extends Controller
         try 
         {
             $input = Input::all();
-            
-            $type = new Type;
-            $type->nom =         $input['nom'];
-            $type->commentaire = $input['commentaire'];
+            $code = new CodeProduit;
+            $code->code =         $input['code'];
         } 
         catch(ModelNotFoundException $e) 
         {
             App::abort(404);
         }
         
-        if($type->save()) 
+        if($code->save()) 
         {
-            return Redirect::action('TypesController@index');
+            return Redirect::action('CodesProduitsController@index');
         } 
         else 
         {
-            return Redirect::back()->withInput()->withErrors($type->validationMessages());
+            return Redirect::back()->withInput()->withErrors($code->validationMessages());
         }
     }
 
@@ -97,17 +88,13 @@ class TypesController extends Controller
         {
             $user = Auth::user();
             $role = $user->role;
-            $type = Type::findOrFail($id);
-            if ($type->commentaire == "") 
-            {
-                $type->commentaire = "Aucun commentaire disponible";
-            }
+            $code = CodeProduit::findOrFail($id);
         } 
         catch(ModelNotFoundException $e) 
         {
             App::abort(404);
         }
-        return View::make('types.show', compact('type', 'role'));
+        return View::make('codesProduits.show', compact('code', 'role'));
     }
 
     /**
@@ -122,13 +109,13 @@ class TypesController extends Controller
         {
             $user = Auth::user();
             $role = $user->role;
-            $type = Type::findOrFail($id);
+            $code = CodeProduit::findOrFail($id);
         } 
         catch(ModelNotFoundException $e) 
         {
             App::abort(404);
         }
-        return View::make('types.edit', compact('type', 'role'));
+        return View::make('codesProduits.edit', compact('code', 'role'));
     }
 
     /**
@@ -143,23 +130,22 @@ class TypesController extends Controller
         try 
         {
             $input = Input::all();
-            $type = Type::findOrFail($id);
+            $code = CodeProduit::findOrFail($id);
             
-            $type->nom =         $input['nom'];
-            $type->commentaire = $input['commentaire'];
+            $code->code =         $input['code'];
         } 
         catch(ModelNotFoundException $e) 
         {
             App::abort(404);
         }
 
-        if($type->save()) 
+        if($code->save()) 
         {
-            return Redirect::action('TypesController@index');
+            return Redirect::action('CodesProduitsController@index');
         } 
         else 
         {
-            return Redirect::back()->withInput()->withErrors($type->validationMessages());
+            return Redirect::back()->withInput()->withErrors($code->validationMessages());
         }
     }
 
@@ -173,13 +159,13 @@ class TypesController extends Controller
     {
         try 
         {
-            $type = Type::findOrFail($id);
-            $type->delete();
+            $code = CodeProduit::findOrFail($id);
+            $code->delete();
         } 
         catch(ModelNotFoundException $e) 
         {
             App::abort(404);
         }
-        return Redirect::action('TypesController@index');
+        return Redirect::action('CodesProduitsController@index');
     }
 }

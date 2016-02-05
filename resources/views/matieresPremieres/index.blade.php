@@ -5,10 +5,6 @@
 		<h2>Inventaire Matières premières</h2>
 		<a href="{{ action('MatieresPremieresController@create') }}" class="btn btn-primary">Ajouter un matériel</a>
 		<a href="{{ action('TypesController@index') }}" class="btn btn-primary">Types de matériaux</a>
-		<a href="{{ action('ProduitsFinisController@index')}}" class="btn btn-info">Entrepôt</a>
-		<a href="{{ action('MatieresPremieresController@index')}}" class="btn btn-info">Remorque #1</a>
-		<a href="{{ action('MatieresPremieresController@index')}}" class="btn btn-info">Remorque #2</a>
-		<a href="{{ action('MatieresPremieresController@index')}}" class="btn btn-info">Remorque #3</a>
 	</div>
 
 @if ($materiaux->isEmpty())

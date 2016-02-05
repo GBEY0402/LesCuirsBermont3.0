@@ -69,7 +69,6 @@ class ProduitsFinisController extends Controller
             $produit = new ProduitFini;
             $produit->code =        $input['code'];
             $produit->nom =         $input['nom'];
-            $produit->quantite =    $input['quantite'];
             $produit->prix =        $input['prix'];
             $produit->description = $input['description'];
             $produit->actif =       $input['actif'];
@@ -151,7 +150,6 @@ class ProduitsFinisController extends Controller
             
             $produit->code =        $input['code'];
             $produit->nom =         $input['nom'];
-            $produit->quantite =    $input['quantite'];
             $produit->prix =        $input['prix'];
             $produit->description = $input['description'];
             $produit->actif =       $input['actif'];
