@@ -28,5 +28,10 @@ class ProduitFini extends EloquentValidating
       'actif'     => 'required',
 			];
 	}
+
+  public function Entrepots(){ 
+
+        return $this->belongstomany('App\entrepot')
+    }
     
 }

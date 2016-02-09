@@ -13,12 +13,18 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
+
+        <?php /* anything here is comment */ ?>
+        {{-- */$entrepots = entrepot::All();/* --}}
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Inventaire<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="/inventaire">Entrepôt</a></li>
+                        @foreach($entrepots as $entrepot)
+                            <li><a href="/inventaire/<?php echo $entrepot->id?>"><?php echo $entrepot->nom?></a></li>
+                        @endforeach
                         <li><a href="/materiaux">Matières premières</a></li>
                         <li><a href="/inventaire">Remorque 1</a></li>
                         <li><a href="/inventaire">Remorque 2</a></li>
