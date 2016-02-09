@@ -15,7 +15,6 @@ Route::get('/', function () {
     return view('/auth/login');
 });
 
-
 Route::group(['middleware'=>'auth'], function() {
 	
 	Route::resource('/home','HomeController');
@@ -31,6 +30,8 @@ Route::group(['middleware'=>'auth'], function() {
 	Route::resource('recette', 'RecettesController');
 	Route::resource('code', 'CodesProduitsController');
 
+	
+
 });
 
 
@@ -39,6 +40,12 @@ Route::group(['middleware'=>'auth'], function() {
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+Route::get('/404', function()
+    {
+        return View::make('404');
+    });
+
 
 
 
