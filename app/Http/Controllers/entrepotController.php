@@ -61,7 +61,7 @@ class entrepotController extends Controller
             
             $entrepot = new entrepot;
             $entrepot->nom =               $input['nom'];
-            $entrepot->type =                $input['type'];
+            $entrepot->type =              $input['type'];
         } 
         catch(ModelNotFoundException $e) 
         {

@@ -17,8 +17,8 @@
 			{{ $errors->first('nom') }}
 		</div>
 		<div class="form-group">
-			{!! Form::label('type', 'Type:') !!}
-			{!! Form::select('type', $types, ['class' => 'form-control']) !!}
+			{!! Form::label('type', 'Type :') !!}
+			{!! Form::select('type', array('Entrepot' => 'Entrepot', 'Remorque' => 'Remorque') , '1' ) !!}
 			{{ $errors->first('type') }}
 		</div>
 		<div class="form-group">
