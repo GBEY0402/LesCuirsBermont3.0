@@ -16,10 +16,10 @@ class EntrepotTableSeeder extends Seeder
     {
         //nom, type(1 = entrepot principal 2 = remoreque)
         $infos = [
-		["entrepot",	"1"],
-		["Remorque #1",	"2"],
-		["Remorque #2",	"2"],
-		["Remorque #3",	"2"]
+		["Entrepot",	"Entrepot"],
+		["Remorque #1",	"Remorque"],
+		["Remorque #2",	"Remorque"],
+		["Remorque #3",	"Remorque"]
 		];
 
         DB::table('entrepot')->delete();
