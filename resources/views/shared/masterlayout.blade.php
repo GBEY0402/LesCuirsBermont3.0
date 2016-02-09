@@ -49,10 +49,15 @@
         @yield('content')
         @if ($role == 'Administrateur')
             @yield('content-admin')
-            @yield('content-prod')
+        @endif
+        @if ($role == 'Administrateur' or $role == 'DirProd')
+            @yield('content-admin-prod')
         @endif
         @if ($role == 'dirProd')
             @yield('content-prod')
+        @endif
+        @if ($role == 'employe')
+            @yield('content-emp') 
         @endif
         <!--@include('shared.sous-menu') //sous menu potentiel--> 
 

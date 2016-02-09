@@ -12,6 +12,7 @@ use View;
 use Redirect;
 use Input;
 use Auth;
+use DB;
 
 class ProduitsFinisController extends Controller
 {
@@ -26,14 +27,10 @@ class ProduitsFinisController extends Controller
         {
             $user = Auth::user();
             $role = $user->role;
-            $produits = ProduitFini::all()->sortby('code');
-            foreach ($produits as $produit) 
-            {
-                if ($produit->description == "")
-                {
-                    $produit->description = "Aucune description disponible";
-                }
-            }
+            $entrepots = Entrepot::All();
+
+            //$listeProduitsEntrepot = entrepot->pivot->
+            
         }
         catch(ModelNotFoundException $e)
         {

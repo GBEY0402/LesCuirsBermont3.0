@@ -1,5 +1,5 @@
 @extends('shared.masterlayout')
-@section('content')
+@section('content-admin')
 
 <div class="panel panel-default">
 	<div class="panel-heading">
@@ -29,3 +29,8 @@
 	</div>
 </div>
 @stop
+@section('content-prod')
+@section('content-emp')
+<center><h1>Access DENIED !</h1></center>
+@STOP
+@STOP

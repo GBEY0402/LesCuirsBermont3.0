@@ -30,4 +30,9 @@ class entrepot extends Model
 			'type' 				=> 'required',
 			];
 	}
+
+    public function ProduitsFinis(){ 
+
+        return $this->belongstomany('App\ProduitFini');
+    }
 }

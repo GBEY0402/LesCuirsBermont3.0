@@ -43,7 +43,7 @@
             
             
             <div class="form-group">
-                {!! Form::select('role', array('Administrateur' => 'Administrateur', 'Directeur de production' => 'DirProd', 'Employé' => 'employe') , '1') !!}
+                {!! Form::select('role', array('Administrateur' => 'Administrateur', 'DirProd' => 'Directeur de production', 'employe' => 'Employé') , '1' ) !!}
             </div>
 
             <div class="form-group">

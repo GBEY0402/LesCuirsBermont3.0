@@ -25,8 +25,13 @@ class ProduitFini extends EloquentValidating
 			'code' 			=> 'required|unique:produitsFinis,code'.($this->id ? ",$this->id" : ''),
 			'nom' 			=> 'required',
 			'prix' 			=> 'required',
-            'actif'         => 'required',
+      'actif'         => 'required',
 			];
 	}
+
+  public function Entrepots(){ 
+
+        return $this->belongstomany('App\entrepot')
+    }
     
 }

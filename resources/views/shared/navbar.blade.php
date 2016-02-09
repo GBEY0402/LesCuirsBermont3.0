@@ -18,14 +18,14 @@ use App\Models\entrepot;
         
         <!-- Collect the nav links, forms, and other content for toggling -->
         <?php /* anything here is comment */ ?>
-        {{-- */$entrepots = entrepot::lists('nom');/* --}}
+        {{-- */$entrepots = entrepot::All();/* --}}
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Inventaire<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         @foreach($entrepots as $entrepot)
-                            <li><a href="/inventaire"><?php echo $entrepot?></a></li>
+                            <li><a href="/inventaire/<?php echo $entrepot->id?>"><?php echo $entrepot->nom?></a></li>
                         @endforeach
                         <li><a href="/materiaux">Matières premières</a></li>
                         
