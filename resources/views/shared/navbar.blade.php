@@ -12,6 +12,7 @@ use App\Models\entrepot;
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+            <img src="..\logo.png">
             <a class="navbar-brand" href="/home">Les Cuirs Bermont</a>
         </div>
 
