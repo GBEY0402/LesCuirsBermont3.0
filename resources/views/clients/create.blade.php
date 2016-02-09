@@ -6,7 +6,7 @@
 		<h2>Création d'un client/fournisseur</h2>
 	</div>
 	<div class="panel-body">
-		{!! Form::open(['action'=> 'ClientsController@index', 'class' => 'form']) !!}
+		{!! Form::open(['action'=> 'ClientsController@store', 'class' => 'form']) !!}
 		@foreach ($errors->all() as $error)
             <p class="alert alert-danger">{{ $error }}</p>
         @endforeach

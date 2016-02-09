@@ -6,7 +6,7 @@
 		<h2>Création d'un code de produit</h2>
 	</div>
 	<div class="panel-body">
-		{!! Form::open(['action'=> 'CodesProduitsController@index', 'class' => 'form']) !!}
+		{!! Form::open(['action'=> 'CodesProduitsController@store', 'class' => 'form']) !!}
 		<!--    -->
         @foreach ($errors->all() as $error)
             <p class="alert alert-danger">{{ $error }}</p>
@@ -18,7 +18,7 @@
 		</div>
 		<div class="form-group">
 			{!! Form::button('Créer', ['type' => 'submit', 'class' => 'btn btn-primary']) !!}
-			<a href="{{ action('CodesProduitsController@index') }}" class="btn btn-danger">Annuler</a>
+			<a href="{{ URL::previous() }}" class="btn btn-danger">Annuler</a>
 		</div>
 		{!! Form::close() !!}
 	</div>

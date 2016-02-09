@@ -22,10 +22,10 @@ class ProduitFini extends EloquentValidating
 	public function validationRules() {
 		return 
 			[
-			'code' 			=> 'required|unique:produitsFinis,code'.($this->id ? ",$this->id" : ''),
+			'code' 			=> 'required',
 			'nom' 			=> 'required',
-			'prix' 			=> 'required',
-            'actif'         => 'required',
+			'prix' 		 	=> 'required|numeric|min:0',
+      'actif'     => 'required',
 			];
 	}
     

@@ -7,7 +7,7 @@
         <h2>Création d'un usager</h2>
     </div>
     <div class="panel-body">
-        {!! Form::open(['action'=> 'UserController@index', 'class' => 'form']) !!}   
+        {!! Form::open(['action'=> 'UserController@store', 'class' => 'form']) !!}   
             {!! csrf_field() !!}
             @foreach ($errors->all() as $error)
                 <p class="alert alert-danger">{{ $error }}</p>
