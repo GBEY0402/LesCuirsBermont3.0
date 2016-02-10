@@ -29,7 +29,6 @@ class CommandesController extends Controller
             $user = Auth::user();
             $role = $user->role;
             $commandes = Commande::all()->sortby('id');
-            $produits = ProduitFini::all();
             foreach ($commandes as $commande) 
             {
                 if ($commande->commentaire == "")
@@ -42,7 +41,7 @@ class CommandesController extends Controller
         {
             App::abort(404);
         }
-        return View::make('commandes.index', compact('commandes', 'produits', 'role'));
+        return View::make('commandes.index', compact('commandes', 'role'));
     }
 
     /**

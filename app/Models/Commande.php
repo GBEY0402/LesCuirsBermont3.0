@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Commande extends Model
+class Commande extends EloquentValidating
 {
 
     /*
@@ -25,6 +25,7 @@ class Commande extends Model
 	public function validationRules() {
 		return 
 			[
+            'id'            => 'required|unique|alpha_num',
 			'clientsId' 	=> 'required',
 			'dateDebut' 	=> 'required',
 			'dateFin' 		=> 'required',

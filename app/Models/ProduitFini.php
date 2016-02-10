@@ -31,7 +31,7 @@ class ProduitFini extends EloquentValidating
 
   public function Entrepots(){ 
 
-        return $this->belongstomany('App\entrepot')
+        return $this->belongstomany('App\entrepot');
     }
     
 }

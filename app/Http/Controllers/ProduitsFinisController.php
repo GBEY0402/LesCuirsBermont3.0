@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\ProduitFini;
 use App\Models\CodeProduit;
+use App\Models\entrepot;
 use View;
 use Redirect;
 use Input;
@@ -29,6 +30,7 @@ class ProduitsFinisController extends Controller
             $user = Auth::user();
             $role = $user->role;
             $entrepots = Entrepot::All();
+            $produits = ProduitFini::All();
 
             //$listeProduitsEntrepot = entrepot->pivot->
             
@@ -37,7 +39,7 @@ class ProduitsFinisController extends Controller
         {
             App::abort(404);
         }
-        return View::make('produitsFinis.index', compact('produits', 'role'));
+        return View::make('produitsFinis.index', compact('produits', 'role', 'entrepots'));
     }
 
     /**

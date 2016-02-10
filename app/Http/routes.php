@@ -18,7 +18,7 @@ Route::get('/', function () {
 Route::group(['middleware'=>'auth'], function() {
 	
 	Route::resource('/home','HomeController');
-	Route::resource('inventaire','ProduitsFinisController');
+	Route::resource('production.produit','ProduitsFinisController');
 	Route::resource('client', 'ClientsController');
 	Route::resource('usager', 'UserController');
 	Route::resource('materiaux', 'MatieresPremieresController');
@@ -26,9 +26,9 @@ Route::group(['middleware'=>'auth'], function() {
 	Route::resource('production', 'CommandesController');
 	Route::resource('entrepot', 'entrepotController');
 
-	Route::resource('commande', 'CommandesController');
-	Route::resource('recette', 'RecettesController');
-	Route::resource('code', 'CodesProduitsController');
+	Route::resource('production.commande', 'CommandesController');
+	Route::resource('production.recette', 'RecettesController');
+	Route::resource('production.code', 'CodesProduitsController');
 
 	Route::resource('entrepot.ProduitFini', 'entrepotController');
 
