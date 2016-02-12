@@ -18,19 +18,17 @@ class Commande extends EloquentValidating
      *
      * @var array
      */
-    protected $fillable = ['clientsId', 'dateDebut', 'dateFin', 'etat', 'commentaire'];
+    protected $fillable = ['clientsId', 'dateDebut', 'dateFin', 'etat'];
 
     public $validationMessages;
 
 	public function validationRules() {
 		return 
 			[
-            'id'            => 'required|unique|alpha_num',
-			'clientsId' 	=> 'required',
-			'dateDebut' 	=> 'required',
-			'dateFin' 		=> 'required',
+            'clientsId' 	=> 'required|numeric',
+			'dateDebut' 	=> 'required|date',
+			'dateFin' 		=> 'required|date',
 			'etat' 			=> 'required',
 			];
-	}
-    
+	} 
 }

@@ -15,16 +15,26 @@
 			<tr>
 				<!--  Les différents champs d'un code -->
 				<th>Numéro de commande</th>
+				<th>Code client</th>
+				<th>Date de début</th>
+				<th>Date de fin</th>
+				<th>État</th>
+				<th>Commentaire</th>
 			</tr>
 		</thead>
 		<tbody>
 <!--    -->
 @foreach($commandes as $commande)
 			<tr style="cursor:pointer">
-				<td class="hidden-xs" onclick="window.location.href='{{ action('CommandesController@show', $commande->id) }}'"><?php echo $code->code ?></td>
+				<td class="hidden-xs" onclick="window.location.href='{{ action('CommandesController@show', $commande->id) }}'"><?php echo $commande->id ?></td>
+				<td class="hidden-xs" onclick="window.location.href='{{ action('CommandesController@show', $commande->id) }}'"><?php echo $commande->clientsId ?></td>
+				<td class="hidden-xs" onclick="window.location.href='{{ action('CommandesController@show', $commande->id) }}'"><?php echo $commande->dateDebut ?></td>
+				<td class="hidden-xs" onclick="window.location.href='{{ action('CommandesController@show', $commande->id) }}'"><?php echo $commande->dateFin ?></td>
+				<td class="hidden-xs" onclick="window.location.href='{{ action('CommandesController@show', $commande->id) }}'"><?php echo $commande->etat ?></td>
+				<td class="hidden-xs" onclick="window.location.href='{{ action('CommandesController@show', $commande->id) }}'"><?php echo $commande->commentaire ?></td>
 				<td><a href="{{ action('CommandesController@edit',$commande->id) }}" class="btn btn-info">Modifier</a></td>
 				<td>{!! Form::open(array('action' => array('CommandesController@destroy',$commande->id), 'method' => 'delete', 'data-confirm' => 'Êtes-vous certain?')) !!}
-					<button type="submit" href="{{ URL::route('commandes.destroy', $commande->id) }}" class="btn btn-danger btn-mini">Effacer</button>
+					<button type="submit" href="{{ URL::route('commande.destroy', $commande->id) }}" class="btn btn-danger btn-mini">Effacer</button>
 					{!! Form::close() !!}   
 				</td>
 			</tr>

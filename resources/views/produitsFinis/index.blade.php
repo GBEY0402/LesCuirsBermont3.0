@@ -21,10 +21,10 @@
 				<th class="hidden-xs">Description</th>
 				<th class="hidden-xs">Prix</th>
 				@if ($role == 'Administrateur')
-				<th class="hidden-xs">Disponible</th>
-				
-				<th></th>
+					<th class="hidden-xs">Disponible</th>
 				@endif
+				<th></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
