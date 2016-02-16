@@ -2,7 +2,7 @@
 @section('content')
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h2>Inventaire Entrepôt</h2>
+		<h2>Liste des produits</h2>
 		@if ($role == 'Administrateur')
 		<a href="{{ action('ProduitsFinisController@create') }}" class="btn btn-primary">Ajouter un produit</a>
 		@endif
@@ -21,10 +21,10 @@
 				<th class="hidden-xs">Description</th>
 				<th class="hidden-xs">Prix</th>
 				@if ($role == 'Administrateur')
-				<th class="hidden-xs">Disponible</th>
-				
-				<th></th>
+					<th class="hidden-xs">Disponible</th>
 				@endif
+				<th></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -45,7 +45,7 @@
 				@if ($role == 'Administrateur')
 				<td><a href="{{ action('ProduitsFinisController@edit',$produit->id) }}" class="btn btn-info">Modifier</a></td>
 				<td>{!! Form::open(array('action' => array('ProduitsFinisController@destroy',$produit->id), 'method' => 'delete', 'data-confirm' => 'Êtes-vous certain?')) !!}
-					<button type="submit" href="{{ URL::route('inventaire.destroy', $produit->id) }}" class="btn btn-danger btn-mini">Effacer</button>
+					<button type="submit" href="{{ URL::route('produit.destroy', $produit->id) }}" class="btn btn-danger btn-mini">Effacer</button>
 					{!! Form::close() !!}   
 				</td>
 				@endif

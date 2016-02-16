@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Models\ProduitFini;
+use App\Models\CodeProduit;
+use App\Models\entrepot;
 use View;
 use Redirect;
 use Input;
@@ -28,6 +30,7 @@ class ProduitsFinisController extends Controller
             $user = Auth::user();
             $role = $user->role;
             $entrepots = Entrepot::All();
+            $produits = ProduitFini::All();
 
             //$listeProduitsEntrepot = entrepot->pivot->
             
@@ -36,7 +39,7 @@ class ProduitsFinisController extends Controller
         {
             App::abort(404);
         }
-        return View::make('produitsFinis.index', compact('produits', 'role'));
+        return View::make('produitsFinis.index', compact('produits', 'role', 'entrepots'));
     }
 
     /**
@@ -48,7 +51,12 @@ class ProduitsFinisController extends Controller
     {
         $user = Auth::user();
         $role = $user->role;
-        return View::make('produitsFinis.create', compact('role'));
+        $codes = CodeProduit::lists('code');
+        if($codes->isEmpty())
+            {
+                return View::make('codesProduits.create', compact('role'));
+            }
+        return View::make('produitsFinis.create', compact('role', 'codes'));
     }
 
     /**
@@ -62,9 +70,10 @@ class ProduitsFinisController extends Controller
         try 
         {
             $input = Input::all();
+            $codes = CodeProduit::lists('code');
             
             $produit = new ProduitFini;
-            $produit->code =        $input['code'];
+            $produit->code =        $codes[$input['code']];
             $produit->nom =         $input['nom'];
             $produit->prix =        $input['prix'];
             $produit->description = $input['description'];
@@ -122,13 +131,18 @@ class ProduitsFinisController extends Controller
         {
             $user = Auth::user();
             $role = $user->role;
+            $codes = CodeProduit::lists('code');
+            if($codes->isEmpty())
+            {
+                return View::make('codesProduits.create', compact('role'));
+            }
             $produit = ProduitFini::findOrFail($id);
         } 
         catch(ModelNotFoundException $e) 
         {
             App::abort(404);
         }
-        return View::make('produitsFinis.edit', compact('produit', 'role'));
+        return View::make('produitsFinis.edit', compact('produit', 'role', 'codes'));
     }
 
     /**
@@ -143,9 +157,10 @@ class ProduitsFinisController extends Controller
         try 
         {
             $input = Input::all();
+            $codes = CodeProduit::lists('code');
             $produit = ProduitFini::findOrFail($id);
             
-            $produit->code =        $input['code'];
+            $produit->code =        $codes[$input['code']];
             $produit->nom =         $input['nom'];
             $produit->prix =        $input['prix'];
             $produit->description = $input['description'];

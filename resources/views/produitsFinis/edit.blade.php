@@ -7,8 +7,8 @@
 	<div class="panel-body">
 		{!! Form::open(['action'=> array('ProduitsFinisController@update', $produit->id), 'method' => 'PUT', 'class' => 'form']) !!}
 		<div class="form-group">
-			{!! Form::label('code', 'Code:') !!} 
-			{!! Form::text('code',$produit->code, ['class' => 'form-control']) !!}
+			{!! Form::label('code', 'Code:') !!}
+			{!! Form::select('code', $codes, ['class' => 'form-control']) !!}
 			{{ $errors->first('code') }}
 		</div>
 		<div class="form-group">

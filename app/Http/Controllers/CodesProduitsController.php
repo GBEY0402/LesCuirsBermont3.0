@@ -59,7 +59,7 @@ class CodesProduitsController extends Controller
         {
             $input = Input::all();
             $code = new CodeProduit;
-            $code->code =         $input['code'];
+            $code->code = $input['code'];
         } 
         catch(ModelNotFoundException $e) 
         {

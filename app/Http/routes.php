@@ -18,7 +18,7 @@ Route::get('/', function () {
 Route::group(['middleware'=>'auth'], function() {
 	
 	Route::resource('/home','HomeController');
-	Route::resource('inventaire','ProduitsFinisController');
+	Route::resource('produit','ProduitsFinisController');
 	Route::resource('client', 'ClientsController');
 	Route::resource('usager', 'UserController');
 	Route::resource('materiaux', 'MatieresPremieresController');

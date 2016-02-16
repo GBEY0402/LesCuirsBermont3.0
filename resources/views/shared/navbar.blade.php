@@ -38,6 +38,7 @@ use App\Models\entrepot;
                         <li><a href="{{ action('CommandesController@index') }}">Commandes</a></li>
                         @if ($role == 'Administrateur')
                             <li><a href="{{ action('CodesProduitsController@index') }}">Codes de produits</a></li>
+                            <li><a href="{{ action('ProduitsFinisController@index') }}">Produits</a></li>
                             <li><a href="{{ action('RecettesController@index') }}">Recettes</a></li>
                         @endif
                     </ul>

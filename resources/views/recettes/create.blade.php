@@ -6,7 +6,7 @@
 		<h2>Création d'un produit</h2>
 	</div>
 	<div class="panel-body">
-		{!! Form::open(['action'=> 'ProduitsFinisController@index', 'class' => 'form']) !!}
+		{!! Form::open(['action'=> 'ProduitsFinisController@store', 'class' => 'form']) !!}
 		<!--    -->
         @foreach ($errors->all() as $error)
             <p class="alert alert-danger">{{ $error }}</p>

@@ -20,6 +20,7 @@ class CreateProduitsFinisTable extends Migration
             $table->decimal('prix', 10, 2);
             $table->boolean('actif');
             $table->timestamps('create_at');
+            /*$table->primary(array('code', 'nom'));*/
         });
     }
 

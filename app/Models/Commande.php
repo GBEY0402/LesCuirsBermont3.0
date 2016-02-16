@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Commande extends Model
+class Commande extends EloquentValidating
 {
 
     /*
@@ -18,18 +18,17 @@ class Commande extends Model
      *
      * @var array
      */
-    protected $fillable = ['clientsId', 'dateDebut', 'dateFin', 'etat', 'commentaire'];
+    protected $fillable = ['clientsId', 'dateDebut', 'dateFin', 'etat'];
 
     public $validationMessages;
 
 	public function validationRules() {
 		return 
 			[
-			'clientsId' 	=> 'required',
-			'dateDebut' 	=> 'required',
-			'dateFin' 		=> 'required',
+            'clientsId' 	=> 'required|numeric',
+			'dateDebut' 	=> 'required|date',
+			'dateFin' 		=> 'required|date',
 			'etat' 			=> 'required',
 			];
-	}
-    
+	} 
 }

@@ -24,7 +24,7 @@
 				<td class="hidden-xs" onclick="window.location.href='{{ action('CodesProduitsController@show', $code->id) }}'"><?php echo $code->code ?></td>
 				<td><a href="{{ action('CodesProduitsController@edit',$code->id) }}" class="btn btn-info">Modifier</a></td>
 				<td>{!! Form::open(array('action' => array('CodesProduitsController@destroy',$code->id), 'method' => 'delete', 'data-confirm' => 'Êtes-vous certain?')) !!}
-					<button type="submit" href="{{ URL::route('inventaire.destroy', $code->id) }}" class="btn btn-danger btn-mini">Effacer</button>
+					<button type="submit" href="{{ URL::route('code.destroy', $code->id) }}" class="btn btn-danger btn-mini">Effacer</button>
 					{!! Form::close() !!}   
 				</td>
 			</tr>
