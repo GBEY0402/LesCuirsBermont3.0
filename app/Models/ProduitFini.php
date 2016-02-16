@@ -22,16 +22,16 @@ class ProduitFini extends EloquentValidating
 	public function validationRules() {
 		return 
 			[
-			'code' 			=> 'required|unique:produitsFinis,code'.($this->id ? ",$this->id" : ''),
+			'code' 			=> 'required',
 			'nom' 			=> 'required',
 			'prix' 			=> 'required',
-      'actif'         => 'required',
+      'actif'     => 'required',
 			];
 	}
 
   public function Entrepots(){ 
 
-        return $this->belongstomany('App\entrepot')
+        return $this->belongstomany('App\Models\entrepot')->withPivot('pointure', 'quantite');
     }
     
 }

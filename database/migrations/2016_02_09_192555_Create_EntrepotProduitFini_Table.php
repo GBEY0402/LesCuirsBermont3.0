@@ -12,13 +12,14 @@ class CreateEntrepotProduitFiniTable extends Migration
      */
     public function up()
     {
-        Schema::create('EntrepotProduitFini', function (Blueprint $table) {
-            $table->integer('produitsId')->unsigned();
-            $table->foreign('produitsId')->references('id')->on('produitsFinis');
-            $table->integer('entrepotsId')->unsigned();
-            $table->foreign('entrepotsId')->references('id')->on('entrepot');
+            Schema::create('Entrepot_Produit_Fini', function (Blueprint $table) {
+            $table->integer('entrepot_id')->unsigned();
+            $table->foreign('entrepot_id')->references('id')->on('entrepot');
+            $table->integer('produit_fini_id')->unsigned();
+            $table->foreign('produit_fini_id')->references('id')->on('produitsFinis');
+            $table->integer('pointure');
             $table->integer('quantite');
-            $table->timestamps('create_at');
+            
             });
     }
 
@@ -29,6 +30,6 @@ class CreateEntrepotProduitFiniTable extends Migration
      */
     public function down()
     {
-        Schema::drop('EntrepotProduitFini');
+        Schema::drop('Entrepot_Produit_Fini');
     }
 }

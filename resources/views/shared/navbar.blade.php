@@ -26,7 +26,7 @@ use App\Models\entrepot;
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Inventaire<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         @foreach($entrepots as $entrepot)
-                            <li><a href="/inventaire/<?php echo $entrepot->id?>"><?php echo $entrepot->nom?></a></li>
+                            <li><a href="{{ action('entrepotProduitFiniController@index', $entrepot->id) }} "><?php echo $entrepot->nom?></a></li>
                         @endforeach
                         <li><a href="/materiaux">Matières premières</a></li>
                         
@@ -61,6 +61,7 @@ use App\Models\entrepot;
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="{{ action('UserController@index') }}"> Liste des usagés</a></li>
                         <li><a href="{{ action('UserController@create') }}"> Ajouter un usagé</a></li>
+
                         <!--<li class="divider"></li>
                         <li><a href="#">Separated link</a></li>-->
                     </ul>

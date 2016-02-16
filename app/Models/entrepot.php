@@ -33,6 +33,6 @@ class entrepot extends Model
 
     public function ProduitsFinis(){ 
 
-        return $this->belongstomany('App\ProduitFini');
+        return $this->belongstomany('App\Models\ProduitFini')->withPivot('pointure', 'quantite');
     }
 }
