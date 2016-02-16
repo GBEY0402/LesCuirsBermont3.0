@@ -34,7 +34,9 @@
 				<td class="hidden-xs" onclick="window.location.href='{{ action('CommandesController@show', $commande->id) }}'"><?php echo $commande->commentaire ?></td>
 				<td><a href="{{ action('CommandesController@edit',$commande->id) }}" class="btn btn-info">Modifier</a></td>
 				<td>{!! Form::open(array('action' => array('CommandesController@destroy',$commande->id), 'method' => 'delete', 'data-confirm' => 'Êtes-vous certain?')) !!}
+				@if ($role == 'Administrateur')
 					<button type="submit" href="{{ URL::route('commande.destroy', $commande->id) }}" class="btn btn-danger btn-mini">Effacer</button>
+				@endif
 					{!! Form::close() !!}   
 				</td>
 			</tr>

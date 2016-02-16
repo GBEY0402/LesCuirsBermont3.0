@@ -3,18 +3,19 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<!--    -->
-		<h2 class="panel-title">{{ $client->prenom }} {{ $client->nom }}</h2>
+		<h2 class="panel-title">Numéro: {{ $client->id }}</h2>
 	</div>
 	<div class="panel-body">
-		<p>Adresse: 			<?php echo $client->adresse ?></p>
-		<p>Ville: 				<?php echo $client->ville ?></p>
-		<p>Numéro de téléphone: <?php echo $client->noTel ?></p>
-		<p>Courriel: 			<?php echo $client->courriel ?></p>
-		<p>Relation:			<?php echo $client->relation ?></p>
+		<p><strong>Nom et prénom:</strong> 			<?php echo $client->prenom ?> <?php echo $client->nom ?></p>
+		<p><strong>Adresse:</strong> 				<?php echo $client->adresse ?></p>
+		<p><strong>Ville:</strong> 					<?php echo $client->ville ?></p>
+		<p><strong>Numéro de téléphone:</strong> 	<?php echo $client->noTel ?></p>
+		<p><strong>Courriel:</strong> 				<?php echo $client->courriel ?></p>
+		<p><strong>Relation:</strong>				<?php echo $client->relation ?></p>
 		@if ($client->actif == 1)
-			<p>Actif: Oui</p>
+			<p><strong>Actif:</strong> Oui</p>
 		@else
-			<p>Actif: Non</p>
+			<p><strong>Actif:</strong> Non</p>
 		@endif
 		<a href="{{ URL::previous() }}" class="btn btn-primary">Retour</a>
 	</div>

@@ -26,8 +26,8 @@ class Commande extends EloquentValidating
 		return 
 			[
             'clientsId' 	=> 'required|numeric',
-			'dateDebut' 	=> 'required|date',
-			'dateFin' 		=> 'required|date',
+			'dateDebut' 	=> 'required',
+			'dateFin' 		=> 'required',
 			'etat' 			=> 'required',
 			];
 	} 

@@ -13,23 +13,23 @@ class ClientsTableSeeder extends Seeder {
 		DB::table('clients')->insert(array('prenom' => 'Robert',
 											 'nom' => 'Durocher', 
 											 'adresse' => '1 rue ABC', 
-											 'ville' => 'St-clinclin des meumeux',
+											 'ville' => 'Richmond',
 											 'noTel' => '819-555-2525',
 											 'courriel' => 'bobd@email.com',
 											 'relation' => 'Client'));
 		DB::table('clients')->insert(array('prenom' => 'Eric',
 											 'nom' => 'Brochu', 
 											 'adresse' => '2 rue DEF', 
-											 'ville' => 'Quelquepard',
+											 'ville' => 'Drummondville',
 											 'noTel' => '819-555-3433',
-											 'courriel' => 'ricky@hotshit.com',
+											 'courriel' => 'ricky@hotmail.com',
 											 'relation' => 'Fournisseur'));
 		DB::table('clients')->insert(array('prenom' => 'Steve',
 											 'nom' => 'Caya', 
 											 'adresse' => '3 rue GHI', 
-											 'ville' => 'Danssoncul',
+											 'ville' => 'Acton Vale',
 											 'noTel' => '819-555-6969',
-											 'courriel' => 'cayas@pornhub.com',
+											 'courriel' => 'cayas@email.com',
 											 'relation' => 'Client'));
 	}
 }
