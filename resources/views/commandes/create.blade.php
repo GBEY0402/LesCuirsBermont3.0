@@ -37,7 +37,7 @@
 			<a href="{{ action('ClientsController@create') }}" class="btn btn-primary">Creation d'un client</a>
 			<br>
 			<br>
-			{!! Form::label('clientsId', 'Client:') !!}
+			{!! Form::label('clientsId', 'Numero de client/fournisseur:') !!}
 			{!! Form::text('clientsId', null, ['class' => 'form-control']) !!}
 			{{ $errors->first('clientsId') }}
 		</div>
