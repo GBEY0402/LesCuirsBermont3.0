@@ -24,10 +24,7 @@ class ProduitFini extends EloquentValidating
 			[
 			'code' 			=> 'required',
 			'nom' 			=> 'required',
-			'prix' 			=> 'required',
-
 			'prix' 		 	=> 'required|numeric|min:0',
-
       'actif'     => 'required',
 			];
 	}

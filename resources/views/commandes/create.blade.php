@@ -54,6 +54,42 @@
 			{{ $errors->first('dateFin') }}
 		</div>
 		<div class="form-group">
+		<!-- item -->
+			{!! Form::label('item', 'Item:') !!}
+			{!! Form::text('item',null, ['class' => 'form-control']) !!}
+		</div>
+
+		<!-- item button -->
+		<div class="form-group">
+			{!! Form::button('Ajouter cette item', ['type' => 'submit', 'class' => 'btn btn-default']) !!}
+		</div>
+
+		@if (count($items) > 0)
+			<h2>Item dans la commande</h2>
+
+				<table class="table table-striped task-table">
+					<thead>
+						<th>Code de produit</th>
+						<th>Nom spécifique</th>
+						<th>Pointure</th>
+						<th>Quantité</th>
+						<th></th>
+					</thead>
+					<tbody>
+						@foreach ($items as $item)
+							<tr>
+								<td class="table-text"><div>{{ $item->code }}</div></td>
+
+								<!-- Task Delete Button -->
+								<td>
+									<button type="submit" href="{{ URL::route('produit.destroy', $item->id) }}" class="btn btn-danger btn-mini">Effacer</button>
+								</td>
+							</tr>
+						@endforeach
+					</tbody>
+				</table>
+		@endif
+		<div class="form-group">
 			{!! Form::label('commentaire', 'Commentaire:') !!}
 			{!! Form::text('commentaire',null, ['class' => 'form-control']) !!}
 			{{ $errors->first('commentaire') }}

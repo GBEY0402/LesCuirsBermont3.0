@@ -53,7 +53,8 @@ class CommandesController extends Controller
     {
         $user = Auth::user();
         $role = $user->role;
-        return View::make('commandes.create', compact('role'));
+        $items = ProduitFini::all()->sortby('id');
+        return View::make('commandes.create', compact('role', 'items'));
     }
 
     /**
