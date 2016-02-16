@@ -14,9 +14,11 @@
 	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
+				<th>Code de Produit</th>
 				<th>Nom</th>
 				<th class="hidden-xs">Description</th>
-				<th></th>
+				<th>Pointure</th>
+				<th>Quantité</th>
 			</tr>
 		</thead>
 		<tbody>

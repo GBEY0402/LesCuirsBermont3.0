@@ -50,7 +50,7 @@ class entrepotProduitFiniController extends Controller
             $user = Auth::user();
             $role = $user->role;
             $entrepot = entrepot::findOrFail($entrepotId);
-            $codesProduits = ProduitFini::lists('id', 'code');
+            $codesProduits = ProduitFini::lists('code', 'id');
         } catch (ModelNotFoundException $e) {
             App::abort(404);
         }
@@ -69,8 +69,8 @@ class entrepotProduitFiniController extends Controller
             $entrepot = entrepot::findOrFail($entrepotId);
             
             $input = Input::all(); 
-            dd($input);
-            $ProduitFini_id = $codesProduits;
+            //dd($input);
+            $ProduitFini_id = $input['codeProduit'];
             $pointure = $input['pointure'];  
             $quantite = $input['quantite'];
             
@@ -78,15 +78,14 @@ class entrepotProduitFiniController extends Controller
             App::abort(404);
         }
 
-        if($entrepot->ProduitFini->save()) 
-        {
-            $entrepot->ProduitsFinis()->attach([$ProduitFini_id => ['pointure' => $pointure], ['quantite' => $quantite]]);
-            return Redirect::action('entrepotProduitFiniController@index', $entrepotId);
-        } 
-        else 
-        {
-            return Redirect::back()->withInput()->withErrors($entrepotProduitFini->validationMessages());
-        }
+        
+        $entrepot->ProduitsFinis()->attach($ProduitFini_id, ['pointure' => $pointure , 'quantite' => $quantite]);
+        return Redirect::action('entrepotProduitFiniController@index', $entrepotId);
+         
+        // else 
+        // {
+        //     return Redirect::back()->withInput()->withErrors($entrepotProduitFini->validationMessages());
+        // }
     }
     /**
      * Display the specified resource.

@@ -14,9 +14,9 @@ class CreateEntrepotProduitFiniTable extends Migration
     {
             Schema::create('Entrepot_Produit_Fini', function (Blueprint $table) {
             $table->integer('entrepot_id')->unsigned();
-            $table->foreign('entrepot_id')->references('id')->on('entrepot');
+            $table->foreign('entrepot_id')->references('id')->on('entrepot')->nullable();
             $table->integer('produit_fini_id')->unsigned();
-            $table->foreign('produit_fini_id')->references('id')->on('produitsFinis');
+            $table->foreign('produit_fini_id')->references('id')->on('produitsFinis')->nullable();
             $table->integer('pointure');
             $table->integer('quantite');
             
