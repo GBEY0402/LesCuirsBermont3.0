@@ -28,9 +28,8 @@
 		<h2>Création d'une commande</h2>
 	</div>
 	<div class="panel-body">
-		{!! Form::open(['action' => 'CommandesController@store', 'class' => 'form']) !!}
-		<!--    -->
-        @foreach ($errors->all() as $error)
+		{!! Form::open(['action' => 'CommandesProduitsFinisController@store', 'class' => 'form']) !!}
+		@foreach ($errors->all() as $error)
             <p class="alert alert-danger">{{ $error }}</p>
         @endforeach
 		<div class="form-group">
@@ -54,12 +53,10 @@
 			{{ $errors->first('dateFin') }}
 		</div>
 		<div class="form-group">
-		<!-- item -->
 			{!! Form::label('item', 'Item:') !!}
 			{!! Form::text('item',null, ['class' => 'form-control']) !!}
 		</div>
 
-		<!-- item button -->
 		<div class="form-group">
 			{!! Form::button('Ajouter cette item', ['type' => 'submit', 'class' => 'btn btn-default']) !!}
 		</div>
@@ -78,9 +75,10 @@
 					<tbody>
 						@foreach ($items as $item)
 							<tr>
-								<td class="table-text"><div>{{ $item->code }}</div></td>
-
-								<!-- Task Delete Button -->
+								<td class="table-text">{{ $item->code }}</td>
+								<td class="table-text">{{ $item->nom }}</td>
+								<td><input type="text" name="pointure" class="form-control"></td>
+								<td><input type="text" name="pointure" class="form-control"></td>
 								<td>
 									<button type="submit" href="{{ URL::route('produit.destroy', $item->id) }}" class="btn btn-danger btn-mini">Effacer</button>
 								</td>

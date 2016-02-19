@@ -31,4 +31,9 @@ class Commande extends EloquentValidating
 			'etat' 			=> 'required',
 			];
 	} 
+
+    public function ProduitsFinis(){ 
+
+        return $this->belongstomany('App\Models\ProduitFini')->withPivot('pointure', 'quantite');
+    }
 }

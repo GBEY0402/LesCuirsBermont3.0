@@ -3,7 +3,7 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<h2>Liste des commandes</h2>
-		<a href="{{ action('CommandesController@create') }}" class="btn btn-primary">Créer une commande</a>
+		<a href="{{ action('CommandesProduitsFinisController@create') }}" class="btn btn-primary">Créer une commande</a>
 	</div>
 @if ($commandes->isEmpty())
 	<div class="panel-body">

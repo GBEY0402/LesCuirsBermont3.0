@@ -12,11 +12,12 @@ class CreateCommandesProduitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('commandesProduits', function (Blueprint $table) {
-            $table->integer('commandesId')->unsigned();
-            $table->foreign('commandesId')->references('id')->on('commandes');
-            $table->integer('produitsId')->unsigned();
-            $table->foreign('produitsId')->references('id')->on('produitsFinis');
+        Schema::create('commandes_Produits', function (Blueprint $table) {
+            $table->integer('commande_Id')->unsigned();
+            $table->foreign('commande_Id')->references('id')->on('commandes');
+            $table->integer('produit_fini_Id')->unsigned();
+            $table->foreign('produit_fini_Id')->references('id')->on('produitsFinis');
+            $table->integer('pointure');
             $table->integer('quantite');
             $table->timestamps('create_at');
         });
@@ -29,6 +30,6 @@ class CreateCommandesProduitsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('commandesProduits');
+        Schema::drop('commandes_Produits');
     }
 }
