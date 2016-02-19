@@ -1,5 +1,6 @@
 <?php
 use App\Models\entrepot;
+use Illuminate\Html\HtmlServiceProvider;
 ?>
 
 <nav class="navbar navbar-default">
