@@ -136,6 +136,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
         
         /*
          * Pour réintroduire les helpers HTML et FORM
@@ -200,7 +201,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         
         'Form'      => 'Illuminate\Html\FormFacade',
-        'Html'      => 'Illuminate\Html\HtmlFacade',
+        'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 
