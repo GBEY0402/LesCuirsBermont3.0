@@ -69,7 +69,6 @@ class entrepotProduitFiniController extends Controller
             $entrepot = entrepot::findOrFail($entrepotId);
             
             $input = Input::all(); 
-            //dd($input);
             $ProduitFini_id = $input['codeProduit'];
             $pointure = $input['pointure'];  
             $quantite = $input['quantite'];
