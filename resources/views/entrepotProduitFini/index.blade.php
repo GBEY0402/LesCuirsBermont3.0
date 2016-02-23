@@ -1,5 +1,6 @@
 @extends('shared.masterlayout')
 @section('content')
+{!! Form::open(['action'=> 'entrepotProduitFiniController@store', $entrepot->id, 'class' => 'form']) !!}
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<h2>Liste des produits fini pour {{ $entrepot->nom }}</h2>
@@ -7,7 +8,10 @@
 		@if ($entrepot->type == "Remorque")
 			<a href="{{ action('entrepotProduitFiniController@create', $entrepot->id) }}" class="btn btn-info">Vider la remorque</a>
 		@endif
-		<a href="{{ action('entrepotProduitFiniController@index', $entrepot->id) }}" class="btn btn-info">Modifier les quantitées</a>
+
+
+		{!! Form::button('Appliquer les modifications', ['type' => 'submit', 'class' => 'btn btn-info']) !!}
+
 
 
 	</div>
@@ -28,7 +32,9 @@
 			</tr>
 		</thead>
 		<tbody>
+		
 		@foreach($ProduitsFinis as $produit)
+
 			<tr>
 				<td class="hidden-xs"><?php echo $produit->code ?></td>
 				<td class="hidden-xs"><?php echo $produit->nom ?></td>
@@ -37,7 +43,7 @@
 				
 				<td class="hidden-xs">
 					<input type="Button" id='AddButton{{$produit->pivot->produit_fini_id}}{{$produit->pivot->pointure}}' value="+" disabled />
-					<input type="number" name="quantite{{$produit->pivot->produit_fini_id}}{{$produit->pivot->pointure}}" id="quantiteId{{$produit->pivot->produit_fini_id}}{{$produit->pivot->pointure}}" disabled />
+					<input type="number" name="quantite{{$produit->pivot->produit_fini_id}}{{$produit->pivot->pointure}}" id="quantiteId{{$produit->pivot->produit_fini_id}}{{$produit->pivot->pointure}}" readonly />
 					<input type="Button" id='ReduceButton{{$produit->pivot->produit_fini_id}}{{$produit->pivot->pointure}}' value="-"/>
 				</td>
 
@@ -78,11 +84,16 @@
 			    </script>
 		@endforeach
 
+
 		</tbody>
 	</table>
+
 @endif
+
 </div>
-<!-- attacher le id à la quantite et faire une boucle dans le script for each produits as produit  -->
+
+{!! Form::close() !!}
+
 <!-- inventaire total -->
-<!-- id des buttons-->
+
 @stop
