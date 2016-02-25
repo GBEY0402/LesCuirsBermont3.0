@@ -35,7 +35,7 @@ class entrepotProduitFiniController extends Controller
            // return  View::make('erreurs.index')->with('e',$e);
         } 
 
-        return View::make('entrepotProduitFini.index', compact('role', 'entrepot','ProduitsFinis')); 
+        return View::make('entrepotProduitFini.edit', compact('role', 'entrepot','ProduitsFinis')); 
     }
     
 
@@ -65,11 +65,10 @@ class entrepotProduitFiniController extends Controller
      */
     public function store($entrepotId)
     {
+       
         try {
             $entrepot = entrepot::findOrFail($entrepotId);
-            
             $input = Input::all(); 
-            //dd($input);
             $ProduitFini_id = $input['codeProduit'];
             $pointure = $input['pointure'];  
             $quantite = $input['quantite'];
@@ -110,15 +109,20 @@ class entrepotProduitFiniController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($entrepotId, $ProduitFiniId)
+    public function edit($entrepotId)
     {
         try {
+            $user = Auth::user();
+            $role = $user->role;
             $entrepot = entrepot::findOrFail($entrepotId);
+            $ProduitsFinis = $entrepot->ProduitsFinis->sortby('code'); 
         } catch (ModelNotFoundException $e) {
             App::abort(404);
-        }
-        $ProduitFini = $entrepot->ProduitFini()->where('id', '=', $ProduitFiniId)->first();
-        return View::make('entrepotProduitFini.edit', compact('entrepot', 'ProduitFini'));
+        } catch (Exception $e) {
+           // return  View::make('erreurs.index')->with('e',$e);
+        } 
+
+        return View::make('entrepotProduitFini.edit', compact('role', 'entrepot','ProduitsFinis'));
     }
 
     /**
@@ -128,19 +132,17 @@ class entrepotProduitFiniController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($entrepotId, $ProduitFiniId) //A VERIFIER
+    public function update($entrepotId) //A VERIFIER
     {
+        $input = Input::all(); 
+        dd($input);
         try {
             $entrepot = entrepot::findOrFail($entrepotId); 
         } catch (ModelNotFoundException $e) {
             App::abort(404);
         }
         $input = Input::all();
-                
-        $ProduitFini = $entrepot->ProduitFini()->where('id', '=', $ProduitFiniId)->first();
-        $ProduitFini->nom = $input['nom'];
-        $ProduitFini->description = $input['description'];
-        $ProduitFini->entrepot_id = $entrepotId;
+        dd($input);
         if($ProduitFini->save()) { 
             return Redirect::action('entrepotProduitFiniController@index', $entrepotId);
         } else {

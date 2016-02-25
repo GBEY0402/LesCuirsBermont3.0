@@ -31,7 +31,7 @@ Route::group(['middleware'=>'auth'], function() {
 	Route::resource('recette', 'RecettesController');
 	Route::resource('code', 'CodesProduitsController');
 
-	Route::resource('entrepot.ProduitFini', 'entrepotProduitFiniController');
+	Route::resource('entrepotProduitFini', 'entrepotProduitFiniController');
 
 });
 

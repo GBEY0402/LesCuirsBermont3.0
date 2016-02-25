@@ -27,9 +27,13 @@
 					<td class="hidden-xs" onclick="window.location.href='{{ action('entrepotController@show', $entrepote->id) }}'"><?php echo $entrepote->nom ?></td>
 					<td class="hidden-xs" onclick="window.location.href='{{ action('entrepotController@show', $entrepote->id) }}'"><?php echo $entrepote->type ?></td>
 					<td><a href="{{ action('entrepotController@edit',$entrepote->id) }}" class="btn btn-info">Modifier</a></td>
-					<td>{!! Form::open(array('action' => array('entrepotController@destroy',$entrepote->id), 'method' => 'delete', 'data-confirm' => 'Êtes-vous certain?')) !!}
+					
+					<td>
+					@if ($entrepote->type == "Remorque")
+					{!! Form::open(array('action' => array('entrepotController@destroy',$entrepote->id), 'method' => 'delete', 'data-confirm' => 'Êtes-vous certain?')) !!}
 						<button type="submit" href="{{ URL::route('entrepot.destroy', $entrepote->id) }}" class="btn btn-danger btn-mini">Effacer</button>
 						{!! Form::close() !!}   
+					@endif
 					</td>
 				</tr>
 	@endforeach
