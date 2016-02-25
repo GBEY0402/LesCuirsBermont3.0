@@ -3,7 +3,7 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<h2>Liste des commandes</h2>
-		<a href="{{ action('CommandesProduitsFinisController@create') }}" class="btn btn-primary">Créer une commande</a>
+		<a href="{{ action('CommandesController@create') }}" class="btn btn-primary">Créer une commande</a>
 	</div>
 @if ($commandes->isEmpty())
 	<div class="panel-body">
@@ -13,7 +13,6 @@
 	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
-				<!--  Les différents champs d'un code -->
 				<th>Numéro de commande</th>
 				<th>Code client</th>
 				<th>Date de début</th>
@@ -23,8 +22,7 @@
 			</tr>
 		</thead>
 		<tbody>
-<!--    -->
-@foreach($commandes as $commande)
+		@foreach($commandes as $commande)
 			<tr style="cursor:pointer">
 				<td class="hidden-xs" onclick="window.location.href='{{ action('CommandesController@show', $commande->id) }}'"><?php echo $commande->id ?></td>
 				<td class="hidden-xs" onclick="window.location.href='{{ action('CommandesController@show', $commande->id) }}'"><?php echo $commande->clientsId ?></td>
@@ -40,7 +38,7 @@
 					{!! Form::close() !!}   
 				</td>
 			</tr>
-@endforeach
+		@endforeach
 		</tbody>
 	</table>
 @endif

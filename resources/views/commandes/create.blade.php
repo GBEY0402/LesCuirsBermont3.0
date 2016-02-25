@@ -25,10 +25,10 @@
 
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h2>Création d'une commande</h2>
+		<h2>Création d'un billet de commande</h2>
 	</div>
 	<div class="panel-body">
-		{!! Form::open(['action' => 'CommandesProduitsFinisController@store', 'class' => 'form']) !!}
+		{!! Form::open(['action' => 'CommandesController@store', 'class' => 'form']) !!}
 		@foreach ($errors->all() as $error)
             <p class="alert alert-danger">{{ $error }}</p>
         @endforeach
@@ -37,56 +37,28 @@
 			<br>
 			<br>
 			{!! Form::label('clientsId', 'Numero de client/fournisseur:') !!}
-			{!! Form::text('clientsId', null, ['class' => 'form-control']) !!}
+			<br>
+			{!! Form::select('clientsId', $clients, ['class' => 'form-control']) !!}
 			{{ $errors->first('clientsId') }}
 		</div>
 		<div class="form-group">
-			{!! Form::label('dateDebut', 'Date de début:') !!}
-			<br>
-			{!! Form::text('dateDebut', null, array('id' => 'datepickerDebut')) !!}
-			{{ $errors->first('dateDebut') }}
+		<table>
+			<thead>
+				<tr>
+					<td>{!! Form::label('dateDebut', 'Date de début:') !!}</td>
+					<td>{!! Form::label('dateFin', 'Date de fin :') !!}</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{!! Form::text('dateDebut', null, array('id' => 'datepickerDebut')) !!}
+						{{ $errors->first('dateDebut') }}</td>
+					<td>{!! Form::text('dateFin', null, array('id' => 'datepickerFin')) !!}
+						{{ $errors->first('dateFin') }}</td>
+				</tr>
+			</tbody>
+		</table>
 		</div>
-		<div class="form-group">
-			{!! Form::label('dateFin', 'Date de fin :') !!}
-			<br>
-			{!! Form::text('dateFin', null, array('id' => 'datepickerFin')) !!}
-			{{ $errors->first('dateFin') }}
-		</div>
-		<div class="form-group">
-			{!! Form::label('item', 'Item:') !!}
-			{!! Form::text('item',null, ['class' => 'form-control']) !!}
-		</div>
-
-		<div class="form-group">
-			{!! Form::button('Ajouter cette item', ['type' => 'submit', 'class' => 'btn btn-default']) !!}
-		</div>
-
-		@if (count($items) > 0)
-			<h2>Item dans la commande</h2>
-
-				<table class="table table-striped task-table">
-					<thead>
-						<th>Code de produit</th>
-						<th>Nom spécifique</th>
-						<th>Pointure</th>
-						<th>Quantité</th>
-						<th></th>
-					</thead>
-					<tbody>
-						@foreach ($items as $item)
-							<tr>
-								<td class="table-text">{{ $item->code }}</td>
-								<td class="table-text">{{ $item->nom }}</td>
-								<td><input type="text" name="pointure" class="form-control"></td>
-								<td><input type="text" name="pointure" class="form-control"></td>
-								<td>
-									<button type="submit" href="{{ URL::route('produit.destroy', $item->id) }}" class="btn btn-danger btn-mini">Effacer</button>
-								</td>
-							</tr>
-						@endforeach
-					</tbody>
-				</table>
-		@endif
 		<div class="form-group">
 			{!! Form::label('commentaire', 'Commentaire:') !!}
 			{!! Form::text('commentaire',null, ['class' => 'form-control']) !!}
@@ -94,6 +66,7 @@
 		</div>
 		<div class="form-group">
 			{!! Form::label('etat', 'État:') !!}
+			<br>
 			{!! Form::select('etat', array('Non débutée' => 'Non débutée', 'En cours' => 'En cours', 'Suspendue' => 'Suspendue', 'Terminée' => 'Terminer') , '1' ) !!}
 			{{ $errors->first('etat') }}
 		</div>

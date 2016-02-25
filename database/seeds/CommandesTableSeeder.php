@@ -20,10 +20,10 @@ class CommandesTableSeeder extends Seeder {
 		DB::table('commandes')->insert(array('clientsId' => 1,
 											 'dateDebut' => $dateDebut, 
 											 'dateFin' => $dateFin, 
-											 'etat' => 'actif'));
+											 'etat' => 'En Cours'));
 		DB::table('commandes')->insert(array('clientsId' => 2,
 											 'dateDebut' => $dateDebut, 
 											 'dateFin' => $dateFin, 
-											 'etat' => 'actif'));
+											 'etat' => 'Terminée'));
 	}
 }

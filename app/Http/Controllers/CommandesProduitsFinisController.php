@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Input;
+use Redirect;
+use App\Models\Client;
+use App\Models\Commande;
+
 class CommandesProduitsFinisController extends Controller
 {
     /**
@@ -40,13 +45,9 @@ class CommandesProduitsFinisController extends Controller
         try 
         {
             $input = Input::all();
-            
-            $commande = new Commande;
-            $commande->clientsId =  $input['clientsId'];
-            $commande->dateDebut =  new DateTime($input['dateDebut']);
-            $commande->dateFin =    new DateTime($input['dateFin']);
-            $commande->etat =       $input['etat'];
-            $commande->commentaire= $input['commentaire'];
+
+            $pointure = $input['pointure'];
+            $quantite = $input['quantite'];
 
         } 
         catch(ModelNotFoundException $e) 
@@ -56,6 +57,8 @@ class CommandesProduitsFinisController extends Controller
         
         if($commande->save()) 
         {
+            $commandeToLink = Commande::findOrFail($commande->id);
+            $commandeToLink->ProduitsFinis()->attach($ProduitFini_id, ['pointure' => $pointure, 'quantite' => $quantite]);
             return Redirect::action('CommandesController@index');
         } 
         else 
@@ -93,9 +96,35 @@ class CommandesProduitsFinisController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update($commandeId)
     {
-        //
+        try 
+        {
+            $input = Input::all();
+            $commande = Commande::findOrFail($commandeId);
+            $codeClients = Client::all();
+            
+            $commande->clientsId =      $codeClients[$input['clientsId']];
+            $commande->dateDebut =      $input['dateDebut'];
+            $commande->dateFin =        $input['dateFin'];
+            $commande->commentaire =    $input['commentaire'];
+            $commande->etat =           $input['etat'];
+
+        } 
+        catch(ModelNotFoundException $e) 
+        {
+            App::abort(404);
+        }
+
+        
+        if($commande->save()) 
+        {
+            return Redirect::action('CommandesController@index');
+        } 
+        else 
+        {
+            return Redirect::back()->withInput()->withErrors($commande->validationMessages());
+        }
     }
 
     /**

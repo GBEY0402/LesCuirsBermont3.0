@@ -3,6 +3,9 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<h2>Liste des usagers</h2>
+		@if ($role == 'Administrateur')
+			<a href="{{ action('UserController@create') }}" class="btn btn-primary">Créer un usager</a>
+		@endif
 	</div>
 @if ($usagers->isEmpty())
 	<div class="panel-body">

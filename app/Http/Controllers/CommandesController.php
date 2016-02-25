@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Commande;
 use App\Models\ProduitFini;
+use App\Models\Client;
+use App\Models\CommandeProduit;
 use View;
 use Redirect;
 use Input;
@@ -53,8 +55,10 @@ class CommandesController extends Controller
     {
         $user = Auth::user();
         $role = $user->role;
-        $items = ProduitFini::all()->sortby('id');
-        return View::make('commandes.create', compact('role', 'items'));
+        $clients = Client::lists('id');
+        $items = ProduitFini::lists('code');
+
+        return View::make('commandes.create', compact('role', 'items', 'clients'));
     }
 
     /**
@@ -130,13 +134,16 @@ class CommandesController extends Controller
         {
             $user = Auth::user();
             $role = $user->role;
+            $clients = Client::lists('id');
+            $codes = ProduitFini::lists('code');
+            $items = CommandeProduit::all()->where('commande_id', '==', $id);
             $commande = Commande::findOrFail($id);
         } 
         catch(ModelNotFoundException $e) 
         {
             App::abort(404);
         }
-        return View::make('commandes.edit', compact('commande', 'role'));
+        return View::make('commandes.edit', compact('commande', 'role', 'clients', 'items', 'codes'));
     }
 
     /**
@@ -146,7 +153,7 @@ class CommandesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
         try 
         {
@@ -158,16 +165,6 @@ class CommandesController extends Controller
             $commande->dateFin =    $input['dateFin'];
             $commande->etat =       $input['etat'];
             $commande->commentaire= $input['commentaire'];
-
-            // $i = 1;
-
-            // foreach ($produits as $produit)
-            // {
-            //     $produit->quantite = $input['']
-            // }
-
-
-
         } 
         catch(ModelNotFoundException $e) 
         {

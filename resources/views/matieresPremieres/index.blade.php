@@ -4,7 +4,7 @@
 	<div class="panel-heading">
 		<h2>Inventaire Matières premières</h2>
 		<a href="{{ action('MatieresPremieresController@create') }}" class="btn btn-primary">Ajouter un matériel</a>
-		<a href="{{ action('TypesController@index') }}" class="btn btn-primary">Types de matériaux</a>
+		<a href="{{ action('TypesController@index') }}" class="btn btn-primary">Gérer les types de matériaux</a>
 	</div>
 
 @if ($materiaux->isEmpty())

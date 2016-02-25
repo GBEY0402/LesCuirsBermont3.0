@@ -4,7 +4,7 @@
 	<div class="panel-heading">
 		<h2>Liste des produits</h2>
 		@if ($role == 'Administrateur')
-		<a href="{{ action('ProduitsFinisController@create') }}" class="btn btn-primary">Ajouter un produit</a>
+		<a href="{{ action('ProduitsFinisController@create') }}" class="btn btn-primary">Créer un produit</a>
 		@endif
 	</div>
 @if ($produits->isEmpty())

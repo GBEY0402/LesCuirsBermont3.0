@@ -37,7 +37,7 @@ class ProduitFini extends EloquentValidating
 
   public function Commandes(){ 
 
-        return $this->belongstomany('App\Models\Commande')->withPivot('pointure', 'quantite');
+        return $this->belongstomany('App\Models\Commande', 'id')->withPivot('pointure', 'quantite');
   }
     
 }

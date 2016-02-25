@@ -20,7 +20,6 @@ class CreateCommandesTable extends Migration
             $table->date('dateFin');
             $table->string('etat');
             $table->string('commentaire')->nullable();
-            $table->boolean('actif');
             $table->timestamps('create_at');
         });
     }
