@@ -57,9 +57,8 @@ class CommandesController extends Controller
         $role = $user->role;
         $codes = ProduitFini::lists('code');
         $clients = Client::lists('id');
-        $items = ProduitFini::lists('code');
 
-        return View::make('commandes.create', compact('role', 'items', 'clients', 'codes'));
+        return View::make('commandes.create', compact('role', 'clients', 'codes'));
     }
 
     /**
@@ -70,6 +69,8 @@ class CommandesController extends Controller
      */
     public function store()
     {
+        $input = Input::all();
+        dd($input);
         try 
         {
             $input = Input::all();
@@ -88,6 +89,7 @@ class CommandesController extends Controller
         
         if($commande->save()) 
         {
+            
             return Redirect::action('CommandesController@index');
         } 
         else 

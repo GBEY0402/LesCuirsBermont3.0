@@ -76,7 +76,7 @@
 				    	<td>{!! Form::select('pointure', array('4' => '4','5' => '5','6' => '6','7' => '7','8' => '8','9' => '9','10' => '10',
 												'11' => '11','12' => '12','13' => '13','1' => '1','2' => '2','3' => '3',),
 												null, array('id' => 'pointure') ) !!}</td>
-				        <td><input type="number" id="quantite" min="0"></td>
+				        <td><input type="number" id="quantite" min="0" name="quantite"></td>
 				        <td><input type="button" id="add" value="Add" onclick="Javascript:addRow()"></td>
 				    </tr>
 			    	<tr>
