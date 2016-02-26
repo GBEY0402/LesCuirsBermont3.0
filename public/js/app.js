@@ -1,9 +1,17 @@
+var itemsCommande = [];
+var items = [];
+
 function addRow() {
          
     var produitCode = document.getElementById("code");
     var itemPointure = document.getElementById("pointure");
     var itemQuantite = document.getElementById("quantite");
     var table = document.getElementById("myTableData");
+
+    items.push(produitCode);
+    items.push(itemPointure);
+    items.push(itemQuantite);
+    itemsCommande.push(items);
 
     var rowCount = table.rows.length;
     var row = table.insertRow(rowCount);
