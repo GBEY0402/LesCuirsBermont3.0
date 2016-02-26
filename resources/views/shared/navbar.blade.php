@@ -27,7 +27,7 @@ use Illuminate\Html\HtmlServiceProvider;
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Inventaire<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         @foreach($entrepots as $entrepot)
-                            <li><a href="{{ action('entrepotProduitFiniController@edit', $entrepot->id) }} "><?php echo $entrepot->nom?></a></li>
+                            <li><a href="{{ action('entrepotProduitFiniController@MultiEdit', $entrepot->id) }}" ><?php echo $entrepot->nom?></a></li>
                         @endforeach
                         <li><a href="/materiaux">Matières premières</a></li>
                         
