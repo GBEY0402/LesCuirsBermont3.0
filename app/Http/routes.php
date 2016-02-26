@@ -30,7 +30,11 @@ Route::group(['middleware'=>'auth'], function() {
 	Route::resource('recette', 'RecettesController');
 	Route::resource('code', 'CodesProduitsController');
 
-	Route::resource('entrepotProduitFini', 'entrepotProduitFiniController');
+	Route::resource('entrepot.ProduitFini', 'entrepotProduitFiniController');
+
+	Route::get('entrepot/{id}/ProduitFiniMultiEdit', 'entrepotProduitFiniController@MultiEdit');
+	Route::put('entrepot/{id}/ProduitFiniMultiUpdate', 'entrepotProduitFiniController@MultiUpdate');
+
 
 });
 

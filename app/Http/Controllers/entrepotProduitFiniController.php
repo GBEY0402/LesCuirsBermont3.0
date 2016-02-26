@@ -47,6 +47,7 @@ class entrepotProduitFiniController extends Controller
     public function create($entrepotId)
     {
        try {
+
             $user = Auth::user();
             $role = $user->role;
             $entrepot = entrepot::findOrFail($entrepotId);
@@ -92,14 +93,14 @@ class entrepotProduitFiniController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($entrepotId, $ProduitFiniId)
+    public function show($entrepotId)
     {
         try {
             $entrepot = entrepot::findOrFail($entrepotId);
         } catch (ModelNotFoundException $e) {
             App::abort(404);
         }
-        $ProduitFini = $entrepot->ProduitFini()->where('id', '=', $ProduitFiniId)->first();
+
         return View::make('entrepotProduitFini.show', compact('entrepot', 'ProduitFini'));
     }
 
@@ -109,7 +110,7 @@ class entrepotProduitFiniController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($entrepotId)
+    public function MultiEdit($entrepotId)
     {
         try {
             $user = Auth::user();
@@ -118,9 +119,7 @@ class entrepotProduitFiniController extends Controller
             $ProduitsFinis = $entrepot->ProduitsFinis->sortby('code'); 
         } catch (ModelNotFoundException $e) {
             App::abort(404);
-        } catch (Exception $e) {
-           // return  View::make('erreurs.index')->with('e',$e);
-        } 
+        }
 
         return View::make('entrepotProduitFini.edit', compact('role', 'entrepot','ProduitsFinis'));
     }
@@ -132,22 +131,52 @@ class entrepotProduitFiniController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($entrepotId) //A VERIFIER
+    public function MultiUpdate($entrepotId) 
     {
-        $input = Input::all(); 
-        dd($input);
+
         try {
-            $entrepot = entrepot::findOrFail($entrepotId); 
-        } catch (ModelNotFoundException $e) {
+
+
+            $user = Auth::user();
+            $role = $user->role;
+            $entrepot = entrepot::findOrFail($entrepotId);
+
+            $l_quantites = Input::all(); 
+            $ProduitsFinis = $entrepot->ProduitsFinis->sortby('code'); 
+            //$entrepot->ProduitsFinis()->detach(); 
+            foreach ($l_quantites as $name => $quantite){
+                if ($name[0] == 'q'){
+                
+                
+                    $String = $name;
+
+                    $First = "_";
+                    $Second = "-";
+
+                    $Firstpos=strpos($String, $First);
+                    $Secondpos=strpos($String, $Second);
+
+                    $id = substr($String , $Firstpos+1, $Secondpos);
+                    dd($id);
+                 }
+                 echo ("coliss");
+
+
+            
+            }
+            
+            return View::make('entrepotProduitFini.edit', compact('role', 'entrepot','ProduitsFinis'));
+
+        } 
+        catch (ModelNotFoundException $e) {
             App::abort(404);
         }
-        $input = Input::all();
-        dd($input);
-        if($ProduitFini->save()) { 
-            return Redirect::action('entrepotProduitFiniController@index', $entrepotId);
-        } else {
-            return Redirect::back()->withInput()->withErrors($ProduitFini->validationMessages);
-        }
+        
+        // if($ProduitFini->save()) { 
+        //     return Redirect::action('entrepotProduitFiniController@index', $entrepotId);
+        // } else {
+        //     return Redirect::back()->withInput()->withErrors($ProduitFini->validationMessages);
+        // }
     }
 
     /**
