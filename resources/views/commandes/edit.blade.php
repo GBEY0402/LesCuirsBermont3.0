@@ -34,7 +34,7 @@
 			{{ $errors->first('clientsId') }}
 		</div>
 		<div class="form-group">
-			<table>
+			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
 						<td>{!! Form::label('dateDebut', 'Date de début:') !!}</td>
@@ -60,25 +60,33 @@
 		<div class="form-group">
 			{!! Form::label('etat', 'État:') !!}
 			<br>
-			{!! Form::select('etat', array('Non débutée' => 'Non débutée', 'En cours' => 'En cours', 'Suspendue' => 'Suspendue', 'Terminée' => 'Terminer') , '1' ) !!}
+			{!! Form::select('etat', array('Non débutée' => 'Non débutée', 'En cours' => 'En cours', 'Suspendue' => 'Suspendue', 'Terminée' => 'Terminée') , $commande->etat ) !!}
 			{{ $errors->first('etat') }}
 		</div>
-		<div class="form-group">
-			{!! Form::button('Sauvegarder', ['type' => 'submit', 'class' => 'btn btn-primary']) !!}
-			<a href="{{ URL::previous() }}" class="btn btn-danger">Annuler</a>
-		</div>
-		{!! Form::close() !!}
 		<hr>
 		<h2>Items de la commande</h2>
 		<hr>
-		{!! Form::open(['action'=> array('CommandesProduitsFinisController@store', $commande->id), 'method' => 'PUT', 'class' => 'form']) !!}
 			<div class="form-group">
-				{!! Form::label('item', 'Item:') !!}
-				<br>
-				{!! Form::select('item', $codes, ['class' => 'form-control']) !!}
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<td>{!! Form::label('item', 'Item:') !!}</td>
+							<td>{!! Form::label('pointure', 'Pointure:') !!}</td>
+							<td>{!! Form::label('quantite', 'Quantité:') !!}</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>{!! Form::select('item', $codes, ['class' => 'form-control']) !!}</td>
+							<td>{!! Form::select('pointure', array('4' => '4','5' => '5','6' => '6','7' => '7','8' => '8','9' => '9','10' => '10',
+												'11' => '11','12' => '12','13' => '13','1' => '1','2' => '2','3' => '3',) , '1' ) !!}</td>
+							<td>{!! Form::text('quantite', null, ['class' => 'form-control']) !!}</td>
+						</tr>
+					</tbody>
 			</div>
 			<div class="form-group">
 				{!! Form::button('Ajouter cette item', ['type' => 'submit', 'class' => 'btn btn-primary']) !!}
+				<a href="{{ URL::previous() }}" class="btn btn-danger">Annuler</a>
 			</div>
 		{!! Form::close() !!}
 		@if ($items->isEmpty())
@@ -87,7 +95,7 @@
 			</div>
 		@else
 			<div>
-				<table>
+				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
 							<td>{!! Form::label('codeProduit', 'Codes de produit:') !!}</td>

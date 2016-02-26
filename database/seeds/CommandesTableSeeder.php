@@ -17,11 +17,11 @@ class CommandesTableSeeder extends Seeder {
 
 		DB::table('commandes')->delete();		
 		
-		DB::table('commandes')->insert(array('clientsId' => 1,
+		DB::table('commandes')->insert(array('clients_Id' => 1,
 											 'dateDebut' => $dateDebut, 
 											 'dateFin' => $dateFin, 
 											 'etat' => 'En Cours'));
-		DB::table('commandes')->insert(array('clientsId' => 2,
+		DB::table('commandes')->insert(array('clients_Id' => 2,
 											 'dateDebut' => $dateDebut, 
 											 'dateFin' => $dateFin, 
 											 'etat' => 'Terminée'));

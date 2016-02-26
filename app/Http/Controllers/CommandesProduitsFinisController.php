@@ -57,8 +57,6 @@ class CommandesProduitsFinisController extends Controller
         
         if($commande->save()) 
         {
-            $commandeToLink = Commande::findOrFail($commande->id);
-            $commandeToLink->ProduitsFinis()->attach($ProduitFini_id, ['pointure' => $pointure, 'quantite' => $quantite]);
             return Redirect::action('CommandesController@index');
         } 
         else 

@@ -19,6 +19,7 @@
    			});
   		});
   	</script>
+  	<script type="text/javascript" src="{{ URL::asset('js/app.js') }}"></script>
 @stop
 
 @section('content')
@@ -42,22 +43,60 @@
 			{{ $errors->first('clientsId') }}
 		</div>
 		<div class="form-group">
-		<table>
-			<thead>
-				<tr>
-					<td>{!! Form::label('dateDebut', 'Date de début:') !!}</td>
-					<td>{!! Form::label('dateFin', 'Date de fin :') !!}</td>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>{!! Form::text('dateDebut', null, array('id' => 'datepickerDebut')) !!}
-						{{ $errors->first('dateDebut') }}</td>
-					<td>{!! Form::text('dateFin', null, array('id' => 'datepickerFin')) !!}
-						{{ $errors->first('dateFin') }}</td>
-				</tr>
-			</tbody>
-		</table>
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<td>{!! Form::label('dateDebut', 'Date de début:') !!}</td>
+						<td>{!! Form::label('dateFin', 'Date de fin :') !!}</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>{!! Form::text('dateDebut', null, array('id' => 'datepickerDebut')) !!}
+							{{ $errors->first('dateDebut') }}</td>
+						<td>{!! Form::text('dateFin', null, array('id' => 'datepickerFin')) !!}
+							{{ $errors->first('dateFin') }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="form-group">
+			<table class="table table-striped table-hover">
+				<thead>
+				    <tr>
+				        <td>{!! Form::label('itemCode', 'Code:') !!}</td>
+				        <td>{!! Form::label('itemPointure', 'Pointure:') !!}</td>
+				        <td>{!! Form::label('itemQuantite', 'Quantité:') !!}</td>
+				    </tr>
+				</thead>
+				<tbody>
+				    <tr>
+				        <td>{!! Form::select('itemCode', $codes, null,
+				        						array('id' => 'code')) !!}</td>
+				    	<td>{!! Form::select('pointure', array('4' => '4','5' => '5','6' => '6','7' => '7','8' => '8','9' => '9','10' => '10',
+												'11' => '11','12' => '12','13' => '13','1' => '1','2' => '2','3' => '3',),
+												null, array('id' => 'pointure') ) !!}</td>
+				        <td><input type="number" id="quantite" min="0"></td>
+				        <td><input type="button" id="add" value="Add" onclick="Javascript:addRow()"></td>
+				    </tr>
+			    	<tr>
+			        	<td>&nbsp;</td>
+			        	<td>&nbsp;</td>
+			        	<td>&nbsp;</td>
+			    	</tr>
+			    </tbody>
+			</table>
+		</div>
+		<div class="form-group" id="mydata">
+			<table class="table table-striped table-hover" id="myTableData">
+			    <tr>
+			        <td> </td>
+			        <td><b>Code</b></td>
+			        <td><b>Pointure</b></td>
+			        <td><b>Quantité</b></td>
+			    </tr>
+			</table>
+			&nbsp;<br/>
 		</div>
 		<div class="form-group">
 			{!! Form::label('commentaire', 'Commentaire:') !!}

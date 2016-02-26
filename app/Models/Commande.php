@@ -25,7 +25,7 @@ class Commande extends EloquentValidating
 	public function validationRules() {
 		return 
 			[
-            'clientsId' 	=> 'required|numeric',
+            'clientsId' 	=> 'required',
 			'dateDebut' 	=> 'required',
 			'dateFin' 		=> 'required',
 			'etat' 			=> 'required',

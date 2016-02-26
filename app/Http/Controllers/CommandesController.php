@@ -55,10 +55,11 @@ class CommandesController extends Controller
     {
         $user = Auth::user();
         $role = $user->role;
+        $codes = ProduitFini::lists('code');
         $clients = Client::lists('id');
         $items = ProduitFini::lists('code');
 
-        return View::make('commandes.create', compact('role', 'items', 'clients'));
+        return View::make('commandes.create', compact('role', 'items', 'clients', 'codes'));
     }
 
     /**
@@ -79,8 +80,6 @@ class CommandesController extends Controller
             $commande->dateFin =    new DateTime($input['dateFin']);
             $commande->etat =       $input['etat'];
             $commande->commentaire= $input['commentaire'];
-
-
         } 
         catch(ModelNotFoundException $e) 
         {
@@ -158,13 +157,16 @@ class CommandesController extends Controller
         try 
         {
             $input = Input::all();
+            $clients = Client::all();
             $commande = Commande::findOrFail($id);
             
-            $commande->clientsId =  $input['clientsId'];
+            $commande->clients_Id = $clients[$input['clientsId']];
             $commande->dateDebut =  $input['dateDebut'];
             $commande->dateFin =    $input['dateFin'];
             $commande->etat =       $input['etat'];
             $commande->commentaire= $input['commentaire'];
+            $commandeToLink = Commande::findOrFail($commande->id);
+            $commandeToLink->ProduitsFinis()->attach($ProduitFini_id, ['pointure' => $pointure, 'quantite' => $quantite]);
         } 
         catch(ModelNotFoundException $e) 
         {

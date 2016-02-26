@@ -14,8 +14,8 @@ class CreateCommandesTable extends Migration
     {
         Schema::create('commandes', function (Blueprint $table) {
             $table->increments('id')->sizeof(8);
-            $table->integer('clientsId')->unsigned();
-            $table->foreign('clientsId')->references('id')->on('clients');
+            $table->integer('clients_Id')->unsigned();
+            $table->foreign('clients_Id')->references('id')->on('clients');
             $table->date('dateDebut');
             $table->date('dateFin');
             $table->string('etat');
