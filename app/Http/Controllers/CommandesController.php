@@ -76,7 +76,7 @@ class CommandesController extends Controller
             $input = Input::all();
             
             $commande = new Commande;
-            $commande->clientsId =  $input['clientsId'];
+            $commande->clients_Id =  $input['clientsId'];
             $commande->dateDebut =  new DateTime($input['dateDebut']);
             $commande->dateFin =    new DateTime($input['dateFin']);
             $commande->etat =       $input['etat'];

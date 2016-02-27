@@ -77,17 +77,17 @@
 												'11' => '11','12' => '12','13' => '13','1' => '1','2' => '2','3' => '3',),
 												null, array('id' => 'pointure') ) !!}</td>
 				        <td><input type="number" id="quantite" min="0" name="quantite" value="0"></td>
-				        <td><input type="button" id="add" value="Add" onclick="Javascript:addRow()"></td>
+				        <td><input type="button" id="add" value="Add" onclick="Javascript:addRow()"class="btn btn-primary"></td>
 				</tbody>
 			</table>
 		</div>
 		<div class="form-group" id="mydata">
 			<table class="table table-striped table-hover" id="myTableData">
 			    <tr>
-			        <td> </td>
 			        <td><b>Code</b></td>
 			        <td><b>Pointure</b></td>
 			        <td><b>Quantité</b></td>
+			        <td> </td>
 			    </tr>
 			</table>
 		</div>
