@@ -80,7 +80,7 @@ class entrepotProduitFiniController extends Controller
 
         
         $entrepot->ProduitsFinis()->attach($ProduitFini_id, ['pointure' => $pointure , 'quantite' => $quantite]);
-        return Redirect::action('entrepotProduitFiniController@index', $entrepotId);
+        return Redirect::action('entrepotProduitFiniController@MultiEdit', $entrepot->id);
          
         // else 
         // {
@@ -116,13 +116,23 @@ class entrepotProduitFiniController extends Controller
             $user = Auth::user();
             $role = $user->role;
             $entrepot = entrepot::findOrFail($entrepotId);
-            $ProduitsFinis = $entrepot->ProduitsFinis->sortby('code'); 
+            $ProduitsFinis = $entrepot->ProduitsFinis()->orderby('code')->orderby('pivot_pointure')->get();
         } catch (ModelNotFoundException $e) {
             App::abort(404);
         }
 
         return View::make('entrepotProduitFini.edit', compact('role', 'entrepot','ProduitsFinis'));
     }
+
+    
+    public function get_string_between($string, $start, $end){
+                $string = ' ' . $string;
+                $ini = strpos($string, $start);
+                if ($ini == 0) return '';
+                $ini += strlen($start);
+                $len = strpos($string, $end, $ini) - $ini;
+                return substr($string, $ini, $len);
+            }
 
     /**
      * Update the specified resource in storage.
@@ -133,7 +143,8 @@ class entrepotProduitFiniController extends Controller
      */
     public function MultiUpdate($entrepotId) 
     {
-
+        $l_quantites = Input::all(); 
+        dd($l_quantites);
         try {
 
 
@@ -143,29 +154,23 @@ class entrepotProduitFiniController extends Controller
 
             $l_quantites = Input::all(); 
             $ProduitsFinis = $entrepot->ProduitsFinis->sortby('code'); 
-            //$entrepot->ProduitsFinis()->detach(); 
-            foreach ($l_quantites as $name => $quantite){
+            $entrepot->ProduitsFinis()->detach(); 
+            foreach ($l_quantites as $name => $quantiteq){
                 if ($name[0] == 'q'){
                 
                 
-                    $String = $name;
-
-                    $First = "_";
-                    $Second = "-";
-
-                    $Firstpos=strpos($String, $First);
-                    $Secondpos=strpos($String, $Second);
-
-                    $id = substr($String , $Firstpos+1, $Secondpos);
-                    dd($id);
+                    $fullstring = $name;
+                    $ProduitFini_Id = entrepotProduitFiniController::get_string_between($fullstring, '_', '-');
+                    $pointure = entrepotProduitFiniController::get_string_between($fullstring, '-', '_');
+                    $quantite = $quantiteq;
+                    $entrepot->ProduitsFinis()->attach($ProduitFini_Id, ['pointure' => $pointure , 'quantite' => $quantite]);
+                                          
                  }
-                 echo ("coliss");
-
-
-            
+    
             }
-            
-            return View::make('entrepotProduitFini.edit', compact('role', 'entrepot','ProduitsFinis'));
+
+    
+            return Redirect::action('entrepotProduitFiniController@MultiEdit', $entrepot->id);
 
         } 
         catch (ModelNotFoundException $e) {

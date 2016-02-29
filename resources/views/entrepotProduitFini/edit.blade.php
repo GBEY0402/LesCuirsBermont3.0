@@ -52,7 +52,7 @@
 				<td class="hidden-xs" name="pointure"><?php echo $produit->pivot->pointure ?></td>
 				
 				<td class="hidden-xs">
-					<input type="number" name="quantite_{{$produit->pivot->produit_fini_id}}-{{$produit->pivot->pointure}}" id="quantiteId_{{$produit->pivot->produit_fini_id}}-{{$produit->pivot->pointure}}" min="0" max="<?php echo $produit->pivot->quantite ?>" value="<?php echo $produit->pivot->quantite ?>"/>
+					<input type="number" name="quantite_{{$produit->pivot->produit_fini_id}}-{{$produit->pivot->pointure}}_" id="quantiteId_{{$produit->pivot->produit_fini_id}}-{{$produit->pivot->pointure}}_" min="0" max="<?php echo $produit->pivot->quantite ?>" value="<?php echo $produit->pivot->quantite ?>"/>
 				</td>
 
 				@if ($role == 'Administrateur' && $entrepot->type == "Entrepot")
