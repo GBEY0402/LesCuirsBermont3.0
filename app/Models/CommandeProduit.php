@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CommandeProduit extends EloquentValidating
 {
-    protected $table = 'Commandes_Produits';
+    protected $table = 'commande_produit_fini';
 
      /**
      * The attributes that are mass assignable.

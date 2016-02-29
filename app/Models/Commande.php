@@ -33,6 +33,6 @@ class Commande extends EloquentValidating
 
     public function ProduitsFinis(){ 
 
-        return $this->hasMany('App\Models\ProduitFini', 'id')->withPivot('pointure', 'quantite');
+        return $this->belongsToMany('App\Models\ProduitFini')->withPivot('pointure', 'quantite');
     }
 }

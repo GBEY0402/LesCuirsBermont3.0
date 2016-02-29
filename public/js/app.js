@@ -3,18 +3,16 @@ var items = [];
 
 function addRow() {
          
-    var produitCode = document.getElementById("code");
-    var itemPointure = document.getElementById("pointure");
-    var itemQuantite = document.getElementById("quantite");
     var table = document.getElementById("myTableData");
 
     var rowCount = table.rows.length;
     var row = table.insertRow(rowCount);
     
-    row.insertCell(0).innerHTML= '<input type="text" name="'+ rowCount + '_code' + '" value= "' + code.options[code.value].text + '" readonly>';
-    row.insertCell(1).innerHTML= '<input type="text" name="'+ rowCount + '_pointure' + '" value= "' + pointure.value + '" readonly>';
-    row.insertCell(2).innerHTML= '<input type="text" name="'+ rowCount + '_quantite' + '" value= "' + quantite.value + '" readonly>';
-    row.insertCell(3).innerHTML= '<input type="button" value = "Retirer" class="btn btn-danger" onClick="Javacsript:deleteRow(this)">';
+    row.insertCell(0).innerHTML= '<input type="hidden" name="maxLineCount" value =' + rowCount + '>';
+    row.insertCell(1).innerHTML= '<input type="text" name="'+ rowCount + '_code' + '" value= "' + code.options[code.value].text + '" readonly>';
+    row.insertCell(2).innerHTML= '<input type="text" name="'+ rowCount + '_pointure' + '" value= "' + pointure.value + '" readonly>';
+    row.insertCell(3).innerHTML= '<input type="text" name="'+ rowCount + '_quantite' + '" value= "' + quantite.value + '" readonly>';
+    row.insertCell(4).innerHTML= '<input type="button" value = "Retirer" class="btn btn-danger" onClick="Javacsript:deleteRow(this)">';
 }
 
 function deleteRow(obj) {

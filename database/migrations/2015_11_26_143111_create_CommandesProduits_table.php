@@ -12,7 +12,7 @@ class CreateCommandesProduitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('commandes_Produits', function (Blueprint $table) {
+        Schema::create('commande_produit_fini', function (Blueprint $table) {
             $table->integer('commande_Id')->unsigned();
             $table->foreign('commande_Id')->references('id')->on('commandes');
             $table->integer('produit_fini_Id')->unsigned();

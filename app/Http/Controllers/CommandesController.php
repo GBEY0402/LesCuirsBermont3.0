@@ -15,6 +15,7 @@ use View;
 use Redirect;
 use Input;
 use Auth;
+use DB;
 use DateTime;
 
 class CommandesController extends Controller
@@ -69,10 +70,12 @@ class CommandesController extends Controller
      */
     public function store()
     {
+        /*$input = Input::all();
+        dd($input);*/
         try 
         {
             $input = Input::all();
-            $size = sizeof($input) - 2;
+            $lineCount = $input['maxLineCount'];
             $clients = Client::lists('id'); 
             
             $commande = new Commande;
@@ -91,10 +94,17 @@ class CommandesController extends Controller
         {
             try
             {
-                for($i = 7; $i < $size; $i + 3)
+                for($i = 1; $i < $lineCount; $i++)
                 {
-                    
-                }  
+                    $code = ($i."_code");
+                    if(Input::has($code))
+                    {
+                        $pointure = $i."_pointure";
+                        $quantite = $i."_quantite";
+                        $produitFini = DB::table('ProduitsFinis')->where('code', $input[$code])->first();
+                        $commande->ProduitsFinis()->attach($produitFini->id, ['pointure' => $input[$pointure] , 'quantite' => $input[$quantite]]);  
+                    }        
+                }
             }
             catch(ModelNotFoundException $e)
             {
@@ -121,16 +131,18 @@ class CommandesController extends Controller
             $user = Auth::user();
             $role = $user->role;
             $commande = Commande::findOrFail($id);
+            $commandeProduits = CommandeProduit::lists('produit_fini_Id', 'pointure', 'quantite')
+                                                    ->where('commande_Id', $id);
             if ($commande->commentaire == "") 
             {
-                $commande->commentaire = "Aucune commentaire disponible";
+                $commande->commentaire = "Aucune commentaire";
             }
         } 
         catch(ModelNotFoundException $e) 
         {
             App::abort(404);
         }
-        return View::make('commandes.show', compact('commande', 'role'));
+        return View::make('commandes.show', compact('commande', 'role', 'commandeProduits'));
     }
 
     /**
