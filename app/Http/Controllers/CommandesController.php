@@ -69,14 +69,14 @@ class CommandesController extends Controller
      */
     public function store()
     {
-        $input = Input::all();
-        dd($input);
         try 
         {
             $input = Input::all();
+            $size = sizeof($input) - 2;
+            $clients = Client::lists('id'); 
             
             $commande = new Commande;
-            $commande->clients_Id =  $input['clientsId'];
+            $commande->clients_Id = $clients[$input['clientsId']];
             $commande->dateDebut =  new DateTime($input['dateDebut']);
             $commande->dateFin =    new DateTime($input['dateFin']);
             $commande->etat =       $input['etat'];
@@ -89,7 +89,17 @@ class CommandesController extends Controller
         
         if($commande->save()) 
         {
-            
+            try
+            {
+                for($i = 7; $i < $size; $i + 3)
+                {
+                    
+                }  
+            }
+            catch(ModelNotFoundException $e)
+            {
+                App::abort(404);
+            }
             return Redirect::action('CommandesController@index');
         } 
         else 

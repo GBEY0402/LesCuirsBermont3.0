@@ -25,7 +25,7 @@
 		@foreach($commandes as $commande)
 			<tr style="cursor:pointer">
 				<td class="hidden-xs" onclick="window.location.href='{{ action('CommandesController@show', $commande->id) }}'"><?php echo $commande->id ?></td>
-				<td class="hidden-xs" onclick="window.location.href='{{ action('CommandesController@show', $commande->id) }}'"><?php echo $commande->clientsId ?></td>
+				<td class="hidden-xs" onclick="window.location.href='{{ action('CommandesController@show', $commande->id) }}'"><?php echo $commande->clients_Id ?></td>
 				<td class="hidden-xs" onclick="window.location.href='{{ action('CommandesController@show', $commande->id) }}'"><?php echo $commande->dateDebut ?></td>
 				<td class="hidden-xs" onclick="window.location.href='{{ action('CommandesController@show', $commande->id) }}'"><?php echo $commande->dateFin ?></td>
 				<td class="hidden-xs" onclick="window.location.href='{{ action('CommandesController@show', $commande->id) }}'"><?php echo $commande->etat ?></td>
