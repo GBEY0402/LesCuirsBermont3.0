@@ -24,10 +24,7 @@ class ProduitFini extends EloquentValidating
 			[
 			'code' 			=> 'required',
 			'nom' 			=> 'required',
-			'prix' 			=> 'required',
-
 			'prix' 		 	=> 'required|numeric|min:0',
-
       'actif'     => 'required',
 			];
 	}
@@ -36,6 +33,11 @@ class ProduitFini extends EloquentValidating
 
 
         return $this->belongstomany('App\Models\entrepot')->withPivot('pointure', 'quantite');
-    }
+  }
+
+  public function Commandes(){ 
+
+        return $this->belongstomany('App\Models\Commande', 'id')->withPivot('pointure', 'quantite');
+  }
     
 }

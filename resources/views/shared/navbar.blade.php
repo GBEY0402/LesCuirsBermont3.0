@@ -48,9 +48,6 @@ use Illuminate\Html\HtmlServiceProvider;
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Clients et fournisseurs<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ action('ClientsController@index') }}"> Liste des clients/fournisseurs</a></li>
-                        @if ($role == 'Administrateur')
-                            <li><a href="{{ action('ClientsController@create') }}"> Ajouter un client/fournisseur</a></li>
-                         @endif
                         </ul>
                     </li>
             </ul>
@@ -62,8 +59,6 @@ use Illuminate\Html\HtmlServiceProvider;
                     <a href="/usager" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Gestion employé <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="{{ action('UserController@index') }}"> Liste des usagés</a></li>
-                        <li><a href="{{ action('UserController@create') }}"> Ajouter un usagé</a></li>
-
                         <!--<li class="divider"></li>
                         <li><a href="#">Separated link</a></li>-->
                     </ul>

@@ -13,7 +13,6 @@
 	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
-				<!--  Les différents champs d'un code -->
 				<th>Numéro de commande</th>
 				<th>Code client</th>
 				<th>Date de début</th>
@@ -23,8 +22,7 @@
 			</tr>
 		</thead>
 		<tbody>
-<!--    -->
-@foreach($commandes as $commande)
+		@foreach($commandes as $commande)
 			<tr style="cursor:pointer">
 				<td class="hidden-xs" onclick="window.location.href='{{ action('CommandesController@show', $commande->id) }}'"><?php echo $commande->id ?></td>
 				<td class="hidden-xs" onclick="window.location.href='{{ action('CommandesController@show', $commande->id) }}'"><?php echo $commande->clientsId ?></td>
@@ -40,7 +38,7 @@
 					{!! Form::close() !!}   
 				</td>
 			</tr>
-@endforeach
+		@endforeach
 		</tbody>
 	</table>
 @endif

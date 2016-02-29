@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Commande;
 use App\Models\ProduitFini;
+use App\Models\Client;
+use App\Models\CommandeProduit;
 use View;
 use Redirect;
 use Input;
@@ -53,7 +55,10 @@ class CommandesController extends Controller
     {
         $user = Auth::user();
         $role = $user->role;
-        return View::make('commandes.create', compact('role'));
+        $codes = ProduitFini::lists('code');
+        $clients = Client::lists('id');
+
+        return View::make('commandes.create', compact('role', 'clients', 'codes'));
     }
 
     /**
@@ -64,18 +69,18 @@ class CommandesController extends Controller
      */
     public function store()
     {
+        $input = Input::all();
+        dd($input);
         try 
         {
             $input = Input::all();
             
             $commande = new Commande;
-            $commande->clientsId =  $input['clientsId'];
+            $commande->clients_Id =  $input['clientsId'];
             $commande->dateDebut =  new DateTime($input['dateDebut']);
             $commande->dateFin =    new DateTime($input['dateFin']);
             $commande->etat =       $input['etat'];
             $commande->commentaire= $input['commentaire'];
-
-
         } 
         catch(ModelNotFoundException $e) 
         {
@@ -84,6 +89,7 @@ class CommandesController extends Controller
         
         if($commande->save()) 
         {
+            
             return Redirect::action('CommandesController@index');
         } 
         else 
@@ -129,13 +135,16 @@ class CommandesController extends Controller
         {
             $user = Auth::user();
             $role = $user->role;
+            $clients = Client::lists('id');
+            $codes = ProduitFini::lists('code');
+            $items = CommandeProduit::all()->where('commande_id', '==', $id);
             $commande = Commande::findOrFail($id);
         } 
         catch(ModelNotFoundException $e) 
         {
             App::abort(404);
         }
-        return View::make('commandes.edit', compact('commande', 'role'));
+        return View::make('commandes.edit', compact('commande', 'role', 'clients', 'items', 'codes'));
     }
 
     /**
@@ -145,28 +154,21 @@ class CommandesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
         try 
         {
             $input = Input::all();
+            $clients = Client::all();
             $commande = Commande::findOrFail($id);
             
-            $commande->clientsId =  $input['clientsId'];
+            $commande->clients_Id = $clients[$input['clientsId']];
             $commande->dateDebut =  $input['dateDebut'];
             $commande->dateFin =    $input['dateFin'];
             $commande->etat =       $input['etat'];
             $commande->commentaire= $input['commentaire'];
-
-            // $i = 1;
-
-            // foreach ($produits as $produit)
-            // {
-            //     $produit->quantite = $input['']
-            // }
-
-
-
+            $commandeToLink = Commande::findOrFail($commande->id);
+            $commandeToLink->ProduitsFinis()->attach($ProduitFini_id, ['pointure' => $pointure, 'quantite' => $quantite]);
         } 
         catch(ModelNotFoundException $e) 
         {

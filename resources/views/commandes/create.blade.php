@@ -19,18 +19,18 @@
    			});
   		});
   	</script>
+  	<script type="text/javascript" src="{{ URL::asset('js/app.js') }}"></script>
 @stop
 
 @section('content')
 
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h2>Création d'une commande</h2>
+		<h2>Création d'un billet de commande</h2>
 	</div>
 	<div class="panel-body">
 		{!! Form::open(['action' => 'CommandesController@store', 'class' => 'form']) !!}
-		<!--    -->
-        @foreach ($errors->all() as $error)
+		@foreach ($errors->all() as $error)
             <p class="alert alert-danger">{{ $error }}</p>
         @endforeach
 		<div class="form-group">
@@ -38,20 +38,58 @@
 			<br>
 			<br>
 			{!! Form::label('clientsId', 'Numero de client/fournisseur:') !!}
-			{!! Form::text('clientsId', null, ['class' => 'form-control']) !!}
+			<br>
+			{!! Form::select('clientsId', $clients, ['class' => 'form-control']) !!}
 			{{ $errors->first('clientsId') }}
 		</div>
 		<div class="form-group">
-			{!! Form::label('dateDebut', 'Date de début:') !!}
-			<br>
-			{!! Form::text('dateDebut', null, array('id' => 'datepickerDebut')) !!}
-			{{ $errors->first('dateDebut') }}
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<td>{!! Form::label('dateDebut', 'Date de début:') !!}</td>
+						<td>{!! Form::label('dateFin', 'Date de fin :') !!}</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>{!! Form::text('dateDebut', null, array('id' => 'datepickerDebut')) !!}
+							{{ $errors->first('dateDebut') }}</td>
+						<td>{!! Form::text('dateFin', null, array('id' => 'datepickerFin')) !!}
+							{{ $errors->first('dateFin') }}</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 		<div class="form-group">
-			{!! Form::label('dateFin', 'Date de fin :') !!}
-			<br>
-			{!! Form::text('dateFin', null, array('id' => 'datepickerFin')) !!}
-			{{ $errors->first('dateFin') }}
+			<table class="table table-striped table-hover">
+				<thead>
+				    <tr>
+				        <td>{!! Form::label('itemCode', 'Code:') !!}</td>
+				        <td>{!! Form::label('itemPointure', 'Pointure:') !!}</td>
+				        <td>{!! Form::label('itemQuantite', 'Quantité:') !!}</td>
+				    </tr>
+				</thead>
+				<tbody>
+				    <tr>
+				        <td>{!! Form::select('itemCode', $codes, null,
+				        						array('id' => 'code')) !!}</td>
+				    	<td>{!! Form::select('pointure', array('4' => '4','5' => '5','6' => '6','7' => '7','8' => '8','9' => '9','10' => '10',
+												'11' => '11','12' => '12','13' => '13','1' => '1','2' => '2','3' => '3',),
+												null, array('id' => 'pointure') ) !!}</td>
+				        <td><input type="number" id="quantite" min="0" name="quantite" value="0"></td>
+				        <td><input type="button" id="add" value="Add" onclick="Javascript:addRow()"class="btn btn-primary"></td>
+				</tbody>
+			</table>
+		</div>
+		<div class="form-group" id="mydata">
+			<table class="table table-striped table-hover" id="myTableData">
+			    <tr>
+			        <td><b>Code</b></td>
+			        <td><b>Pointure</b></td>
+			        <td><b>Quantité</b></td>
+			        <td> </td>
+			    </tr>
+			</table>
 		</div>
 		<div class="form-group">
 			{!! Form::label('commentaire', 'Commentaire:') !!}
@@ -60,6 +98,7 @@
 		</div>
 		<div class="form-group">
 			{!! Form::label('etat', 'État:') !!}
+			<br>
 			{!! Form::select('etat', array('Non débutée' => 'Non débutée', 'En cours' => 'En cours', 'Suspendue' => 'Suspendue', 'Terminée' => 'Terminer') , '1' ) !!}
 			{{ $errors->first('etat') }}
 		</div>

@@ -25,10 +25,15 @@ class Commande extends EloquentValidating
 	public function validationRules() {
 		return 
 			[
-            'clientsId' 	=> 'required|numeric',
+            'clientsId' 	=> 'required',
 			'dateDebut' 	=> 'required',
 			'dateFin' 		=> 'required',
 			'etat' 			=> 'required',
 			];
 	} 
+
+    public function ProduitsFinis(){ 
+
+        return $this->hasMany('App\Models\ProduitFini', 'id')->withPivot('pointure', 'quantite');
+    }
 }

@@ -28,7 +28,7 @@
 				
 				<td><a href="{{ action('TypesController@edit',$type->id) }}" class="btn btn-info">Modifier</a></td>
 				<td>{!! Form::open(array('action' => array('TypesController@destroy',$type->id), 'method' => 'delete', 'data-confirm' => 'Êtes-vous certain?')) !!}
-					<button type="submit" href="{{ URL::route('inventaire.destroy', $type->id) }}" class="btn btn-danger btn-mini">Effacer</button>
+					<button type="submit" href="{{ URL::route('materiaux.destroy', $type->id) }}" class="btn btn-danger btn-mini">Effacer</button>
 					{!! Form::close() !!}   
 				</td>
 			</tr>

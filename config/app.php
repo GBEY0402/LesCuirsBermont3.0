@@ -201,7 +201,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         
         'Form'      => 'Illuminate\Html\FormFacade',
-        'Html' => Collective\Html\HtmlFacade::class,
+        'Html'      => Collective\Html\HtmlFacade::class,
 
     ],
 

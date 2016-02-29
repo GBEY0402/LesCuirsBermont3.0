@@ -3,6 +3,9 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<h2>Liste des clients/fournisseurs</h2>
+		@if ($role == 'Administrateur')
+			<a href="{{ action('ClientsController@create') }}" class="btn btn-primary">Créer un client/fournisseur</a>
+		@endif
 	</div>
 @if ($clients->isEmpty())
 	<div class="panel-body">
