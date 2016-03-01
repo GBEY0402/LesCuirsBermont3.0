@@ -77,7 +77,7 @@ class CommandesController extends Controller
             $input = Input::all();
             $lineCount = $input['maxLineCount'];
             $clients = Client::lists('id'); 
-            
+
             $commande = new Commande;
             $commande->clients_Id = $clients[$input['clientsId']];
             $commande->dateDebut =  new DateTime($input['dateDebut']);
@@ -94,7 +94,7 @@ class CommandesController extends Controller
         {
             try
             {
-                for($i = 1; $i < $lineCount; $i++)
+                for($i = 1; $i == $lineCount; $i++)
                 {
                     $code = ($i."_code");
                     if(Input::has($code))
@@ -131,8 +131,8 @@ class CommandesController extends Controller
             $user = Auth::user();
             $role = $user->role;
             $commande = Commande::findOrFail($id);
-            $commandeProduits = CommandeProduit::lists('produit_fini_Id', 'pointure', 'quantite')
-                                                    ->where('commande_Id', $id);
+            $produitsFinis = $commande->ProduitsFinis()->orderby("code")->get();
+
             if ($commande->commentaire == "") 
             {
                 $commande->commentaire = "Aucune commentaire";
@@ -142,7 +142,7 @@ class CommandesController extends Controller
         {
             App::abort(404);
         }
-        return View::make('commandes.show', compact('commande', 'role', 'commandeProduits'));
+        return View::make('commandes.show', compact('commande', 'role', 'produitsFinis'));
     }
 
     /**
@@ -158,15 +158,31 @@ class CommandesController extends Controller
             $user = Auth::user();
             $role = $user->role;
             $clients = Client::lists('id');
-            $codes = ProduitFini::lists('code');
-            $items = CommandeProduit::all()->where('commande_id', '==', $id);
             $commande = Commande::findOrFail($id);
+            $produitsFinis = $commande->ProduitsFinis()->orderby("code")->get();
+            $nombreProduits = count($produitsFinis);
+            $data = array();
+            
+            $i = 1;
+            
+            foreach($produitsFinis as $produit)
+            {
+                $row = array();
+                array_push($row, $i.'_code');
+                array_push($row, $produit->code);
+                array_push($row, $i.'_pointure');
+                array_push($row, $produit->pivot->pointure);
+                array_push($row, $i.'_quantite');
+                array_push($row, $produit->pivot->quantite);
+                array_push($data, $row);
+                $i = $i + 1;
+            }
         } 
         catch(ModelNotFoundException $e) 
         {
             App::abort(404);
         }
-        return View::make('commandes.edit', compact('commande', 'role', 'clients', 'items', 'codes'));
+        return View::make('commandes.edit', compact('commande', 'role', 'clients', 'data', 'nombreProduits'));
     }
 
     /**
@@ -181,16 +197,13 @@ class CommandesController extends Controller
         try 
         {
             $input = Input::all();
-            $clients = Client::all();
+            $lineCount = $input['maxLineCount'];
             $commande = Commande::findOrFail($id);
             
-            $commande->clients_Id = $clients[$input['clientsId']];
             $commande->dateDebut =  $input['dateDebut'];
             $commande->dateFin =    $input['dateFin'];
             $commande->etat =       $input['etat'];
             $commande->commentaire= $input['commentaire'];
-            $commandeToLink = Commande::findOrFail($commande->id);
-            $commandeToLink->ProduitsFinis()->attach($ProduitFini_id, ['pointure' => $pointure, 'quantite' => $quantite]);
         } 
         catch(ModelNotFoundException $e) 
         {
@@ -200,6 +213,25 @@ class CommandesController extends Controller
         
         if($commande->save()) 
         {
+            try
+            {
+                $commande->ProduitsFinis()->detach();
+                for($i = 1; $i == $lineCount; $i++)
+                {
+                    $code = ($i."_code");
+                    if(Input::has($code))
+                    {
+                        $pointure = $i."_pointure";
+                        $quantite = $i."_quantite";
+                        $produitFini = DB::table('ProduitsFinis')->where('code', $input[$code])->first();
+                        $commande->ProduitsFinis()->attach($produitFini->id, ['pointure' => $input[$pointure] , 'quantite' => $input[$quantite]]);  
+                    }        
+                }
+            }
+            catch(ModelNotFoundException $e)
+            {
+                App::abort(404);
+            }
             return Redirect::action('CommandesController@index');
         } 
         else 
@@ -220,6 +252,7 @@ class CommandesController extends Controller
         try 
         {
             $commande = Commande::findOrFail($id);
+            $commande->produitsFinis()->detach();
             $commande->delete();
         }  
         catch(ModelNotFoundException $e) 

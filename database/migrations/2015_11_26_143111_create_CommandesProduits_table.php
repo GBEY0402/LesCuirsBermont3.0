@@ -30,6 +30,6 @@ class CreateCommandesProduitsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('commandes_Produits');
+        Schema::drop('commande_Produit_fini');
     }
 }
