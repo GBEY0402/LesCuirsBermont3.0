@@ -32,12 +32,12 @@ class ProduitFini extends EloquentValidating
   public function Entrepots(){ 
 
 
-        return $this->belongstomany('App\Models\entrepot')->withPivot('pointure', 'quantite');
+        return $this->belongsToMany('App\Models\entrepot')->withPivot('pointure', 'quantite');
   }
 
   public function Commandes(){ 
 
-        return $this->belongstomany('App\Models\Commande', 'id')->withPivot('pointure', 'quantite');
+        return $this->belongsToMany('App\Models\Commande')->withPivot('pointure', 'quantite');
   }
     
 }
