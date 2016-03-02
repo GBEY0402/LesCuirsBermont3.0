@@ -56,7 +56,9 @@
 				</td>
 
 				@if ($role == 'Administrateur' && $entrepot->type == "Entrepot")
-				<td><a href="{{ action('entrepotProduitFiniController@edit',$produit->entrepot_id) }}" class="btn btn-info">Transfert à une remorque</a></td>
+				<td>
+					<a href="{{ action('entrepotProduitFiniController@transfert_entrepot', [ $entrepot->id, $produit->id , $produit->pivot->pointure ]) }}" class="btn btn-info">Transfert à une remorque</a>
+				</td>
 				@endif
 			</tr>
 

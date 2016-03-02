@@ -35,6 +35,7 @@ Route::group(['middleware'=>'auth'], function() {
 
 	Route::get('entrepot/{id}/ProduitFiniMultiEdit', 'entrepotProduitFiniController@MultiEdit');
 	Route::put('entrepot/{id}/ProduitFiniMultiUpdate', 'entrepotProduitFiniController@MultiUpdate');
+	Route::get('entrepot/{entrepotId}/ProduitFini/{ProduitFiniId}/pointure/{pointure}', 'entrepotProduitFiniController@transfert_entrepot');
 
 
 });

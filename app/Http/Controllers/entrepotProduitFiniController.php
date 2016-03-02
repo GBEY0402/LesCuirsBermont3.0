@@ -143,8 +143,7 @@ class entrepotProduitFiniController extends Controller
      */
     public function MultiUpdate($entrepotId) 
     {
-        $l_quantites = Input::all(); 
-        dd($l_quantites);
+    
         try {
 
 
@@ -197,6 +196,27 @@ class entrepotProduitFiniController extends Controller
         $ProduitFini->delete();
         
         return Redirect::action('entrepotProduitFiniController@index', $entrepotId);    
+    }
+
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function transfert_entrepot($entrepotId, $ProduitFiniId, $pointure) {
+        
+        $entrepot = entrepot::findOrFail($entrepotId);
+        $ProduitFini_Id = $ProduitFiniId;
+        
+        $quantiteAchanger = 66;
+        $entrepot->ProduitsFinis()->wherePivot('produit_fini_id', $ProduitFini_Id)->wherePivot('pointure', $pointure)->updateExistingPivot($ProduitFini_Id, ['pointure' => $pointure , 'quantite' => $quantiteAchanger]);
+
+        
+         return Redirect::action('entrepotProduitFiniController@MultiEdit', $entrepot->id);
+
     }
 
     public function validationRules() {
