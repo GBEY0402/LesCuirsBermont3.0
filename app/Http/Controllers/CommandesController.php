@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Models\Commande;
@@ -21,7 +18,9 @@ use DateTime;
 class CommandesController extends Controller
 {
     /**
-     * Liste des commandes dans la vue index.
+     * Liste des commandes dans la vue index et assigne l'attribut commentaire de la commande si inexistant.
+     * Le role sert à gérer les droits d'utilisation de la vue.
+     * Doit envoyer la liste de commandes et le role.
      *
      * @return \Illuminate\Http\Response
      */
@@ -32,6 +31,7 @@ class CommandesController extends Controller
             $user = Auth::user();
             $role = $user->role;
             $commandes = Commande::all()->sortby('id');
+            /* Assigne un commentaire à chaque commande si son commentaire est vide */
             foreach ($commandes as $commande) 
             {
                 if ($commande->commentaire == "")
@@ -49,6 +49,7 @@ class CommandesController extends Controller
 
     /**
      * Affiche le formulaire pour créer une nouvelle commande.
+     * 
      *
      * @return \Illuminate\Http\Response
      */
@@ -63,21 +64,27 @@ class CommandesController extends Controller
     }
 
     /**
-     * Ajout à la base de donnée d'une nouvelle commande.
-     *
-     * @param  \Illuminate\Http\Request  $request
+     * Ajout à la base de donnée d'une nouvelle commande et redirige vers
+     * l'index une fois l'ajout fait.
+     * 
      * @return \Illuminate\Http\Response
      */
     public function store()
     {
-        /*$input = Input::all();
-        dd($input);*/
         try 
         {
             $input = Input::all();
-            $lineCount = $input['maxLineCount'];
+            if(Input::has('maxLineCount'))
+            {
+                $lineCount = $input['maxLineCount'];
+            }
+            else
+            {
+                $lineCount = 0;
+            }
             $clients = Client::lists('id'); 
 
+            /* Creation de l'objet Commande et assigne les attributs */
             $commande = new Commande;
             $commande->clients_Id = $clients[$input['clientsId']];
             $commande->dateDebut =  new DateTime($input['dateDebut']);
@@ -94,6 +101,11 @@ class CommandesController extends Controller
         {
             try
             {
+                /**
+                 * Attache les produits finis à la commande. 
+                 * Retrouve le "name" de chaque infos de chaque produits finis 
+                 * et attache le produit à la commande.
+                 */
                 for($i = 1; $i == $lineCount; $i++)
                 {
                     $code = ($i."_code");
@@ -119,9 +131,10 @@ class CommandesController extends Controller
     }
 
     /**
-     * Affiche la commande selectionnée.
+     * Affiche la commande selectionnée et les produits associés.
+     * Utilise une commande, un role et les produits attachés à la commande.
      *
-     * @param  int  $id
+     * @param  int  $id (le id de la commande)
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -147,8 +160,9 @@ class CommandesController extends Controller
 
     /**
      * Affiche le formulaire pour modifier une commande.
+     * nombreProduits sert à la fonction update comme compteur de ligne
      *
-     * @param  int  $id
+     * @param  int  $id (L'id de la commande a modifiée)
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -161,10 +175,11 @@ class CommandesController extends Controller
             $commande = Commande::findOrFail($id);
             $produitsFinis = $commande->ProduitsFinis()->orderby("code")->get();
             $nombreProduits = count($produitsFinis);
-            $data = array();
-            
+            $data = array(); 
             $i = 1;
-            
+            /**
+             * Assigne les "name" de chaque informations dans chacun des produits attachés à la commande.
+             */
             foreach($produitsFinis as $produit)
             {
                 $row = array();
@@ -187,9 +202,10 @@ class CommandesController extends Controller
 
     /**
      * Mise à jour de la commande dans la base de donnée.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * Assigne les nouvelles valeurs aux attributs de la commande
+     * et modifie les quantités de chaque produit associé à la commande.
+     * 
+     * @param  int  $id (L'id de la commande à modifiée)
      * @return \Illuminate\Http\Response
      */
     public function update($id)
@@ -197,7 +213,14 @@ class CommandesController extends Controller
         try 
         {
             $input = Input::all();
-            $lineCount = $input['maxLineCount'];
+            if(Input::has('maxLineCount'))
+            {
+                $lineCount = $input['maxLineCount'];
+            }
+            else
+            {
+                $lineCount = 0;
+            }
             $commande = Commande::findOrFail($id);
             
             $commande->dateDebut =  $input['dateDebut'];
@@ -215,6 +238,9 @@ class CommandesController extends Controller
         {
             try
             {
+                /**
+                 * Détache(détruit) les produits attachés et réattache les produits avec les nouvelles informations.
+                 */
                 $commande->ProduitsFinis()->detach();
                 for($i = 1; $i == $lineCount; $i++)
                 {
@@ -224,7 +250,8 @@ class CommandesController extends Controller
                         $pointure = $i."_pointure";
                         $quantite = $i."_quantite";
                         $produitFini = DB::table('ProduitsFinis')->where('code', $input[$code])->first();
-                        $commande->ProduitsFinis()->attach($produitFini->id, ['pointure' => $input[$pointure] , 'quantite' => $input[$quantite]]);  
+                        $commande->ProduitsFinis()->attach($produitFini->id, 
+                                    ['pointure' => $input[$pointure] , 'quantite' => $input[$quantite]]);  
                     }        
                 }
             }
@@ -242,9 +269,10 @@ class CommandesController extends Controller
 
 
     /**
-     * Suppression 
+     * Suppression de la commande et des produits attachés.
+     * Retrouve la commande, détache les produits et efface la commande de la bd.
      *
-     * @param  int  $id
+     * @param  int  $id (L'id de la commande à effacer)
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
