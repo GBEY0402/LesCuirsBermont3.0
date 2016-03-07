@@ -3,7 +3,9 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<h2>Codes de produit</h2>
-		<a href="{{ action('CodesProduitsController@create') }}" class="btn btn-primary">Créer un code</a>
+		@if ($role == 'Administrateur')
+			<a href="{{ action('CodesProduitsController@create') }}" class="btn btn-primary">Créer un code</a>
+		@endif
 	</div>
 	@if ($role == 'Administrateur')
 		@if ($codes->isEmpty())
@@ -14,7 +16,6 @@
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
-						<!--  Les différents champs d'un code -->
 						<th>code</th>
 					</tr>
 				</thead>

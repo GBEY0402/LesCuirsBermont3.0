@@ -3,7 +3,7 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<h2>Liste des commandes</h2>
-		@if($role == 'Administrateur')
+		@if($role == 'Administrateur' or $role == 'DirProd')
 			<a href="{{ action('CommandesController@create') }}" class="btn btn-primary">Créer une commande</a>
 		@endif
 	</div>

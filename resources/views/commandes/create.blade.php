@@ -1,5 +1,5 @@
 @extends('shared.masterlayout')
-@if ($role == 'Administrateur')
+@if ($role == 'Administrateur' or $role == 'DirProd')
 	@section('script')
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	  	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -31,15 +31,17 @@
 		<h2>Création d'un billet de commande</h2>
 	</div>
 	<div class="panel-body">
-	@if ($role == 'Administrateur')
+	@if ($role == 'Administrateur' or $role == 'DirProd')
 		{!! Form::open(['action' => 'CommandesController@store', 'class' => 'form']) !!}
 		@foreach ($errors->all() as $error)
             <p class="alert alert-danger">{{ $error }}</p>
         @endforeach
 		<div class="form-group">
-			<a href="{{ action('ClientsController@create') }}" class="btn btn-primary">Creation d'un client</a>
-			<br>
-			<br>
+			@if ($role == 'Administrateur')
+				<a href="{{ action('ClientsController@create') }}" class="btn btn-primary">Creation d'un client</a>
+				<br>
+				<br>
+			@endif
 			{!! Form::label('clientsId', 'Numero de client/fournisseur:') !!}
 			<br>
 			{!! Form::select('clientsId', $clients, ['class' => 'form-control']) !!}

@@ -29,8 +29,9 @@ use Illuminate\Html\HtmlServiceProvider;
                         @foreach($entrepots as $entrepot)
                             <li><a href="{{ action('entrepotProduitFiniController@MultiEdit', $entrepot->id) }}" ><?php echo $entrepot->nom?></a></li>
                         @endforeach
-                        <li><a href="/materiaux">Matières premières</a></li>
-                        
+                        @if ($role == 'Administrateur')
+                            <li><a href="/materiaux">Matières premières</a></li>
+                        @endif
                     </ul>
                 </li>
                 <li class="dropdown">

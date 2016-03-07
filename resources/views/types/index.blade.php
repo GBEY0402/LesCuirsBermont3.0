@@ -3,7 +3,9 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<h2>Types de matériaux</h2>
-		<a href="{{ action('TypesController@create') }}" class="btn btn-primary">Créer un type</a>
+		@if ($role == 'Administrateur')
+			<a href="{{ action('TypesController@create') }}" class="btn btn-primary">Créer un type</a>
+		@endif
 	</div>
 	@if ($role == 'Administrateur')
 		@if ($types->isEmpty())

@@ -14,15 +14,13 @@
 		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
-					<!--  Les différents champs d'un code -->
 					<th>Nom</th>
 					<th class="hidden-xs">Type</th>
 					<th></th>
 				</tr>
 			</thead>
 			<tbody>
-	<!--    -->
-	@foreach($entrepot as $entrepote)
+			@foreach($entrepot as $entrepote)
 				<tr style="cursor:pointer">
 					<td class="hidden-xs" onclick="window.location.href='{{ action('entrepotController@show', $entrepote->id) }}'"><?php echo $entrepote->nom ?></td>
 					<td class="hidden-xs" onclick="window.location.href='{{ action('entrepotController@show', $entrepote->id) }}'"><?php echo $entrepote->type ?></td>
@@ -36,7 +34,7 @@
 					@endif
 					</td>
 				</tr>
-	@endforeach
+			@endforeach
 			</tbody>
 		</table>
 	@endif

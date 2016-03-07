@@ -1,5 +1,5 @@
 @extends('shared.masterlayout')
-@if ($role == 'Administrateur')
+@if ($role == 'Administrateur' or $role == 'DirProd')
 	@section('script')
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	  	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -31,7 +31,7 @@
 			<h2>Modification d'un billet de commande</h2>
 		</div>
 		<div class="panel-body">
-		@if ($role == 'Administrateur')
+		@if ($role == 'Administrateur' or $role == 'DirProd')
 			{!! Form::open(['action'=> array('CommandesController@update', $commande->id), 'method' => 'PUT', 'class' => 'form']) !!}
 			@foreach ($errors->all() as $error)
 	            <p class="alert alert-danger">{{ $error }}</p>
