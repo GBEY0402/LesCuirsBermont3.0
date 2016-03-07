@@ -12,11 +12,11 @@ class MatieresPremieresTableSeeder extends Seeder {
 	{
         //code, nom, description, prix, quantiteTotale, quantiteMinimum, quantiteLimite, quantiteReserve, actif
         $infos = [
-		["Cuir",	"rouge", 		"",	 "2.99",	"100",	"25",	"10",	"15",	"1"],
-		["Cuir",	"bleu", 		"",	 "2.99",	"100",	"30",	"20",	"5",	"1"],
-		["Suede",	"blanc",	 	"",	 "1.99",	"200",	"50",	"30",	"45",	"1"],
-		["Fil",		"blanc 100M", 	"",	 "0.99",	"50",	"25",	"15",	"0",	"1"],
-		["Fil",		"noir 100M", 	"",	 "0.99",	"50",	"25",	"15",	"0",	"1"]
+		["Cuir",	"rouge", 		"",	 "2.99",	"100",	"25",	"10",	"1"],
+		["Cuir",	"bleu", 		"",	 "2.99",	"100",	"30",	"20",	"1"],
+		["Suede",	"blanc",	 	"",	 "1.99",	"200",	"50",	"30",	"1"],
+		["Fil",		"blanc 100M", 	"",	 "0.99",	"50",	"25",	"15",	"1"],
+		["Fil",		"noir 100M", 	"",	 "0.99",	"50",	"25",	"15",	"1"]
 
 		];
 
@@ -30,8 +30,7 @@ class MatieresPremieresTableSeeder extends Seeder {
 		    $materiel->quantiteTotale = 	$info[4];
 		    $materiel->quantiteMinimum = 	$info[5];
 		    $materiel->quantiteLimite = 	$info[6];
-		    $materiel->quantiteReserve = 	$info[7];
-		    $materiel->actif = 				$info[8];
+		    $materiel->actif = 				$info[7];
             $materiel->save();		
         }
 	}

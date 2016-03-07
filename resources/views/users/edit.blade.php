@@ -6,6 +6,7 @@
         <h2>Modification d'un usager</h2>
     </div>
     <div class="panel-body">
+    @if ($role == 'Administrateur')
         {!! Form::open(['action'=> array('UserController@update', $user->id), 'method' => 'PUT', 'class' => 'form']) !!}
             {!! csrf_field() !!}
             @foreach ($errors->all() as $error)
@@ -51,6 +52,12 @@
                 <a href="{{ URL::previous() }}" class="btn btn-danger">Annuler</a>
             </div>
         {!! Form::close() !!}
-        </div>
+    @else
+        <center>
+        <img src="{{URL::asset('img/warning.png')}}" alt=""/>
+        <h3>Votre rôle ne vous permet pas d'utiliser cette page</h3>
+        </center>
+    @endif
+    </div>
 </div>
 @stop

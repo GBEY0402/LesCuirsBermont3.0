@@ -5,6 +5,7 @@
 		<h2>Modification d'une matière première</h2>
 	</div>
 	<div class="panel-body">
+	@if (@role == 'Administrateur')
 		{!! Form::open(['action'=> array('MatieresPremieresController@update', $materiel->id), 'method' => 'PUT', 'class' => 'form']) !!}
 		<div class="form-group">
 			{!! Form::label('type', 'Type:') !!}
@@ -52,6 +53,13 @@
 			<a href="{{ URL::previous() }}" class="btn btn-danger">Annuler</a>
 		</div>
 		{!! Form::close() !!}
+	@else
+		<center>
+		<img src="{{URL::asset('img/warning.png')}}" alt=""/>
+		<h3>Votre rôle ne vous permet pas d'utiliser cette page</h3>
+		</center>
+	@endif
 	</div>
+
 </div>
 @stop

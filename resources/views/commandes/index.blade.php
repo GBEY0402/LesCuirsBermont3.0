@@ -3,7 +3,9 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<h2>Liste des commandes</h2>
-		<a href="{{ action('CommandesController@create') }}" class="btn btn-primary">Créer une commande</a>
+		@if($role == 'Administrateur')
+			<a href="{{ action('CommandesController@create') }}" class="btn btn-primary">Créer une commande</a>
+		@endif
 	</div>
 @if ($commandes->isEmpty())
 	<div class="panel-body">
@@ -30,7 +32,9 @@
 				<td class="hidden-xs" onclick="window.location.href='{{ action('CommandesController@show', $commande->id) }}'"><?php echo $commande->dateFin ?></td>
 				<td class="hidden-xs" onclick="window.location.href='{{ action('CommandesController@show', $commande->id) }}'"><?php echo $commande->etat ?></td>
 				<td class="hidden-xs" onclick="window.location.href='{{ action('CommandesController@show', $commande->id) }}'"><?php echo $commande->commentaire ?></td>
-				<td><a href="{{ action('CommandesController@edit',$commande->id) }}" class="btn btn-info">Modifier</a></td>
+				@if ($role == 'Administrateur' or $role == 'DirProd')
+					<td><a href="{{ action('CommandesController@edit',$commande->id) }}" class="btn btn-info">Modifier</a></td>
+				@endif
 				<td>{!! Form::open(array('action' => array('CommandesController@destroy',$commande->id), 'method' => 'delete', 'data-confirm' => 'Êtes-vous certain?')) !!}
 				@if ($role == 'Administrateur')
 					<button type="submit" href="{{ URL::route('commande.destroy', $commande->id) }}" class="btn btn-danger btn-mini">Effacer</button>

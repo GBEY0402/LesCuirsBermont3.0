@@ -27,6 +27,9 @@
       <form class="form-signin" method="POST" action="/auth/login">
         {!! csrf_field() !!}
         <h2 class="form-signin-heading">Les Cuirs Bermont</h2>
+        <div style="padding-bottom: 2em">
+          <img src="{{URL::asset('img/logo2.png')}}" alt="logo" width="90%" height="90%"/>
+        </div>
         <label for="inputEmail" class="sr-only">Username</label>
         <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
@@ -36,7 +39,7 @@
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Connexion</button>
       </form>
 
     </div> <!-- /container -->

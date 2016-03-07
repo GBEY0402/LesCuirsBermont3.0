@@ -6,6 +6,7 @@
 		<h2>Création d'un code de produit</h2>
 	</div>
 	<div class="panel-body">
+	@if ($role == 'Administrateur')
 		{!! Form::open(['action'=> 'CodesProduitsController@store', 'class' => 'form']) !!}
 		<!--    -->
         @foreach ($errors->all() as $error)
@@ -21,6 +22,12 @@
 			<a href="{{ URL::previous() }}" class="btn btn-danger">Annuler</a>
 		</div>
 		{!! Form::close() !!}
+	@else
+		<center>
+		<img src="{{URL::asset('img/warning.png')}}" alt=""/>
+		<h3>Votre rôle ne vous permet pas d'utiliser cette page</h3>
+		</center>
+	@endif
 	</div>
 </div>
 @stop

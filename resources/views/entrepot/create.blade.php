@@ -31,6 +31,9 @@
 @stop
 @section('content-prod')
 @section('content-emp')
-<center><h1>Access DENIED !</h1></center>
+	<center>
+	<img src="{{URL::asset('img/warning.png')}}" alt=""/>
+	<h3>Votre rôle ne vous permet pas d'utiliser cette page</h3>
+	</center>
 @STOP
 @STOP

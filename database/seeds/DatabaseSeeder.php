@@ -39,7 +39,7 @@ class UserTableSeeder extends Seeder
         $user = new User();
         $user->prenom = 'Bob';
         $user->nom = 'Durocher';
-        $user->username = 'bob';
+        $user->username = 'admin';
         $user->password = Hash::make('admin');
         $user->role = 'Administrateur';
         $user->save();

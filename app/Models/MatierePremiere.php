@@ -19,7 +19,7 @@ class MatierePremiere extends EloquentValidating
      * @var array
      */
     protected $fillable = ['type', 'nom', 'description', 'prix', 'quantiteTotale',
-    						 'quantiteMinimum', 'quantiteLimite', 'quantiteReserve'];
+    						 'quantiteMinimum', 'quantiteLimite'];
 
     public $validationMessages;
 
@@ -32,7 +32,6 @@ class MatierePremiere extends EloquentValidating
 			'quantiteTotale' 	=> 'required',
 			'quantiteMinimum' 	=> 'required',
 			'quantiteLimite' 	=> 'required',
-			'quantiteReserve' 	=> 'required',
 			];
 	}
     

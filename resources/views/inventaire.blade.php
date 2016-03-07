@@ -3,7 +3,10 @@
 <div class="container">
 
     <div class="content">
-        <div class="title">Vue INVENTAIRE! Vous etes un {!! $role !!}</div>
+        <div class="title">
+        	<h2>Bonjour {!! $user->prenom !!} !</h2> 
+        	<h2>Vous êtes un {!! $user->role !!}.</h2>
+        </div>
     </div>
 </div>
 @stop

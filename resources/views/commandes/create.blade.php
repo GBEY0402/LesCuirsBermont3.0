@@ -1,26 +1,28 @@
 @extends('shared.masterlayout')
-@section('script')
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+@if ($role == 'Administrateur')
+	@section('script')
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	  	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-	<script type="text/javascript">
-  		$(function() {
-    		$( "#datepickerDebut" ).datepicker({
-      		changeMonth: true,
-      		changeYear: true
-   			});
-  		});
-  	</script>
-  	<script type="text/javascript">
-  		$(function() {
-    		$( "#datepickerFin" ).datepicker({
-      		changeMonth: true,
-      		changeYear: true
-   			});
-  		});
-  	</script>
-  	<script type="text/javascript" src="{{ URL::asset('js/app.js') }}"></script>
-@stop
+		<script type="text/javascript">
+	  		$(function() {
+	    		$( "#datepickerDebut" ).datepicker({
+	      		changeMonth: true,
+	      		changeYear: true
+	   			});
+	  		});
+	  	</script>
+	  	<script type="text/javascript">
+	  		$(function() {
+	    		$( "#datepickerFin" ).datepicker({
+	      		changeMonth: true,
+	      		changeYear: true
+	   			});
+	  		});
+	  	</script>
+	  	<script type="text/javascript" src="{{ URL::asset('js/app.js') }}"></script>
+	@stop
+@endif
 
 @section('content')
 
@@ -29,6 +31,7 @@
 		<h2>Création d'un billet de commande</h2>
 	</div>
 	<div class="panel-body">
+	@if ($role == 'Administrateur')
 		{!! Form::open(['action' => 'CommandesController@store', 'class' => 'form']) !!}
 		@foreach ($errors->all() as $error)
             <p class="alert alert-danger">{{ $error }}</p>
@@ -108,6 +111,12 @@
 			<a href="{{ action('CommandesController@index') }}" class="btn btn-danger">Annuler</a>
 		</div>
 		{!! Form::close() !!}
+	@else
+		<center>
+		<img src="{{URL::asset('img/warning.png')}}" alt=""/>
+		<h3>Votre rôle ne vous permet pas d'utiliser cette page</h3>
+		</center>
+	@endif
 	</div>
 </div>
 @stop

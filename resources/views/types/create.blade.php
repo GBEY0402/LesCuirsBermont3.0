@@ -6,8 +6,8 @@
 		<h2>Création d'un type de matériel</h2>
 	</div>
 	<div class="panel-body">
+	@if ($role == 'Administrateur')
 		{!! Form::open(['action'=> 'TypesController@store', 'class' => 'form']) !!}
-		<!--    -->
         @foreach ($errors->all() as $error)
             <p class="alert alert-danger">{{ $error }}</p>
         @endforeach
@@ -26,6 +26,12 @@
 			<a href="{{ action('TypesController@index') }}" class="btn btn-danger">Annuler</a>
 		</div>
 		{!! Form::close() !!}
+	@else
+		<center>
+		<img src="{{URL::asset('img/warning.png')}}" alt=""/>
+		<h3>Votre rôle ne vous permet pas d'utiliser cette page</h3>
+		</center>
+	@endif
 	</div>
 </div>
 @stop

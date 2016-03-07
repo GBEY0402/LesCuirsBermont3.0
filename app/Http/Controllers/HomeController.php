@@ -24,7 +24,8 @@ class HomeController extends Controller
         *
         */
         $user = Auth::user();
-        return view('inventaire', ['role' => $user->role]);
+        $role = $user->role;
+        return view('inventaire', compact('user', 'role'));
     }
 
     public function ici()

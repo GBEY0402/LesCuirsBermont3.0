@@ -13,7 +13,7 @@ use Illuminate\Html\HtmlServiceProvider;
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <img src="..\logo.png">
+            <img src="{{URL::asset('img/logo.png')}}" alt=""/>
             <a class="navbar-brand" href="/home">Les Cuirs Bermont</a>
         </div>
 
@@ -40,7 +40,6 @@ use Illuminate\Html\HtmlServiceProvider;
                         @if ($role == 'Administrateur')
                             <li><a href="{{ action('CodesProduitsController@index') }}">Codes de produits</a></li>
                             <li><a href="{{ action('ProduitsFinisController@index') }}">Produits</a></li>
-                            <li><a href="{{ action('RecettesController@index') }}">Recettes</a></li>
                         @endif
                     </ul>
                 </li>

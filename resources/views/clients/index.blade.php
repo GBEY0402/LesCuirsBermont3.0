@@ -7,11 +7,11 @@
 			<a href="{{ action('ClientsController@create') }}" class="btn btn-primary">Créer un client/fournisseur</a>
 		@endif
 	</div>
-@if ($clients->isEmpty())
+	@if ($clients->isEmpty())
 	<div class="panel-body">
 		<p>Aucun client</p>
 	</div>
-@else
+	@else
 	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
@@ -29,8 +29,7 @@
 			</tr>
 		</thead>
 		<tbody>
-<!--    -->
-@foreach($clients as $client)
+		@foreach($clients as $client)
 			<tr style="cursor:pointer" onclick="window.location.href='{{ action('ClientsController@show', $client->id) }}'">
 				<td class="hidden-xs"><?php echo $client->id ?></td>
 				<td class="hidden-xs"><?php echo $client->prenom ?></td>
@@ -45,11 +44,13 @@
 				@else
 					<td class="hidden-xs">Inactif</td>
 				@endif
-				<td><a href="{{ action('ClientsController@edit',$client->id) }}" class="btn btn-info">Modifier</a></td>
+				@if ($role == 'Administrateur')
+					<td><a href="{{ action('ClientsController@edit',$client->id) }}" class="btn btn-info">Modifier</a></td>
+				@endif
 			</tr>
-@endforeach
+		@endforeach
 		</tbody>
 	</table>
-@endif
+	@endif
 </div>
 @stop
