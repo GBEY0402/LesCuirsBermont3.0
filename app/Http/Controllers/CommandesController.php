@@ -106,7 +106,7 @@ class CommandesController extends Controller
                  * Retrouve le "name" de chaque infos de chaque produits finis 
                  * et attache le produit à la commande.
                  */
-                for($i = 1; $i == $lineCount; $i++)
+                for($i = 1; $i <= $lineCount; $i++)
                 {
                     $code = ($i."_code");
                     if(Input::has($code))
@@ -242,7 +242,7 @@ class CommandesController extends Controller
                  * Détache(détruit) les produits attachés et réattache les produits avec les nouvelles informations.
                  */
                 $commande->ProduitsFinis()->detach();
-                for($i = 1; $i == $lineCount; $i++)
+                for($i = 1; $i <= $lineCount; $i++)
                 {
                     $code = ($i."_code");
                     if(Input::has($code))
