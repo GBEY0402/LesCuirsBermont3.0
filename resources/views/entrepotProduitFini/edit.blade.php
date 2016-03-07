@@ -57,7 +57,7 @@
 
 				@if ($role == 'Administrateur' && $entrepot->type == "Entrepot")
 				<td>
-					<a href="{{ action('entrepotProduitFiniController@transfert_entrepot', [ $entrepot->id, $produit->id , $produit->pivot->pointure ]) }}" class="btn btn-info">Transfert à une remorque</a>
+					<a href="{{ action('entrepotProduitFiniController@transfert_entrepot', $entrepot->id , $produit->id, $produit->pivot->pointure) }}" class='inline'>Transfert à une remorque</a>
 				</td>
 				@endif
 			</tr>
@@ -77,8 +77,9 @@
 
 </div>
 
+
 {!! Form::close() !!}
 
-<!-- inventaire total -->
+<!-- passer  un id javascript-->
 
 @stop

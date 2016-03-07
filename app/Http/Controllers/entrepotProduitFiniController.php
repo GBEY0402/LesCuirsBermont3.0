@@ -117,11 +117,12 @@ class entrepotProduitFiniController extends Controller
             $role = $user->role;
             $entrepot = entrepot::findOrFail($entrepotId);
             $ProduitsFinis = $entrepot->ProduitsFinis()->orderby('code')->orderby('pivot_pointure')->get();
+            $listeEntrepot = entrepot::lists('nom', 'id');
         } catch (ModelNotFoundException $e) {
             App::abort(404);
         }
 
-        return View::make('entrepotProduitFini.edit', compact('role', 'entrepot','ProduitsFinis'));
+        return View::make('entrepotProduitFini.edit', compact('role', 'entrepot','ProduitsFinis', 'listeEntrepot'));
     }
 
     
@@ -206,16 +207,19 @@ class entrepotProduitFiniController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function transfert_entrepot($entrepotId, $ProduitFiniId, $pointure) {
+    public function transfert_entrepotde($entrepotId, $ProduitFiniId, $pointure) {
         
+       
         $entrepot = entrepot::findOrFail($entrepotId);
-        $ProduitFini_Id = $ProduitFiniId;
+
+        return View::make('entrepotProduitFini.transfert', compact('role', 'entrepot','ProduitsFiniId', 'pointure'));
         
-        $quantiteAchanger = 66;
-        $entrepot->ProduitsFinis()->wherePivot('produit_fini_id', $ProduitFini_Id)->wherePivot('pointure', $pointure)->updateExistingPivot($ProduitFini_Id, ['pointure' => $pointure , 'quantite' => $quantiteAchanger]);
+        
+
+        //$entrepot->ProduitsFinis()->wherePivot('produit_fini_id', $ProduitFini_Id)->wherePivot('pointure', $pointure)->updateExistingPivot($ProduitFini_Id, ['pointure' => $pointure , 'quantite' => $quantiteAchanger]);
 
         
-         return Redirect::action('entrepotProduitFiniController@MultiEdit', $entrepot->id);
+         //return Redirect::action('entrepotProduitFiniController@MultiEdit', $entrepot->id);
 
     }
 
