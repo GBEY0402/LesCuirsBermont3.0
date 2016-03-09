@@ -25,7 +25,7 @@ Route::group(['middleware'=>'auth'], function() {
 	Route::resource('type', 'TypesController');
 	Route::resource('production', 'CommandesController');
 	Route::resource('entrepot', 'entrepotController');
-
+	Route::resource('grille', 'GrilleController');
 	Route::resource('commande', 'CommandesController');
 	Route::resource('code', 'CodesProduitsController');
 

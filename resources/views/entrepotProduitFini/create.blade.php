@@ -14,12 +14,12 @@
 		</div>
 		<div class="form-group">
 			{!! Form::label('pointure', 'Pointure :') !!} 
-			{!! Form::select('pointure', array('4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10', '11' => '11', '12' => '12', '13' => '13', '14' => '14') , '1' ) !!}
+			{!! Form::select('pointure', array('4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10', '11' => '11', '12' => '12', '13' => '13', '1' => '1', '2' => '2', '3' => '3') , '1' ) !!}
 			{{ $errors->first('pointure') }}				
 		</div>
 		<div class="form-group">
 			{!! Form::label('quantite', 'Quantité :') !!} 
-			{!! Form::text('quantite',null, ['class' => 'form-control']) !!}
+			<input type='number' min='0' name="quantite">
 			{{ $errors->first('quantite') }}				
 		</div>
 		<div class="form-group">

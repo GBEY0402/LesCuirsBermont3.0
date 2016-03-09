@@ -23,6 +23,7 @@
 			{!! Form::button('Appliquer les modifications', ['type' => 'submit', 'class' => 'btn btn-info']) !!}
 			@endif
 		@endif
+		<a href="{{ action('GrilleController@edit', $entrepot->id) }}" class="btn btn-primary">Afficher la grille</a>
 	</div>
 	@if ($ProduitsFinis->isEmpty())
 		<div class="panel-body">
