@@ -79,7 +79,7 @@ class entrepotController extends Controller
     }
 
     /**
-     * Affiche une matière première.
+     * Affiche les spécification d'une entrepot.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -100,7 +100,7 @@ class entrepotController extends Controller
     }
 
     /**
-     * Affiche le formulaire pour modifier la matière première.
+     * Affiche le formulaire pour modifier l'entrepot.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -121,7 +121,7 @@ class entrepotController extends Controller
     }
 
     /**
-     * Mise à jour de la matière première.
+     * Mise à jour de l'entrepot.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -155,7 +155,7 @@ class entrepotController extends Controller
     }
 
     /**
-     * Suppression de la matière première dans la base de donnée.
+     * Suppression de l'entrepot dans la base de donnée.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

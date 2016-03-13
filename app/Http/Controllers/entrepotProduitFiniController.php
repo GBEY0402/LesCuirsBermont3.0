@@ -18,7 +18,7 @@ use App\Models\CodeProduit;
 class entrepotProduitFiniController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Affiche la liste des produits finis dans l'entrepot.
      *
      * @return \Illuminate\Http\Response
      */
@@ -40,7 +40,7 @@ class entrepotProduitFiniController extends Controller
     
 
     /**
-     * Show the form for creating a new resource.
+     * Affiche le formulaire pour mettre un produit fini dans l'entrepot.
      *
      * @return \Illuminate\Http\Response
      */
@@ -59,7 +59,7 @@ class entrepotProduitFiniController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Enregistre le produit fini dans l'entrepot.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -88,7 +88,7 @@ class entrepotProduitFiniController extends Controller
         // }
     }
     /**
-     * Display the specified resource.
+     * Affiche le contenu de l'entrepot.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -105,7 +105,7 @@ class entrepotProduitFiniController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Permet de mettre à jour plusieurs produits finis à la fois.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -136,7 +136,7 @@ class entrepotProduitFiniController extends Controller
             }
 
     /**
-     * Update the specified resource in storage.
+     * Met à jour les différents produits finis contenu dans une entrepot.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id

@@ -60,7 +60,7 @@ class ProduitsFinisController extends Controller
     }
 
     /**
-     * Enregistre le produit fini dans la base de donnée.
+     * Enregistre le nouveau produit fini dans la base de donnée.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -95,7 +95,7 @@ class ProduitsFinisController extends Controller
     }
 
     /**
-     * Affiche un produit fini.
+     * Affiche les spécifications d'un produit fini.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -146,7 +146,7 @@ class ProduitsFinisController extends Controller
     }
 
     /**
-     * Mise à jour du produit fini dans la base de donnée.
+     * Mise à jour du produit fini dans la base de données.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -184,7 +184,7 @@ class ProduitsFinisController extends Controller
     }
 
     /**
-     * Suppression du produit fini de la base de donnée.
+     * Suppression du produit fini de la base de données.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

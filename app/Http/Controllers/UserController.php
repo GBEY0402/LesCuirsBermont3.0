@@ -16,7 +16,7 @@ use Hash;
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Affiche la liste des employés.
      *
      * @return \Illuminate\Http\Response
      */
@@ -39,12 +39,12 @@ class UserController extends Controller
         {
             App::abort(404);
         }
-        return View::make('users.index', compact('usagers', 'role'));
+        return View::make('users.index', compact('user', 'usagers', 'role'));
 	
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Affiche le formulaire de création d'un employé dans la base de données.
      *
      * @return \Illuminate\Http\Response
      */
@@ -56,7 +56,7 @@ class UserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Enregistre le nouvel employé dans la base de données.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -88,7 +88,7 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Affiche les spécifications d'un employé.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -109,7 +109,7 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Affiche le formulaire de mise à jour d'un employé.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -130,7 +130,7 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Mise à jour des données d'un employé dans la base de données.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -165,7 +165,7 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Suppression d'un employé de la base de données.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

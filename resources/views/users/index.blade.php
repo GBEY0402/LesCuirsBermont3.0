@@ -29,8 +29,10 @@
 					<td class="hidden-xs" onclick="window.location.href='{{ action('UserController@show', $usager->id) }}'"><?php echo $usager->role ?></td>
 					<td><a href="{{ action('UserController@edit',$usager->id) }}" class="btn btn-info">Modifier</a></td>
 					<td>
-						{!! Form::open(array('action' => array('UserController@destroy',$usager->id), 'method' => 'delete', 'data-confirm' => 'Êtes-vous certain?')) !!}
-						<button type="submit" class="btn btn-danger btn-mini">Effacer</button>
+						@if ($usager->prenom != 'Robert' && $usager->nom != 'Durocher')
+							{!! Form::open(array('action' => array('UserController@destroy',$usager->id), 'method' => 'delete', 'data-confirm' => 'Êtes-vous certain?')) !!}
+							<button type="submit" class="btn btn-danger btn-mini">Effacer</button>
+						@endif
 						{!! Form::close() !!}   
 					</td>
 				</tr>

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class entrepot extends Model
 {
     /*
-     *
+     * L'objet Entrepot est associé à la table Entrepot.
      */
 
     protected $table = 'entrepot';
@@ -15,7 +15,7 @@ class entrepot extends Model
     public $timestamps = false;
 
     /**
-     * The attributes that are mass assignable.
+     * Les attributs de l'objet Entrepot qui sont modifiable.
      *
      * @var array
      */
@@ -23,13 +23,21 @@ class entrepot extends Model
 
     public $validationMessages;
 
+    /*
+     * Les attributs modifiables sont validés selon leurs spécification.
+     */
+
 	public function validationRules() {
 		return 
 			[
-			'nom' 				=> 'required',
-			'type' 				=> 'required',
+			'nom' 			=> 'required',
+			'type' 			=> 'required',
 			];
 	}
+
+    /*
+     * Les objet ProduitFini sont associés à un entrepot, en plus d'y ajouter une pointure et une quantité.
+     */
 
     public function ProduitsFinis(){ 
 

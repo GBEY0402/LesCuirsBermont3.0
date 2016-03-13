@@ -12,9 +12,8 @@ class Type extends EloquentValidating
  /**
   * Validation
   *
-  * un produit fini doit avoir:
-  * - code: obligatoire et unique dans toute la table.
-  * - Les autres champs sont obligatoires, sauf description.
+  * un type doit avoir:
+  * - nom : doit être unique dans la base de données.
   */
 
     public $validationMessages;

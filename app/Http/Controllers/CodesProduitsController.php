@@ -16,7 +16,7 @@ use Auth;
 class CodesProduitsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Affiche la liste des codes de produits existants.
      *
      * @return \Illuminate\Http\Response
      */
@@ -36,7 +36,7 @@ class CodesProduitsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Affiche le formulaire de création d'un code de produit.
      *
      * @return \Illuminate\Http\Response
      */
@@ -48,9 +48,8 @@ class CodesProduitsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Enregistre le nouveau code de produit dans la base de données.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store()
@@ -77,7 +76,7 @@ class CodesProduitsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Affiche les spécification d'un code de produit.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -98,7 +97,7 @@ class CodesProduitsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Affiche le formulaire de modification d'un code de produit.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -119,7 +118,7 @@ class CodesProduitsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Met à jour les modifications d'un code de produit après l'avoir modifier.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -150,7 +149,7 @@ class CodesProduitsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Efface le code de produit de la base de données.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

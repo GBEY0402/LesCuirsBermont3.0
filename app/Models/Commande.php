@@ -14,13 +14,17 @@ class Commande extends EloquentValidating
     protected $table = 'Commandes';
 
     /**
-     * The attributes that are mass assignable.
+     * Les attribues modifiables de l'objet Commande.
      *
      * @var array
      */
     protected $fillable = ['clientsId', 'dateDebut', 'dateFin', 'etat'];
 
     public $validationMessages;
+
+    /*
+     * Les attributs modifiables sont validés selon leurs spécification.
+     */
 
 	public function validationRules() {
 		return 
@@ -30,6 +34,10 @@ class Commande extends EloquentValidating
 			'etat' 			=> 'required',
 			];
 	} 
+
+    /*
+     * Des objets ProduitFini font référence à un objet Commande.
+     */
 
     public function ProduitsFinis(){ 
 

@@ -29,11 +29,19 @@ class ProduitFini extends EloquentValidating
 			];
 	}
 
+  /**
+   * Les objets ProduitFini appartiennent à plusieurs entrepot.
+   */
+
   public function Entrepots(){ 
 
 
         return $this->belongsToMany('App\Models\entrepot')->withPivot('pointure', 'quantite');
   }
+
+  /**
+   * Les objets ProduitFini appartiennent à plusieurs commande.
+   */
 
   public function Commandes(){ 
 

@@ -14,13 +14,17 @@ class Client extends EloquentValidating
     protected $table = 'Clients';
 
     /**
-     * The attributes that are mass assignable.
+     * Les attributs de l'objet Client qui sont modifiable.
      *
      * @var array
      */
     protected $fillable = ['prenom', 'nom', 'adresse', 'ville', 'noTel', 'courriel'];
 
     public $validationMessages;
+
+    /**
+     * Les champs modifiable de l'objet Client sont validés.
+     */
 
 	public function validationRules() {
 		return 

@@ -14,7 +14,7 @@ class MatierePremiere extends EloquentValidating
     protected $table = 'MatieresPremieres';
 
     /**
-     * The attributes that are mass assignable.
+     * Les attributs modifiables d'un objet MatierePremiere.
      *
      * @var array
      */
@@ -23,15 +23,19 @@ class MatierePremiere extends EloquentValidating
 
     public $validationMessages;
 
+    /*
+     * Les attributs modifiables sont validés selon leurs spécification.
+     */
+
 	public function validationRules() {
 		return 
 			[
 			'type' 				=> 'required',
-			'nom' 				=> 'required',
+			'nom' 				=> 'required|alpha_num',
 			'prix' 				=> 'required',
-			'quantiteTotale' 	=> 'required',
-			'quantiteMinimum' 	=> 'required',
-			'quantiteLimite' 	=> 'required',
+			'quantiteTotale' 	=> 'required|numeric|min:0',
+			'quantiteMinimum' 	=> 'required|numeric|min:0',
+			'quantiteLimite' 	=> 'required|numeric|min:0',
 			];
 	}
     

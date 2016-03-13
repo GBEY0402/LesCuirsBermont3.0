@@ -96,7 +96,7 @@ class MatieresPremieresController extends Controller
     }
 
     /**
-     * Affiche une matière première.
+     * Affiche les spécifications d'une matière première.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -143,7 +143,7 @@ class MatieresPremieresController extends Controller
     }
 
     /**
-     * Mise à jour de la matière première.
+     * Mise à jour de la matière première dans la base de données.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -184,7 +184,7 @@ class MatieresPremieresController extends Controller
     }
 
     /**
-     * Suppression de la matière première dans la base de donnée.
+     * Suppression de la matière première de la base de donnée.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

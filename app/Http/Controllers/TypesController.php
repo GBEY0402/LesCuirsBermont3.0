@@ -16,7 +16,7 @@ use Auth;
 class TypesController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Affiche la liste des types de matières premières.
      *
      * @return \Illuminate\Http\Response
      */
@@ -43,7 +43,7 @@ class TypesController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Affiche le formulaire de création d'un type de matière première.
      *
      * @return \Illuminate\Http\Response
      */
@@ -55,7 +55,7 @@ class TypesController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Enregistre le nouveau type dans la base de données.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -86,7 +86,7 @@ class TypesController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Affiche les spécifications d'un type de matière première.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -111,7 +111,7 @@ class TypesController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Affiche le formulaire de modification d'un type de matière première.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -132,7 +132,7 @@ class TypesController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Mise à jour du type de matière première dans la base de données.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -164,7 +164,7 @@ class TypesController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Suppression d'un type de matière première de la base de données.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
