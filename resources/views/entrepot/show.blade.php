@@ -7,7 +7,7 @@
 		</div>
 		<div class="panel-body">
 			<p>Nom: <?php echo $entrepot->nom ?></p>
-			<p>Type: <?php echo $entrepot->description ?></p>
+			<p>Type: <?php echo $entrepot->type ?></p>
 			<a href="{{ URL::previous() }}" class="btn btn-primary">Retour</a>
 		</div>
 	@else

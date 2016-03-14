@@ -28,5 +28,6 @@
 		<h3>Votre rôle ne vous permet pas d'utiliser cette page</h3>
 		</center>
 	</div>
+	@endif
 </div>
 @stop
