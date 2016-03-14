@@ -27,6 +27,7 @@
 		<img src="{{URL::asset('img/warning.png')}}" alt=""/>
 		<h3>Votre rôle ne vous permet pas d'utiliser cette page</h3>
 		</center>
+	@endif
 	</div>
 	@endif
 </div>
