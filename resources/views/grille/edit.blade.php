@@ -1,5 +1,7 @@
 @extends('shared.masterlayout')
 @section('content')
+
+
 <div class="panel panel-default">
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -8,42 +10,42 @@
 	</div>
 	<div class="panel-body">
 		<div>
-			<table class="table table-striped table-hover">
+			<table class="table table-striped table-hover" border="1">
 				<thead>
 					<tr>
 						<th> </th>
-						<th>1</th>
-						<th>2</th>
-						<th>3</th>
-						<th>4</th>
-						<th>5</th>
-						<th>6</th>
-						<th>7</th>
-						<th>8</th>
-						<th>9</th>
-						<th>10</th>
-						<th>11</th>
-						<th>12</th>
-						<th>13</th>
+						<th><center>1</center></th>
+						<th><center>2</center></th>
+						<th><center>3</center></th>
+						<th><center>4</center></th>
+						<th><center>5</center></th>
+						<th><center>6</center></th>
+						<th><center>7</center></th>
+						<th><center>8</center></th>
+						<th><center>9</center></th>
+						<th><center>10</center></th>
+						<th><center>11</center></th>
+						<th><center>12</center></th>
+						<th><center>13</center></th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach($listeItems as $liste)
 					<tr>
 						<td><strong>{!! $liste[0] !!}</strong></td>
-						<td>{!! $liste[1] !!}</td>
-						<td>{!! $liste[2] !!}</td>
-						<td>{!! $liste[3] !!}</td>
-						<td>{!! $liste[4] !!}</td>
-						<td>{!! $liste[5] !!}</td>
-						<td>{!! $liste[6] !!}</td>
-						<td>{!! $liste[7] !!}</td>
-						<td>{!! $liste[8] !!}</td>
-						<td>{!! $liste[9] !!}</td>
-						<td>{!! $liste[10] !!}</td>
-						<td>{!! $liste[11] !!}</td>
-						<td>{!! $liste[12] !!}</td>
-						<td>{!! $liste[13] !!}</td>
+						<td><center>{!! $liste[1] !!}</center></td>
+						<td><center>{!! $liste[2] !!}</center></td>
+						<td><center>{!! $liste[3] !!}</center></td>
+						<td><center>{!! $liste[4] !!}</center></td>
+						<td><center>{!! $liste[5] !!}</center></td>
+						<td><center>{!! $liste[6] !!}</center></td>
+						<td><center>{!! $liste[7] !!}</center></td>
+						<td><center>{!! $liste[8] !!}</center></td>
+						<td><center>{!! $liste[9] !!}</center></td>
+						<td><center>{!! $liste[10] !!}</center></td>
+						<td><center>{!! $liste[11] !!}</center></td>
+						<td><center>{!! $liste[12] !!}</center></td>
+						<td><center>{!! $liste[13] !!}</center></td>
 					</tr>
 					@endforeach
 				</tbody>

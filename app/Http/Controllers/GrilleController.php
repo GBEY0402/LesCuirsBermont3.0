@@ -43,7 +43,7 @@ class GrilleController extends Controller
                         {
                             if($i >= $rows)
                             {
-                                array_push($sousListeItems, 0);
+                                array_push($sousListeItems, " ");
                             }
                             else
                             {
@@ -54,7 +54,7 @@ class GrilleController extends Controller
                                 }
                                 else
                                 {
-                                    array_push($sousListeItems, 0);
+                                    array_push($sousListeItems, " ");
                                 }
                             }
                         }
