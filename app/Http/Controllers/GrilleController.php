@@ -23,7 +23,7 @@ class GrilleController extends Controller
             $user = Auth::user();
             $role = $user->role;
             $entrepot = Entrepot::findOrFail($entrepotId);
-            $items = $entrepot->ProduitsFinis()->orderby("code")->orderby("pointure")->get();
+            $items = $entrepot->ProduitsFinis()->orderby("id")->orderby("pointure")->get();
             $rows = count($items);
             $sousListeItems = array();
             $listeItems = array();
