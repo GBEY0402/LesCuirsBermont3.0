@@ -29,5 +29,6 @@
 		</center>
 	@endif
 	</div>
+	@endif
 </div>
 @stop
